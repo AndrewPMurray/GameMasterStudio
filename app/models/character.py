@@ -20,7 +20,6 @@ class Character(db.Model):
     wisdom = db.Column(db.Integer, nullable=False)
     charisma = db.Column(db.Integer, nullable=False)
     armor_class = db.Column(db.Integer, nullable=False)
-    initiative = db.Column(db.Integer, nullable=False)
     speed = db.Column(db.Integer, nullable=False)
     max_hp = db.Column(db.Integer, nullable=False)
     current_hp = db.Column(db.Integer, nullable=False)
@@ -35,7 +34,10 @@ class Character(db.Model):
     features = db.Column(db.Text)
     biography = db.Column(db.Text)
     campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    
+    campaign = db.relationship("Campaign", back_populates="characters")
+    user = db.relationship("User", back_populates="characters")
 
     def to_dict(self):
         return {
@@ -55,7 +57,6 @@ class Character(db.Model):
             'wisdom': self.wisdom,
             'charisma': self.charisma,
             'armor_class': self.armor_class,
-            'initiative': self.initiative,
             'speed': self.speed,
             'max_hp': self.max_hp,
             'current_hp': self.current_hp,

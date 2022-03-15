@@ -8,6 +8,8 @@ class Article(db.Model):
     content = db.Column(db.Text)
     photo_url = db.Column(db.String(500))
     section_id = db.Column(db.Integer, db.ForeignKey('sections.id'), nullable=False)
+    
+    section = db.relationship("Section", back_populates="articles")
 
     def to_dict(self):
         return {

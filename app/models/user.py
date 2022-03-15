@@ -1,6 +1,7 @@
 from .db import db
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
+from .campaign_user import campaign_users
 
 
 class User(db.Model, UserMixin):
@@ -11,6 +12,9 @@ class User(db.Model, UserMixin):
     email = db.Column(db.String(255), nullable=False, unique=True)
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic_url = db.Column(db.String(500))
+    
+    campaigns = db.relationship("Campaign", secondary=campaign_users)
+    characters = db.relationship("Character", back_populates="user", cascade="all, delete")
 
     @property
     def password(self):
@@ -28,5 +32,7 @@ class User(db.Model, UserMixin):
             'id': self.id,
             'username': self.username,
             'email': self.email,
-            'profile_pic_url': self.profile_pic_url
+            'profile_pic_url': self.profile_pic_url,
+            'campaigns': [campaign.to_dict() for campaign in self.campaigns],
+            'characters': [character.to_dict() for character in self.characters]
         }
