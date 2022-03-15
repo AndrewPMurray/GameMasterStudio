@@ -1,1 +1,200 @@
-/* TODO Add site wide styles */
+/* default font */
+
+/* CSS Reset */
+html, body, div, span, applet, object, iframe,
+h1, h2, h3, h4, h5, h6, p, blockquote, pre,
+a, abbr, acronym, address, big, cite, code,
+del, dfn, em, img, ins, kbd, q, s, samp,
+small, strike, strong, sub, sup, tt, var,
+b, u, i, center,
+dl, dt, dd, ol, ul, li,
+fieldset, form, label, legend,
+table, caption, tbody, tfoot, thead, tr, th, td,
+article, aside, canvas, details, embed, 
+figure, figcaption, footer, header, hgroup, 
+menu, nav, output, ruby, section, summary,
+time, mark, audio, video {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	font-size: 100%;
+	vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article, aside, details, figcaption, figure, 
+footer, header, hgroup, menu, nav, section {
+	display: block;
+}
+body {
+	line-height: 1;
+}
+ol, ul {
+	list-style: none;
+}
+blockquote, q {
+	quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+	content: '';
+	content: none;
+}
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}
+/* end reset */
+
+/* animations */
+@keyframes fade-in {
+	from {
+		opacity: 0;
+	}
+	to {
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out {
+	from {
+		opacity: 1;
+	}
+	to {
+		opacity: 0;
+	}
+}
+
+@keyframes fade-in-grow {
+	from {
+		transform: scaleY(0.7) scaleX(0.7);
+		opacity: 0;
+	}
+	to {
+		transform: scaleY(1) scaleX(1);
+		opacity: 1;
+	}
+}
+
+@keyframes fade-out-shrink {
+	from {
+		transform: scaleY(1) scaleX(1);
+		opacity: 1;
+	}
+	to {
+		transform: scaleY(0.7) scaleX(0.7);
+		opacity: 0;
+	}
+}
+
+@keyframes slide-from-left-offscreen {
+	from{
+		transform: translateX(-100%);
+	}
+	to{
+		transform: translateX(0%);
+	}
+}
+
+@keyframes hide-left {
+	from {
+		transform: translateX(0);
+	}
+	to {
+		transform: translateX(-100%);;
+	}
+}
+
+@keyframes slide-right {
+	from{
+		transform: translateX(0);
+		width: 100%;
+	}
+	to{
+		transform: translateX(calc(50px + 40vw))
+	}
+}
+
+@keyframes slide-left {
+	from {
+		transform: translateX(0);
+		width: calc(10px + 55vw);
+	}
+	to {
+		transform: translateX(-1);
+		width: 100%;
+	}
+}
+
+@keyframes fade-in-slide-down {
+	from {
+		opacity: 0;
+		transform: translateY(-10%)
+	}
+	to {
+		opacity: 1;
+		transform: translateY(0)
+	}
+}
+
+.fade-in {
+	animation-name: fade-in;
+	animation-duration: 200ms;
+	animation-timing-function: ease-in-out;
+}
+
+.fade-out {
+	animation-name: fade-out;
+	animation-duration: 200ms;
+	animation-timing-function: ease-in-out;
+}
+
+.fade-in-grow {
+	animation-name: fade-in-grow;
+	animation-duration: 200ms;
+	animation-timing-function: ease-in-out;
+}
+
+.fade-out-shrink {
+	animation-name: fade-out-shrink;
+	animation-duration: 200ms;
+	animation-timing-function: ease-in-out;
+}
+
+.slide-from-offscreen {
+	animation-name: slide-from-left-offscreen;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+}
+
+.slide-right {
+	animation-name: slide-right;
+	transform-origin: left;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+}
+
+.slide-left {
+	animation-name: slide-left;
+	transform-origin: right;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+}
+
+.hide-left {
+	animation-name: hide-left;
+	animation-duration: 250ms;
+	animation-timing-function: ease-in-out;
+	visibility: hidden;
+	opacity: 0;
+	position: absolute;
+	left: 10vw;
+}
+
+.fade-in-slide-down {
+	animation-name: fade-in-slide-down;
+	transform-origin: top;
+	animation-duration: 300ms;
+	animation-timing-function: ease-in-out;
+}
+
+/* end animations */

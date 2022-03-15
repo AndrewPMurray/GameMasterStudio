@@ -1,5 +1,5 @@
 from .db import db
-from .campaign_user import campaign_users
+from .campaign_user import CampaignUser
 
 class Campaign(db.Model):
     __tablename__ = 'campaigns'
@@ -10,6 +10,7 @@ class Campaign(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
     dungeon_master_id = db.Column(db.Integer, db.ForeignKey('users.id'))
     
+    users = db.relationship("User", secondary="campaign_users")
     characters = db.relationship("Character", back_populates="campaign")
     sections = db.relationship("Section", back_populates="campaign")
 

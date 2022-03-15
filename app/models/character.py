@@ -1,4 +1,5 @@
 from .db import db
+import json
 
 
 class Character(db.Model):
@@ -63,12 +64,12 @@ class Character(db.Model):
             'temporary_hp': self.temporary_hp,
             'hit_dice_total': self.hit_dice_total,
             'hit_dice': self.hit_dice,
-            'weapons': self.weapons,
-            'equipment': self.equipment,
+            'weapons': json.loads(self.weapons),
+            'equipment': json.loads(self.equipment),
             'gold_pieces': self.gold_pieces,
             'silver_pieces': self.silver_pieces,
             'copper_pieces': self.copper_pieces,
-            'features': self.features,
+            'features': json.loads(self.features),
             'biography': self.biography,
             'campaign_id': self.campaign_id,
             'user_id': self.user_id,
