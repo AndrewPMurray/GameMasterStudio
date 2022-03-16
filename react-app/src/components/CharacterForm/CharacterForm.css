@@ -1,5 +1,36 @@
+.character-form-container {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+    margin: 0 20%;
+    margin-top: 50px;
+}
+
+.character-form-container input {
+    border: none;
+}
+
+#tabs {
+    display: flex;
+    margin-bottom: 10px;
+    justify-content: flex-end;
+}
+
+#tabs > * {
+    margin: 0 5px;
+}
+
 #character-header-container {
     display: flex;
+    justify-content: space-between;
+    width: 900px;
+}
+
+#logo {
+    position: relative;
+    top: -20px;
+    width: 125px;
+    height: auto;
 }
 
 #character-name-container {
@@ -14,4 +45,369 @@
 
 #character-sheet-header > * {
     display: flex;
+}
+
+#character-sheet {
+    display: flex;
+    margin-top: 40px;
+}
+
+#attributes-skills {
+    display: flex;
+}
+
+#attributes * {
+    width: 95px;
+    font-size: 12px;
+    text-align: center;
+}
+
+#attribute-div {
+    border: 1px solid;
+    margin: 10px 0;
+    border-radius: 10px;
+}
+
+#attribute-div > * {
+    margin: 10px 0;
+}
+
+#attributes * label {
+    position: relative;
+    top: 8px;
+}
+
+#attributes * h3 {
+    position: relative;
+    top: 10px;
+    font-size: 24px;
+}
+
+#attributes * input {
+    width: 25px;
+    height: 15px;
+    border: 1px solid black;
+    position: relative;
+    bottom: -20px;
+    border-radius: 10px;
+}
+
+#skills-and-throws {
+    width: 125px;
+    margin-left: 20px;
+    margin-top: 10px;
+}
+
+#proficiency {
+    display: flex;
+    align-items: center;
+}
+
+#proficiency h3 {
+    display: flex;
+    align-items: center;
+    max-height: 10px;
+    border: 1px solid black;
+    border-radius: 25px;
+    text-align: center;
+    margin-right: 5px;
+    padding: 10px;
+    font-size: 20px;
+}
+
+#saving-throws,
+#skills {
+    margin: 5px;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    width: 150px;
+}
+
+#saving-throw, 
+#skill {
+    display: flex;
+}
+
+#saving-throw *,
+#skill * {
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+#saving-throw > *:first-child,
+#skill > *:first-child {
+    width: 20px;
+    text-align: end;
+}
+
+#saving-throw > *:last-child,
+#skill > *:last-child {
+    margin-left: 5px;
+}
+
+#saving-throws-text,
+#skills-text {
+    position: relative;
+    bottom: -10px;
+    text-align: center;
+    font-size: 12px;
+}
+
+#passive-perception {
+    margin-top: 10px;
+}
+
+#passive-perception div {
+    display: flex;
+}
+
+#sheet-middle {
+    margin-left: 65px;
+}
+
+#hp-weapons > * {
+    padding: 10px;
+    display: flex;
+}
+
+#armor-initiative-speed > * {
+    text-align: center;
+    font-size: 24px;
+    border: 1px solid black;
+    border-radius: 10px;
+    padding: 5px;
+    margin-right: 5px;
+    width: 70px;
+    height: 60px;
+    flex-direction: column;
+    position: relative;
+}
+
+#armor-initiative-speed > * input {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+}
+
+#ac-initiative-speed-text {
+    margin-top: 10px;
+    font-size: 12px;
+    width: 70px;
+    text-align: center;
+    position: absolute;
+    bottom: 5px;
+}
+
+#current-hp {
+    width: 250px;
+    height: 90px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 5px;
+    flex-direction: column;
+    position: relative;
+}
+
+#temporary-hp {
+    width: 250px;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 5px;
+    flex-direction: column;
+    position: relative;
+}
+
+#hit-dice-death-saves {
+    width: 250px;
+    height: 75px;
+    border: 1px solid black;
+    border-radius: 10px;
+    margin-top: 5px;
+    flex-direction: column;
+    position: relative;
+}
+
+#hp-max,
+#total-hit-dice {
+    display: flex;
+    height: 20px;
+    color: gray;
+}
+
+#hp-max input {
+    width: 40%;
+    border-bottom: 1px solid #AAAAAA;
+    text-align: center;
+}
+
+#total-hit-dice input {
+    width: 90%;
+    border-bottom: 1px solid #AAAAAA;
+    text-align: center;
+}
+
+#current-hp-input,
+#temporary-hp-input,
+#hit-dice-death-saves {
+    text-align: center;
+    margin-top: 5px;
+}
+
+#current-hp-input input,
+#temporary-hp-input input,
+#hit-dice > input {
+    width: 100%;
+    text-align: center;
+    font-size: 24px;
+    height: 30px;
+}
+
+#current-hp-input p,
+#temporary-hp-input p {
+    text-align: center;
+    margin-top: 20px;
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+}
+
+#hit-dice > p {
+    position: absolute;
+    bottom: 5px;
+    width: 90%;
+}
+
+#weapons-container,
+#equipment-container {
+    margin-top: 10px;
+    padding: 5px;
+    border: 1px solid black;
+    border-radius: 10px;
+    min-height: 250px;
+    width: 260px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+}
+
+#weapons-container table,
+#equipment-container table {
+    font-size: 10px;
+    margin-bottom: 20px;
+}
+
+#weapons-container input,
+#equipment-container input {
+    margin: 5px;
+    background-color: #CCCCCC;
+}
+
+#weapon-name input,
+#equipment-name input {
+    width: 100px;
+}
+
+#weapon-atk input,
+#quantity input {
+    width: 25px;
+}
+
+#weapon-damage input,
+#weight input {
+    width: 80%;
+}
+
+#weapons-container > p,
+#equipment-container > p,
+#features-container > p {
+    position: absolute;
+    bottom: 5px;
+    width: 100%;
+    text-align: center;
+}
+
+#money-table-container {
+    display: flex;
+    position: relative;
+}
+
+#money > *{
+    position: relative;
+    margin-bottom: 5px;
+    width: 70px;
+    left: -25px;
+    display: flex;
+    align-items: center;
+    border: 1px solid black;
+    border-radius: 5px;
+    background-color: white;
+}
+
+#money input {
+    background-color: white;
+    width: 50%;
+    text-align: right;
+}
+
+#gp,
+#sp,
+#cp {
+    color: #888888;
+    margin-left: 5px;
+}
+
+.fa-plus {
+    cursor: pointer;
+    font-size: 14px;
+    width: 20px;
+    padding-bottom: 20px;
+    text-align: right;
+}
+
+#features-container {
+        margin-top: 5px;
+        padding: 5px;
+        border: 1px solid black;
+        border-radius: 10px;
+        min-height: 100%;
+        width: 260px;
+        display: flex;
+        flex-direction: column;
+        position: relative;
+}
+
+#feature-editor input {
+    width: 95%;
+    background-color: #CCCCCC;
+    border: 1px solid black;
+}
+
+#feature-editor textarea {
+    width: 95%;
+    height: 150px;
+    background-color: #CCCCCC;
+    border: 1px solid black;
+}
+
+#feature-editor p {
+    margin: 5px 0;
+}
+
+#feature-name-view {
+    margin: 5px;
+}
+
+#add-weapon-button,
+#add-equipment-button,
+#add-feature-button {
+    position: relative;
+    width: 50px;
+}
+
+#bio-input {
+    resize: none;
+    min-height: 500px;
+    padding: 10px;
 }

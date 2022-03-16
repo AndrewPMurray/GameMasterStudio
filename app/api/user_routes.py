@@ -18,9 +18,14 @@ def user(id):
     user = User.query.get(id)
     return user.to_dict()
 
-@user_routes.route('/campaigns/<int:user_id>')
+@user_routes.route('/<int:user_id>/campaigns/')
 @login_required
 def get_campaigns_by_user(user_id):
-    pass
     campaigns = User.query.get(user_id).campaigns
     return {"all_campaigns": [campaign.to_dict() for campaign in campaigns]}
+
+@user_routes.route('/<int:user_id>/characters/')
+@login_required
+def get_characters_by_user(user_id):
+    characters = User.query.get(user_id).characters
+    return {"all_characters": [character.to_dict() for character in characters]}

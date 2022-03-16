@@ -27,7 +27,7 @@ const remove = (campaignId) => ({
 export const clearCampaignState = () => ({ type: RESET_STATE });
 
 export const getCampaigns = (userId) => async (dispatch) => {
-	const response = await fetch(`/api/users/campaigns/${userId}`);
+	const response = await fetch(`/api/users/${userId}/campaigns/`);
 
 	if (response.ok) {
 		const campaigns = await response.json();
@@ -55,9 +55,11 @@ export const updateCampaign = (payload) => async (dispatch) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
 	});
-	const editedCampaign = await response.json();
-	dispatch(update(editedCampaign));
-	return editedCampaign;
+	if (response.ok) {
+		const editedCampaign = await response.json();
+		dispatch(update(editedCampaign));
+		return editedCampaign;
+	}
 };
 
 export const deleteCampaign = (campaignId) => async (dispatch) => {
@@ -67,7 +69,6 @@ export const deleteCampaign = (campaignId) => async (dispatch) => {
 			'Content-Type': 'application/json',
 		},
 	});
-
 	if (response.ok) {
 		const deletedCampaign = await response.json();
 		dispatch(remove(campaignId));
