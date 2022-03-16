@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import Campaign, CampaignUser, db
+from app.models import db, Campaign, User
 from app.forms import CampaignForm
 
 campaign_routes = Blueprint('campaigns', __name__)
@@ -11,6 +11,7 @@ def create_campaign():
     form = CampaignForm()
     form['csrf_token'].data = request.cookies['csrf_token']
     data = form.data
+    user = User.query.get(data['owner_id'])
     
     if form.validate_on_submit():
         new_campaign = Campaign(
@@ -18,14 +19,9 @@ def create_campaign():
             description=data['description'],
             owner_id=data['owner_id'],
         )
-        db.session.add(new_campaign)
-        db.session.commit()
         
-        new_campaign_user = CampaignUser(
-            user_id=data['owner_id'],
-            campaign_id=new_campaign.id
-        )
-        db.session.add(new_campaign_user)
+        user.campaigns.append(new_campaign)
+        db.session.add(new_campaign)
         db.session.commit()
         
         return new_campaign.to_dict()

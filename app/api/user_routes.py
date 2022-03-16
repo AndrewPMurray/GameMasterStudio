@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify
 from flask_login import login_required
-from app.models import User, CampaignUser
+from app.models import User
 
 user_routes = Blueprint('users', __name__)
 
@@ -21,5 +21,6 @@ def user(id):
 @user_routes.route('/campaigns/<int:user_id>')
 @login_required
 def get_campaigns_by_user(user_id):
-    campaigns = CampaignUser.query.filter(CampaignUser.user_id == user_id).all()
-    return {"all_campaigns": [campaign.campaign.to_dict() for campaign in campaigns]}
+    pass
+    campaigns = User.query.get(user_id).campaigns
+    return {"all_campaigns": [campaign.to_dict() for campaign in campaigns]}

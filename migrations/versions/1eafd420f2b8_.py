@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 08f926e6bf75
+Revision ID: 1eafd420f2b8
 Revises: 
-Create Date: 2022-03-15 23:25:48.381764
+Create Date: 2022-03-16 01:53:24.240006
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '08f926e6bf75'
+revision = '1eafd420f2b8'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -33,18 +33,17 @@ def upgrade():
     sa.Column('title', sa.String(length=50), nullable=False),
     sa.Column('description', sa.Text(), nullable=True),
     sa.Column('owner_id', sa.Integer(), nullable=False),
-    sa.Column('dungeon_master_id', sa.Integer(), nullable=True),
-    sa.ForeignKeyConstraint(['dungeon_master_id'], ['users.id'], ),
+    sa.Column('game_master_id', sa.Integer(), nullable=True),
+    sa.ForeignKeyConstraint(['game_master_id'], ['users.id'], ),
     sa.ForeignKeyConstraint(['owner_id'], ['users.id'], ),
     sa.PrimaryKeyConstraint('id')
     )
     op.create_table('campaign_users',
-    sa.Column('id', sa.Integer(), nullable=False),
     sa.Column('user_id', sa.Integer(), nullable=False),
     sa.Column('campaign_id', sa.Integer(), nullable=False),
     sa.ForeignKeyConstraint(['campaign_id'], ['campaigns.id'], ),
     sa.ForeignKeyConstraint(['user_id'], ['users.id'], ),
-    sa.PrimaryKeyConstraint('id')
+    sa.PrimaryKeyConstraint('user_id', 'campaign_id')
     )
     op.create_table('characters',
     sa.Column('id', sa.Integer(), nullable=False),
@@ -69,8 +68,8 @@ def upgrade():
     sa.Column('temporary_hp', sa.Integer(), nullable=False),
     sa.Column('hit_dice_total', sa.Integer(), nullable=False),
     sa.Column('hit_dice', sa.Integer(), nullable=False),
-    sa.Column('weapons', sa.String(length=1000), nullable=False),
-    sa.Column('equipment', sa.String(length=1000), nullable=False),
+    sa.Column('weapons', sa.Text(), nullable=False),
+    sa.Column('equipment', sa.Text(), nullable=False),
     sa.Column('gold_pieces', sa.Integer(), nullable=False),
     sa.Column('silver_pieces', sa.Integer(), nullable=False),
     sa.Column('copper_pieces', sa.Integer(), nullable=False),

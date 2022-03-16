@@ -25,12 +25,12 @@ def seed_characters():
         temporary_hp=0,
         hit_dice_total=6,
         hit_dice=6,
-        weapons='{"Greataxe":{"name":"Greataxe","proficient":true,"damage":"1d12","description":"really really big. Grog\'s favorite. Crits deal an extra 1d12 (lv 1-10)"}}',
-        equipment='{"Mead Barrel":{"name":"Mead Barrel","quantity":2,"weight":64,"description":"Grog likes to stay hydrated."},"Bag of Holding":{"name":"Bag of Holding","quantity":1,"weight":30,"description":"Holds all kinds of things!"}}',
+        weapons='[{"name":"Greataxe","proficient":true,"damage":"1d12","description":"really really big. Grog\'s favorite. Crits deal an extra 1d12 (lv 1-10)"}]',
+        equipment='[{"name":"Mead Barrel","quantity":2,"weight":64,"description":"Grog likes to stay hydrated."},{"name":"Bag of Holding","quantity":1,"weight":30,"description":"Holds all kinds of things!"}]',
         gold_pieces=1,
         silver_pieces=12,
         copper_pieces=13,
-        features='{"Really Big":{"description":"He can smash big things and do lots of damage. Weighs over 700 lbs, all muscle"},"Mountain Born":{"description":"Goliath ability"}}',
+        features='[{"name":"Really Big","description":"He can smash big things and do lots of damage. Weighs over 700 lbs, all muscle"},{"name":"Mountain Born","description":"Goliath ability"}]',
         biography=
 """
 Grog Strongjaw is a goliath barbarian/fighter and a member of Vox Machina. He is played by Travis Willingham.
