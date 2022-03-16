@@ -1,0 +1,17 @@
+#character-header-container {
+    display: flex;
+}
+
+#character-name-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#character-sheet-header {
+    display: flex;
+    flex-direction: column;
+}
+
+#character-sheet-header > * {
+    display: flex;
+}

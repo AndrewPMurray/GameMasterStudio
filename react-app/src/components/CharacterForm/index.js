@@ -45,8 +45,9 @@ const CharacterForm = () => {
 
 		const newCharacter = {
 			name,
+			type,
 			class_name: className,
-			level,
+			level: +level,
 			background,
 			race,
 			alignment,
@@ -79,7 +80,65 @@ const CharacterForm = () => {
 		console.log(newCharacter);
 	};
 
-	return <h2>HELLO from character creator!</h2>;
+	return (
+		<div className='character-form-container'>
+			<div id='character-header-container'>
+				<div id='character-name-container'>
+					<img alt='DnD Logo' />
+					<input type='text' value={name} onChange={(e) => setName(e.target.value)} />
+					<p>Character Name</p>
+				</div>
+				<div id='character-sheet-header'>
+					<div id='class-level-background'>
+						<label>
+							<input
+								type='text'
+								value={className}
+								onChange={(e) => setClassName(e.target.value)}
+							/>
+							<p>Class</p>
+						</label>
+						<label>
+							<input
+								type='text'
+								value={level}
+								onChange={(e) => setLevel(e.target.value)}
+							/>
+							<p>Level</p>
+						</label>
+						<label>
+							<input
+								type='text'
+								value={background}
+								onChange={(e) => setBackground(e.target.value)}
+							/>
+							<p>Background</p>
+						</label>
+					</div>
+					<div id='race-alignment-experience'></div>
+				</div>
+			</div>
+			<div id='character-sheet'>
+				<div id='sheet-left'>
+					<div id='attributes-skills'>
+						<div id='attributes'></div>
+						<div id='skills-and-throws'></div>
+					</div>
+					<div id='passive-perception'></div>
+				</div>
+				<div id='sheet-middle'>
+					<div id='hp-weapons'>
+						<div id='armor-initiative-speed'></div>
+						<div id='hit-dice-death-saves'></div>
+						<div id='money'></div>
+					</div>
+				</div>
+				<div id='sheet-right'>
+					<div id='features'></div>
+				</div>
+			</div>
+		</div>
+	);
 };
 
 export default CharacterForm;
