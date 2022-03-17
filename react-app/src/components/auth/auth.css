@@ -1,0 +1,8 @@
+#logout-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: 'Carrois Gothic', sans-serif;
+    font-size: 16px;
+}
