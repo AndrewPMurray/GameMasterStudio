@@ -38,7 +38,8 @@ const CampaignForm = ({ setShowModal }) => {
 				<h2>Create new campaign</h2>
 				<p>
 					Create a campaign to organize all of your sessions, npcs, and characters.
-					Campaigns are private. To share your campaign you can invite other users.
+					Campaigns are private. To share your campaign you will be able to invite other
+					users in the campaign page.
 				</p>
 			</div>
 			<form className='create-campaign-form' onSubmit={handleSubmit}>
@@ -56,6 +57,8 @@ const CampaignForm = ({ setShowModal }) => {
 							{errors.title}
 						</p>
 					)}
+				</div>
+				<div className='form-field'>
 					<label htmlFor='title'>Description</label>
 					<textarea
 						id='campaign-title-input'

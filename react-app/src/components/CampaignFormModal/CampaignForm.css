@@ -20,6 +20,7 @@
 #user-home-button {
     max-height: 40px;
 }
+
 .create-campaign-container {
     display: flex;
     flex-direction: column;
@@ -28,8 +29,9 @@
     color: white;
     border: 1px solid #2E2E2E;
     width: 500px;
-    height: 250px;
+    height: 500px;
     padding: 20px;
+    border-radius: 5px;
 }
 
 .create-campaign-container > * {
@@ -69,16 +71,33 @@
 }
 
 #create-campaign-button > button {
-    background-color: #A21232;
+    background-color: black;
     color: white;
     width: 70px;
     height: 30px;
     border: none;
     border-radius: 3px;
     cursor: pointer;
+    transition-duration: 250ms;
+}
+
+#create-campaign-button:hover > button {
+    background-color: #930C10;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
 }
 
 #create-campaign-button > button:disabled {
     color: rgba(16, 16, 16, 0.3);
     background-color: #555555;
+    cursor: not-allowed;
+}
+
+.form-field textarea {
+    resize: none;
+    min-height: 200px;
 }

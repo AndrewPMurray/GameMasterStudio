@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { BrowserRouter, Route, Switch } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
+import { authenticate } from './store/session';
+
 import LoginForm from './components/auth/LoginForm';
 import SignUpForm from './components/auth/SignUpForm';
 import NavBar from './components/NavBar/';
@@ -10,7 +12,7 @@ import User from './components/User';
 import UserHome from './components/UserHome/';
 import Landing from './components/Landing';
 import CharacterForm from './components/CharacterForm';
-import { authenticate } from './store/session';
+import CampaignPage from './components/CampaignPage';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -40,12 +42,15 @@ function App() {
 				<Route path='/sign-up' exact={true}>
 					<SignUpForm />
 				</Route>
-				<Route path='/characters/' exact={true}>
+				<ProtectedRoute path='/characters/' exact={true}>
 					<CharacterForm />
-				</Route>
-				<Route path='/characters/:characterId'>
+				</ProtectedRoute>
+				<ProtectedRoute path='/characters/:characterId'>
 					<CharacterForm />
-				</Route>
+				</ProtectedRoute>
+				<ProtectedRoute path='/campaigns/:campaignId' exact={true}>
+					<CampaignPage />
+				</ProtectedRoute>
 				<ProtectedRoute path='/users' exact={true}>
 					<UsersList />
 				</ProtectedRoute>

@@ -12,7 +12,7 @@ class Campaign(db.Model):
     
     users = db.relationship("User", secondary="campaign_users", back_populates="campaigns")
     characters = db.relationship("Character", back_populates="campaign")
-    sections = db.relationship("Section", back_populates="campaign")
+    sections = db.relationship("Section", back_populates="campaign", cascade="all, delete")
 
     def to_dict(self):
         return {

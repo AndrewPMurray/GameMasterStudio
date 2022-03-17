@@ -25,3 +25,12 @@ def create_campaign():
         db.session.commit()
         
         return new_campaign.to_dict()
+
+
+@campaign_routes.route('/<int:campaign_id>', methods=['DELETE'])
+@login_required
+def delete_campaign(campaign_id):
+    deleted_campaign = Campaign.query.get(campaign_id)
+    db.session.delete(deleted_campaign)
+    db.session.commit()
+    return {'message':'success!'}
