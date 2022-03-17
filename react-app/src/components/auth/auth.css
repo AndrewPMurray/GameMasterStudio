@@ -1,3 +1,21 @@
+.login-container,
+.signup-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-content: flex-start;
+    align-items: flex-end;
+    padding-right: 15%;
+    height: 100%;
+    background-image: linear-gradient(to right, transparent 0%, #242424 58%, #222222 100%)
+}
+
+#login-background,
+#signup-background {
+    height: 90vh;
+    z-index: 0;
+}
+
 #logout-button {
     border: none;
     background-color: transparent;
@@ -5,4 +23,66 @@
     cursor: pointer;
     font-family: 'Carrois Gothic', sans-serif;
     font-size: 20px;
+}
+
+#login-form,
+#signup-form {
+    width: 285px;
+}
+
+#login-form-field,
+#signup-form-field {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 15px;
+}
+
+#login-form-field *,
+#signup-form-field * {
+    margin-bottom: 10px;
+}
+
+#login-form-field input,
+#signup-form-field input {
+    border-radius: 4px;
+    border: none;
+    height: 25px;
+}
+
+#login-button-div {
+    display: flex;
+}
+
+#login-button,
+#signup-button,
+#demo-button {
+    color: white;
+    background-color: black;
+    border: none;
+    width: 75px;
+    height: 25px;
+    border-radius: 5px;
+    font-family: 'Carrois Gothic', sans-serif;
+    font-size: 16px;
+    margin: 0 20px;
+}
+
+#demo-button {
+    text-align: center;
+    line-height: 1.6;
+}
+
+#login-button:hover,
+#signup-button:hover,
+#demo-button:hover {
+    cursor: pointer;
+    background-color: #930C10;
+}
+
+#errors-div {
+    margin-bottom: 20px;
+}
+
+#errors-div * {
+    color: #B42D31
 }

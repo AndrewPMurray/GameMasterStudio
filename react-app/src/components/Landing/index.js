@@ -15,11 +15,12 @@ const Landing = () => {
 
 	return (
 		<div className='landing-container'>
-			<h1 id='header'>GameMasterStudio</h1>
+			<h1 id='header'>Game Master Studio</h1>
 			<h2>
 				Create characters and campaigns to keep track of what happened in all of your
 				sessions
 			</h2>
+			<img id='splash-image' src='/images/splash-image.jpg' alt='splash image' />
 			<p>
 				Every NPC, every item of importance in your bag of holding, every action that
 				chaotic-evil player ever performed. None of it needs to be forgotten. Here you can
@@ -27,7 +28,7 @@ const Landing = () => {
 				There be dragons here. Best to keep track of them.
 			</p>
 			<p>
-				<Link to='/sign-up'>Click here to sign up!</Link>
+				<Link to='/sign-up'>Click here to sign up</Link>
 			</p>
 		</div>
 	);

@@ -8,12 +8,16 @@ const NavBar = () => {
 	const user = useSelector((state) => state.session.user);
 
 	return (
-		<div id='navbar-image' style={{ backgroundImage: 'url(/images/navbar-background.jpg)' }}>
+		<div>
 			<nav id='navbar-container'>
 				<div id='nav-items'>
-					<NavLink to='/' exact={true} activeClassName='active'>
-						Home
-					</NavLink>
+					{user ? (
+						<NavLink to='/' exact={true} activeClassName='active'>
+							Home
+						</NavLink>
+					) : (
+						<div style={{ width: '50px' }}></div>
+					)}
 					<div id='login-logout-container'>
 						{!user && (
 							<div>
