@@ -53,7 +53,7 @@ export const addCharacter = (payload) => async (dispatch) => {
 };
 
 export const updateCharacter = (payload) => async (dispatch) => {
-	const response = await fetch(`/api/character/${payload.character_id}`, {
+	const response = await fetch(`/api/characters/${payload.character_id}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
@@ -66,7 +66,7 @@ export const updateCharacter = (payload) => async (dispatch) => {
 };
 
 export const deleteCharacter = (characterId) => async (dispatch) => {
-	const response = await fetch(`/api/campaigns/${characterId}`, {
+	const response = await fetch(`/api/characters/${characterId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
@@ -74,9 +74,9 @@ export const deleteCharacter = (characterId) => async (dispatch) => {
 	});
 
 	if (response.ok) {
-		const deletedCampaign = await response.json();
+		const deletedCharacter = await response.json();
 		dispatch(remove(characterId));
-		return deletedCampaign;
+		return deletedCharacter;
 	}
 };
 

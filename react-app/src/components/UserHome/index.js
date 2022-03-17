@@ -25,7 +25,7 @@ export default function UserHome() {
 			<p>All Characters</p>
 			<ul id='characters-list'>
 				{charactersArr?.map((character) => (
-					<li>
+					<li key={character.id}>
 						<Link to={`/characters/${character.id}`}>{character.name}</Link>
 					</li>
 				))}

@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
-import { addCharacter, getCharacters } from '../../store/characters';
+import { addCharacter, getCharacters, updateCharacter } from '../../store/characters';
 import './CharacterForm.css';
 
 const CharacterForm = () => {
@@ -60,10 +60,10 @@ const CharacterForm = () => {
 	useEffect(() => {
 		if (!user) history.push('/login');
 		dispatch(getCharacters(user?.id));
-	}, [dispatch, user?.id]);
+	}, [dispatch, user, history, user?.id]);
 
 	useEffect(() => {
-		if (character?.length) {
+		if (character) {
 			setName(character.name || '');
 			setClassName(character.class_name || '');
 			setLevel(character.level || 1);
@@ -147,13 +147,70 @@ const CharacterForm = () => {
 			})
 		);
 
-		console.log(newCharacter);
-
 		if (newCharacter.errors) {
 			setErrors(() => newCharacter);
 		} else {
 			history.push('/home');
 		}
+	};
+
+	const handleEdit = async (e) => {
+		e.preventDefault();
+		setErrors({});
+
+		const filteredWeapons = weapons.filter((weapon) => {
+			return weapon?.name?.length || weapon?.attack?.length || weapon?.damage?.length;
+		});
+
+		const filteredEquipment = equipment.filter((item) => {
+			return item?.name?.length || item?.quantity?.length || item?.weight?.length;
+		});
+
+		const filteredFeatures = features.filter((feature) => {
+			return feature?.name?.length || feature?.description?.length;
+		});
+
+		await dispatch(
+			updateCharacter({
+				name,
+				type,
+				class_name: className,
+				level,
+				background,
+				race,
+				alignment,
+				experience,
+				strength,
+				dexterity,
+				constitution,
+				intelligence,
+				wisdom,
+				charisma,
+				armor_class: armorClass,
+				speed,
+				max_hp: maxHP,
+				current_hp: currentHP,
+				temporary_hp: temporaryHP,
+				hit_dice_total: hitDiceTotal,
+				hit_dice: hitDice,
+				weapons: JSON.stringify(filteredWeapons),
+				equipment: JSON.stringify(filteredEquipment),
+				gold_pieces: goldPieces,
+				silver_pieces: silverPieces,
+				copper_pieces: copperPieces,
+				features: JSON.stringify(filteredFeatures),
+				biography: bio,
+				user_id: user.id,
+				character_id: characterId,
+			})
+		).then((res) => {
+			if (res?.errors) {
+				setErrors(res);
+				return;
+			}
+		});
+
+		history.push('/home');
 	};
 
 	const resetActiveFeature = (e) => {
@@ -179,7 +236,7 @@ const CharacterForm = () => {
 				<div id='tabs'>
 					<button onClick={() => setPage(1)}>Character Sheet</button>
 					<button onClick={() => setPage(2)}>Bio</button>
-					<button onClick={handleSubmit}>Save Character</button>
+					<button onClick={character ? handleEdit : handleSubmit}>Save Character</button>
 				</div>
 				<label>Character Biography</label>
 				<textarea id='bio-input' value={bio} onChange={(e) => setBio(e.target.value)} />
@@ -191,7 +248,7 @@ const CharacterForm = () => {
 			<div id='tabs'>
 				<button onClick={() => setPage(1)}>Character Sheet</button>
 				<button onClick={() => setPage(2)}>Bio</button>
-				<button onClick={handleSubmit}>Save Character</button>
+				<button onClick={character ? handleEdit : handleSubmit}>Save Character</button>
 			</div>
 			<div id='character-form'>
 				<div id='character-header-container'>
