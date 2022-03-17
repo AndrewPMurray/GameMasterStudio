@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
 import { getCampaigns } from '../../store/campaigns';
-import { getCharacters } from '../../store/characters';
+import { getCharacters, deleteCharacter } from '../../store/characters';
 import CampaignFormModal from '../CampaignFormModal';
 
 export default function UserHome() {
@@ -18,6 +18,10 @@ export default function UserHome() {
 		dispatch(getCharacters(user?.id));
 	}, [dispatch, user]);
 
+	const handleDelete = async (id) => {
+		await dispatch(deleteCharacter(id));
+	};
+
 	return (
 		<>
 			<h1>Welcome home, warrior</h1>
@@ -27,6 +31,7 @@ export default function UserHome() {
 				{charactersArr?.map((character) => (
 					<li key={character.id}>
 						<Link to={`/characters/${character.id}`}>{character.name}</Link>
+						<button onClick={() => handleDelete(character.id)}>delete</button>
 					</li>
 				))}
 			</ul>

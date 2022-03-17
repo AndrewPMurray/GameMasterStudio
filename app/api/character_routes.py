@@ -95,3 +95,11 @@ def update_character(character_id):
     
         return updated_character.to_dict()
     return {'errors':'omg error!'}
+
+@character_routes.route('/<int:character_id>', methods=['DELETE'])
+@login_required
+def delete_character(character_id):
+    deleted_character = Character.query.get(character_id)
+    db.session.delete(deleted_character)
+    db.session.commit()
+    return {'message':'success!'}
