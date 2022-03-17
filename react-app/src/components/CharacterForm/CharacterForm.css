@@ -1,11 +1,12 @@
 .character-form-container {
     display: flex;
     flex-direction: column;
-    align-self: center;
+    justify-content: space-between;
     margin: 50px 10%;
     background-color: white;
     padding: 20px;
     color: black;
+    width: 950px;
 }
 
 .character-form-container input {
