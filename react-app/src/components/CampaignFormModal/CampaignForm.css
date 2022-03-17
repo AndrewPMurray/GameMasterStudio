@@ -1,9 +1,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-#new-notebook-button {
+#new-campaign-button {
     cursor: pointer;
+    max-height: 40px;
+    border: none;
+    border-radius: 5px;
+    background: black;
+    color: white;
+    line-height: 2;
+    height: 40px;
+    width: 150px;
+    transition-duration: 250ms;
 }
 
+#new-campaign-button:hover {
+    background-color: #930C10;
+}
+
+#user-home-button {
+    max-height: 40px;
+}
 .create-campaign-container {
     display: flex;
     flex-direction: column;

@@ -1,0 +1,74 @@
+.user-home-container {
+    display: flex;
+    flex-direction: column;
+}
+
+#campaigns-container {
+    height: 200px;
+    border-bottom: 1px solid #AAAAAA;
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#characters-container {
+    padding: 50px;
+    display: flex;
+    justify-content: space-between;
+}
+
+#characters-list > p,
+#campaigns-list > p {
+    margin-left: 25px;
+    margin-bottom: 10px;
+    font-weight: bold;
+}
+
+#characters,
+#campaigns {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+}
+
+#character,
+#campaign {
+    display: flex;
+    margin: 10px;
+}
+
+#character > a:hover,
+#campaign > a:hover {
+    text-decoration: underline;
+}
+
+.fa-trash {
+    visibility: hidden;
+    cursor: pointer;
+    color: #B32C30;
+    margin-right: 10px;
+}
+
+#character:hover > * > .fa-trash,
+#campaign:hover > * > .fa-trash {
+    visibility: visible;
+}
+
+#add-character-button {
+    border: none;
+    border-radius: 5px;
+    background-color: black;
+    color: white;
+    height: 40px;
+    width: 150px;
+    transition-duration: 250ms;
+}
+
+#add-character-button:hover {
+    background-color: #930C10;
+    cursor: pointer;
+}
+
+#user-home-button {
+    max-height: 40px;
+}

@@ -14,7 +14,7 @@ const Landing = () => {
 	}, [user]);
 
 	return (
-		<div className='landing-container'>
+		<div className='landing-container fade-in-slide-up'>
 			<h1 id='header'>Game Master Studio</h1>
 			<h2>
 				Create characters and campaigns to keep track of what happened in all of your

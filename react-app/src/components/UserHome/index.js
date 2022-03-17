@@ -1,9 +1,10 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useHistory } from 'react-router-dom';
-import { getCampaigns } from '../../store/campaigns';
+import { getCampaigns, deleteCampaign } from '../../store/campaigns';
 import { getCharacters, deleteCharacter } from '../../store/characters';
 import CampaignFormModal from '../CampaignFormModal';
+import './UserHome.css';
 
 export default function UserHome() {
 	const campaigns = useSelector((state) => state.campaigns);
@@ -12,30 +13,62 @@ export default function UserHome() {
 	const dispatch = useDispatch();
 
 	const charactersArr = Object.values(characters);
+	const campaignsArr = Object.values(campaigns);
 
 	useEffect(() => {
 		dispatch(getCampaigns(user?.id));
 		dispatch(getCharacters(user?.id));
 	}, [dispatch, user]);
 
-	const handleDelete = async (id) => {
+	const handleCharacterDelete = async (id) => {
 		await dispatch(deleteCharacter(id));
 	};
 
+	const handleCampaignDelete = async (id) => {
+		await dispatch(deleteCampaign(id));
+	};
+
 	return (
-		<>
-			<h1>Welcome home, warrior</h1>
-			<CampaignFormModal />
-			<p>All Characters</p>
-			<ul id='characters-list'>
-				{charactersArr?.map((character) => (
-					<li key={character.id}>
-						<Link to={`/characters/${character.id}`}>{character.name}</Link>
-						<button onClick={() => handleDelete(character.id)}>delete</button>
-					</li>
-				))}
-			</ul>
-			<Link to='/characters'>Create New Character</Link>
-		</>
+		<div className='user-home-container'>
+			<div id='campaigns-container'>
+				<div id='campaigns-list'>
+					<p>Campaigns</p>
+					<div id='campaigns'>
+						{campaignsArr?.map((campaign) => (
+							<div id='campaign' key={`campaign-${campaign.id}`}>
+								<div onClick={() => handleCampaignDelete(campaign.id)}>
+									<i className='fas fa-trash'></i>
+								</div>
+								<Link to={`/campaigns/${campaign.id}`}>{campaign.title}</Link>
+							</div>
+						))}
+					</div>
+				</div>
+				<div id='new-campaign-button'>
+					<CampaignFormModal />
+				</div>
+			</div>
+			<div id='characters-container'>
+				<div id='characters-list'>
+					<p>Characters</p>
+					<div id='characters'>
+						{charactersArr?.map((character) => (
+							<div id='character' key={`character-${character.id}`}>
+								<div onClick={() => handleCharacterDelete(character.id)}>
+									<i className='fas fa-trash'></i>
+								</div>
+								<Link to={`/characters/${character.id}`}>{character.name}</Link>
+							</div>
+						))}
+					</div>
+				</div>
+				<Link id='user-home-button' to='/characters'>
+					<button id='add-character-button'>
+						<i className='fas fa-plus-square' style={{ paddingRight: '10px' }}></i>New
+						Character
+					</button>
+				</Link>
+			</div>
+		</div>
 	);
 }

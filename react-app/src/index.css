@@ -22,6 +22,7 @@ time, mark, audio, video {
 	vertical-align: baseline;
 	font-family: 'Carrois Gothic', sans-serif;
 }
+
 /* HTML5 display-role reset for older browsers */
 article, aside, details, figcaption, figure, 
 footer, header, hgroup, menu, nav, section {
@@ -127,10 +128,10 @@ table {
 	}
 }
 
-@keyframes fade-in-slide-down {
+@keyframes fade-in-slide-up {
 	from {
 		opacity: 0;
-		transform: translateY(-10%)
+		transform: translateY(3%)
 	}
 	to {
 		opacity: 1;
@@ -192,10 +193,10 @@ table {
 	left: 10vw;
 }
 
-.fade-in-slide-down {
-	animation-name: fade-in-slide-down;
+.fade-in-slide-up {
+	animation-name: fade-in-slide-up;
 	transform-origin: top;
-	animation-duration: 300ms;
+	animation-duration: 1250ms;
 	animation-timing-function: ease-in-out;
 }
 
