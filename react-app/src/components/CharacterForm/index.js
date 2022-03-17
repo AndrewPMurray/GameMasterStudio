@@ -255,7 +255,7 @@ const CharacterForm = () => {
 					<div id='character-name-container'>
 						<img
 							id='logo'
-							src='https://hipfonts.com/wp-content/uploads/2020/11/Dungeon-and-Dragons-Logo-min.jpg'
+							src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/dndlogo.png'
 							alt='DnD Logo'
 						/>
 						<input type='text' value={name} onChange={(e) => setName(e.target.value)} />

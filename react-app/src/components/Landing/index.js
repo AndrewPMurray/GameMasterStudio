@@ -20,7 +20,11 @@ const Landing = () => {
 				Create characters and campaigns to keep track of what happened in all of your
 				sessions
 			</h2>
-			<img id='splash-image' src='/images/splash-image.jpg' alt='splash image' />
+			<img
+				id='splash-image'
+				src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/splash-image.jpg'
+				alt='splash image'
+			/>
 			<p>
 				Every NPC, every item of importance in your bag of holding, every action that
 				chaotic-evil player ever performed. None of it needs to be forgotten. Here you can

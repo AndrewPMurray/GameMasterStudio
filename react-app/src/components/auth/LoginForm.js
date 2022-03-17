@@ -45,7 +45,8 @@ const LoginForm = () => {
 		<div
 			id='login-background'
 			style={{
-				backgroundImage: 'url(/images/login-logo.jpg)',
+				backgroundImage:
+					'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/login-logo.jpg)',
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}
