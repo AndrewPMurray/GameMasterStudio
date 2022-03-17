@@ -11,13 +11,9 @@ const NavBar = () => {
 		<div>
 			<nav id='navbar-container'>
 				<div id='nav-items'>
-					{user ? (
-						<NavLink to='/' exact={true} activeClassName='active'>
-							Home
-						</NavLink>
-					) : (
-						<div style={{ width: '50px' }}></div>
-					)}
+					<NavLink to='/' exact={true} activeClassName='active'>
+						Home
+					</NavLink>
 					<div id='login-logout-container'>
 						{!user && (
 							<div>
