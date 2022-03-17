@@ -1,46 +1,49 @@
-import { useState } from 'react';
-import { useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { useHistory, useParams } from 'react-router-dom';
+import { addCharacter, getCharacters } from '../../store/characters';
 import './CharacterForm.css';
 
 const CharacterForm = () => {
 	const { characterId } = useParams() || null;
-	// todo: set character once store set up
-	const character = null;
 	const user = useSelector((state) => state.session.user);
+	const character = useSelector((state) => state.characters[characterId]);
+	const dispatch = useDispatch();
+	const history = useHistory();
+	const [errors, setErrors] = useState([]);
 
 	const type = '5e';
-	const [name, setName] = useState(character?.name || '');
-	const [className, setClassName] = useState(character?.class_name || '');
-	const [level, setLevel] = useState(character?.level || 1);
-	const [background, setBackground] = useState(character?.background || '');
-	const [race, setRace] = useState(character?.race || '');
-	const [alignment, setAlignment] = useState(character?.alignment || '');
-	const [experience, setExperience] = useState(character?.experience || 0);
-	const [strength, setStrength] = useState(character?.strength || 0);
-	const [dexterity, setDexterity] = useState(character?.dexterity || 0);
-	const [constitution, setConstitution] = useState(character?.constitution || 0);
-	const [intelligence, setIntelligence] = useState(character?.intelligence || 0);
-	const [wisdom, setWisdom] = useState(character?.wisdom || 0);
-	const [charisma, setCharisma] = useState(character?.charisma || 0);
-	const [armorClass, setArmorClass] = useState(character?.armor_class || 0);
-	const [speed, setSpeed] = useState(character?.speed || 0);
-	const [maxHP, setMaxHP] = useState(character?.max_hp || 0);
-	const [currentHP, setCurrentHP] = useState(character?.current_hp || 0);
-	const [temporaryHP, setTemporaryHP] = useState(character?.temporary_hp || 0);
-	const [hitDiceTotal, setHitDiceTotal] = useState(character?.hit_dice_total || 0);
-	const [hitDice, setHitDice] = useState(character?.hit_dice || 0);
-	const [weapons, setWeapons] = useState(character?.weapons || []);
-	const [weaponFields, setWeaponFields] = useState(character?.weapons.length || 1);
-	const [equipment, setEquipment] = useState(character?.equipment || []);
-	const [equipmentFields, setEquipmentFields] = useState(character?.equipment.length || 1);
-	const [goldPieces, setGoldPieces] = useState(character?.gold_pieces || 0);
-	const [silverPieces, setSilverPieces] = useState(character?.gold_pieces || 0);
-	const [copperPieces, setCopperPieces] = useState(character?.gold_pieces || 0);
+	const [name, setName] = useState('');
+	const [className, setClassName] = useState('');
+	const [level, setLevel] = useState(1);
+	const [background, setBackground] = useState('');
+	const [race, setRace] = useState('');
+	const [alignment, setAlignment] = useState('');
+	const [experience, setExperience] = useState(0);
+	const [strength, setStrength] = useState(0);
+	const [dexterity, setDexterity] = useState(0);
+	const [constitution, setConstitution] = useState(0);
+	const [intelligence, setIntelligence] = useState(0);
+	const [wisdom, setWisdom] = useState(0);
+	const [charisma, setCharisma] = useState(0);
+	const [armorClass, setArmorClass] = useState(0);
+	const [speed, setSpeed] = useState(0);
+	const [maxHP, setMaxHP] = useState(0);
+	const [currentHP, setCurrentHP] = useState(0);
+	const [temporaryHP, setTemporaryHP] = useState(0);
+	const [hitDiceTotal, setHitDiceTotal] = useState(0);
+	const [hitDice, setHitDice] = useState(0);
+	const [weapons, setWeapons] = useState([]);
+	const [weaponFields, setWeaponFields] = useState(1);
+	const [equipment, setEquipment] = useState([]);
+	const [equipmentFields, setEquipmentFields] = useState(1);
+	const [goldPieces, setGoldPieces] = useState(0);
+	const [silverPieces, setSilverPieces] = useState(0);
+	const [copperPieces, setCopperPieces] = useState(0);
 	const [features, setFeatures] = useState([]);
-	const [featureFields, setFeatureFields] = useState(character?.features.length || 0);
+	const [featureFields, setFeatureFields] = useState(0);
 	const [activeFeature, setActiveFeature] = useState(-1);
-	const [bio, setBio] = useState(character?.biography || '');
+	const [bio, setBio] = useState('');
 	const [page, setPage] = useState(1);
 
 	const modifiers = {
@@ -54,8 +57,49 @@ const CharacterForm = () => {
 		charisma: charisma && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
 	};
 
-	const handleSubmit = (e) => {
+	useEffect(() => {
+		if (!user) history.push('/login');
+		dispatch(getCharacters(user?.id));
+	}, [dispatch, user?.id]);
+
+	useEffect(() => {
+		if (character?.length) {
+			setName(character.name || '');
+			setClassName(character.class_name || '');
+			setLevel(character.level || 1);
+			setBackground(character.background || '');
+			setRace(character.race || '');
+			setAlignment(character.alignment || '');
+			setExperience(character.experience || 0);
+			setStrength(character.strength || 0);
+			setDexterity(character.dexterity || 0);
+			setConstitution(character.constitution || 0);
+			setIntelligence(character.intelligence || 0);
+			setWisdom(character.wisdom || 0);
+			setCharisma(character.charisma || 0);
+			setArmorClass(character.armor_class || 0);
+			setSpeed(character.speed || 0);
+			setMaxHP(character.max_hp || 0);
+			setCurrentHP(character.current_hp || 0);
+			setTemporaryHP(character.temporary_hp || 0);
+			setHitDiceTotal(character.hit_dice_total || 0);
+			setHitDice(character.hit_dice || 0);
+			setWeapons(character?.weapons || []);
+			setWeaponFields(character?.weapons?.length > 0 ? character.weapons.length : 1);
+			setEquipment(character?.equipment || []);
+			setEquipmentFields(character?.equipment?.length > 0 ? character.equipment.length : 1);
+			setGoldPieces(character.gold_pieces || 0);
+			setSilverPieces(character.silver_pieces || 0);
+			setCopperPieces(character.copper_pieces || 0);
+			setFeatures(character?.features || []);
+			setFeatureFields(character?.features?.length || 0);
+			setBio(character.biography || '');
+		}
+	}, [character]);
+
+	const handleSubmit = async (e) => {
 		e.preventDefault();
+		setErrors({});
 
 		const filteredWeapons = weapons.filter((weapon) => {
 			return weapon?.name?.length || weapon?.attack?.length || weapon?.damage?.length;
@@ -69,53 +113,57 @@ const CharacterForm = () => {
 			return feature?.name?.length || feature?.description?.length;
 		});
 
-		const newCharacter = {
-			name,
-			type,
-			class_name: className,
-			level: +level,
-			background,
-			race,
-			alignment,
-			experience: +experience,
-			strength: +strength,
-			dexterity: +dexterity,
-			constitution: +constitution,
-			intelligence: +intelligence,
-			wisdom: +wisdom,
-			charisma: +charisma,
-			armor_class: armorClass,
-			speed: +speed,
-			max_hp: +maxHP,
-			current_hp: +currentHP,
-			temporary_hp: +temporaryHP,
-			hit_dice_total: +hitDiceTotal,
-			hit_dice: +hitDice,
-			weapons: JSON.stringify(filteredWeapons),
-			equipment: JSON.stringify(filteredEquipment),
-			gold_pieces: +goldPieces,
-			silver_pieces: +silverPieces,
-			copper_pieces: +copperPieces,
-			features: JSON.stringify(filteredFeatures),
-			biography: bio,
-			user_id: +user.id,
-		};
+		const newCharacter = await dispatch(
+			addCharacter({
+				name,
+				type,
+				class_name: className,
+				level,
+				background,
+				race,
+				alignment,
+				experience,
+				strength,
+				dexterity,
+				constitution,
+				intelligence,
+				wisdom,
+				charisma,
+				armor_class: armorClass,
+				speed,
+				max_hp: maxHP,
+				current_hp: currentHP,
+				temporary_hp: temporaryHP,
+				hit_dice_total: hitDiceTotal,
+				hit_dice: hitDice,
+				weapons: JSON.stringify(filteredWeapons),
+				equipment: JSON.stringify(filteredEquipment),
+				gold_pieces: goldPieces,
+				silver_pieces: silverPieces,
+				copper_pieces: copperPieces,
+				features: JSON.stringify(filteredFeatures),
+				biography: bio,
+				user_id: user.id,
+			})
+		);
 
-		// Todo: set up character store with logic to send payload to backend to add to db and handle errors.
-		// Just print to console for now
 		console.log(newCharacter);
+
+		if (newCharacter.errors) {
+			setErrors(() => newCharacter);
+		} else {
+			history.push('/home');
+		}
 	};
 
 	const resetActiveFeature = (e) => {
 		if (activeFeature !== -1) {
 			const featureContainer = document.querySelector('#feature-editor');
-			const featureName = document.querySelector('#feature-name');
 			const featureNameInput = document.querySelector('#feature-name-input');
 			const featureDescription = document.querySelector('#feature-description');
 			const featureDescriptionInput = document.querySelector('#feature-description-input');
 			if (
 				e.target === featureContainer ||
-				e.target === featureName ||
 				e.target === featureNameInput ||
 				e.target === featureDescription ||
 				e.target === featureDescriptionInput

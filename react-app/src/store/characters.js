@@ -32,6 +32,7 @@ export const getCharacters = (userId) => async (dispatch) => {
 	if (response.ok) {
 		const characters = await response.json();
 		dispatch(load(characters.all_characters));
+		return characters.all_characters;
 	}
 };
 
@@ -45,6 +46,9 @@ export const addCharacter = (payload) => async (dispatch) => {
 		const newCharacter = await response.json();
 		dispatch(add(newCharacter));
 		return newCharacter;
+	} else {
+		const errors = await response.json();
+		return errors;
 	}
 };
 

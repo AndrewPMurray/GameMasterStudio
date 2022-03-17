@@ -1,8 +1,8 @@
 """empty message
 
-Revision ID: 1eafd420f2b8
+Revision ID: 8987231a03f2
 Revises: 
-Create Date: 2022-03-16 01:53:24.240006
+Create Date: 2022-03-16 21:47:37.087967
 
 """
 from alembic import op
@@ -10,7 +10,7 @@ import sqlalchemy as sa
 
 
 # revision identifiers, used by Alembic.
-revision = '1eafd420f2b8'
+revision = '8987231a03f2'
 down_revision = None
 branch_labels = None
 depends_on = None
@@ -68,8 +68,8 @@ def upgrade():
     sa.Column('temporary_hp', sa.Integer(), nullable=False),
     sa.Column('hit_dice_total', sa.Integer(), nullable=False),
     sa.Column('hit_dice', sa.Integer(), nullable=False),
-    sa.Column('weapons', sa.Text(), nullable=False),
-    sa.Column('equipment', sa.Text(), nullable=False),
+    sa.Column('weapons', sa.Text(), nullable=True),
+    sa.Column('equipment', sa.Text(), nullable=True),
     sa.Column('gold_pieces', sa.Integer(), nullable=False),
     sa.Column('silver_pieces', sa.Integer(), nullable=False),
     sa.Column('copper_pieces', sa.Integer(), nullable=False),

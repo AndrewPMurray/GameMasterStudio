@@ -9,7 +9,6 @@ export default function UserHome() {
 	const campaigns = useSelector((state) => state.campaigns);
 	const characters = useSelector((state) => state.characters);
 	const user = useSelector((state) => state.session.user);
-	const history = useHistory();
 	const dispatch = useDispatch();
 
 	const charactersArr = Object.values(characters);
@@ -25,11 +24,11 @@ export default function UserHome() {
 			<CampaignFormModal />
 			<p>All Characters</p>
 			<ul id='characters-list'>
-				{charactersArr?.map((character) => {
+				{charactersArr?.map((character) => (
 					<li>
 						<Link to={`/characters/${character.id}`}>{character.name}</Link>
-					</li>;
-				})}
+					</li>
+				))}
 			</ul>
 			<Link to='/characters'>Create New Character</Link>
 		</>
