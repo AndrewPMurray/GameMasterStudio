@@ -161,10 +161,25 @@
 
 #passive-perception {
     margin-top: 10px;
+    display: flex;
+    border: 1px solid black;
+    border-radius: 5px;
+    padding: 10px;
+    position: relative;
 }
 
-#passive-perception div {
-    display: flex;
+#passive-perception-value {
+    position: absolute;
+    border: 1px solid black;
+    padding: 15px;
+    top: -5px;
+    left: -5px;
+    border-radius: 10px;
+    background-color: white;
+}
+
+#passive-perception-text {
+    margin-left: 40px;
 }
 
 #sheet-middle {

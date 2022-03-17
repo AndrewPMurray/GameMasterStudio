@@ -4,12 +4,12 @@
 }
 
 .campaign-container > * {
-    margin: 0 30px;
+    margin: 0 75px;
     margin-top: 150px;
 }
 
 #campaign-info {
-    width: 500px;
+    width: 750px;
     text-align: center;
     line-height: 1.3;
 }

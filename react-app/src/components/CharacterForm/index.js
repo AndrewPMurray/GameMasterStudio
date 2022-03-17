@@ -497,7 +497,7 @@ const CharacterForm = () => {
 							</div>
 						</div>
 						<div id='passive-perception'>
-							<p>{+modifiers.wisdom + 10}</p>
+							<p id='passive-perception-value'>{+modifiers.wisdom + 10}</p>
 							<p id='passive-perception-text'>PASSIVE WISDOM(perception)</p>
 						</div>
 					</div>
