@@ -2,8 +2,11 @@
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid #AAAAAA;
     color: white;
-    height: 100px;
-    width: 100vw;
+    text-shadow: -1px 0 black, 0 1px black, 1px 0 black, 0 -1px black;
+    height: 125px;
+    width: auto;
+    font-size: 20px;
+    padding-left: 20px;
 }
 
 #navbar-container a {
@@ -20,5 +23,6 @@
 }
 
 #login-logout-container * {
+    display: flex;
     margin: 20px 20px;
 }
