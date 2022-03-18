@@ -148,7 +148,8 @@ const CharacterForm = () => {
 		);
 
 		if (newCharacter.errors) {
-			setErrors(() => newCharacter);
+			setErrors(newCharacter);
+			return;
 		} else {
 			history.push('/home');
 		}
@@ -170,7 +171,7 @@ const CharacterForm = () => {
 			return feature?.name?.length || feature?.description?.length;
 		});
 
-		await dispatch(
+		const editedCharacter = await dispatch(
 			updateCharacter({
 				name,
 				type,
@@ -203,14 +204,14 @@ const CharacterForm = () => {
 				user_id: user.id,
 				character_id: characterId,
 			})
-		).then((res) => {
-			if (res?.errors) {
-				setErrors(res);
-				return;
-			}
-		});
+		);
 
-		history.push('/home');
+		if (editedCharacter.errors) {
+			setErrors(editedCharacter);
+			return;
+		} else {
+			history.push('/home');
+		}
 	};
 
 	const resetActiveFeature = (e) => {

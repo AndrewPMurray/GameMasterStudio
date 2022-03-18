@@ -62,6 +62,9 @@ export const updateCharacter = (payload) => async (dispatch) => {
 		const editedCharacter = await response.json();
 		dispatch(update(editedCharacter));
 		return editedCharacter;
+	} else {
+		const errors = await response.json();
+		return errors;
 	}
 };
 
