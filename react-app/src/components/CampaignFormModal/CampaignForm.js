@@ -10,25 +10,18 @@ const CampaignForm = ({ setShowModal, userId }) => {
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState({});
 
-	const handleSubmit = async (e) => {
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		setErrors({});
 		return dispatch(
 			addCampaign({
 				title,
 				description,
 				owner_id: userId,
 			})
-		)
-			.then(() => {
-				setShowModal(false);
-			})
-			.catch(async (res) => {
-				const data = await res.json();
-				if (data && data.errors) {
-					setErrors(data.errors);
-				}
-			});
+		).then((res) => {
+			if (res.errors) setErrors(res.errors);
+			else setShowModal(false);
+		});
 	};
 
 	return (
@@ -44,6 +37,11 @@ const CampaignForm = ({ setShowModal, userId }) => {
 			<form className='create-campaign-form' onSubmit={handleSubmit}>
 				<div className='form-field'>
 					<label htmlFor='title'>Title</label>
+					{errors.title && (
+						<p style={{ marginTop: '5px' }} id='error'>
+							{errors.title}
+						</p>
+					)}
 					<input
 						id='campaign-title-input'
 						type='text'
@@ -51,11 +49,6 @@ const CampaignForm = ({ setShowModal, userId }) => {
 						onChange={(e) => setTitle(e.target.value)}
 						placeholder='Campaign Title'
 					/>
-					{errors?.title && (
-						<p style={{ paddingTop: '5px' }} id='errors'>
-							{errors.title}
-						</p>
-					)}
 				</div>
 				<div className='form-field'>
 					<label htmlFor='title'>Description</label>

@@ -13,7 +13,7 @@ const DeleteCharacterModal = ({ characterId, characterName }) => {
 					<DeleteCharacterPrompt
 						setShowModal={setShowModal}
 						characterId={characterId}
-						characterTitle={characterName}
+						characterName={characterName}
 					/>
 				</Modal>
 			)}

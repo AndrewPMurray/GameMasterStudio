@@ -36,7 +36,6 @@ export const getCampaigns = (userId) => async (dispatch) => {
 };
 
 export const addCampaign = (payload) => async (dispatch) => {
-	console.log(payload);
 	const response = await fetch('/api/campaigns/', {
 		method: 'POST',
 		headers: { 'Content-Type': 'application/json' },
@@ -46,6 +45,9 @@ export const addCampaign = (payload) => async (dispatch) => {
 		const newCampaign = await response.json();
 		dispatch(add(newCampaign));
 		return newCampaign;
+	} else {
+		const errors = await response.json();
+		return errors;
 	}
 };
 

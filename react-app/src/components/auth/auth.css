@@ -65,6 +65,7 @@
     font-family: 'Carrois Gothic', sans-serif;
     font-size: 16px;
     margin: 0 20px;
+    transition-duration: 250ms;
 }
 
 #demo-button {

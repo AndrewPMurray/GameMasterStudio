@@ -22,7 +22,7 @@ const DeleteCharacterPrompt = ({ setShowModal, characterId, characterName }) => 
 	return (
 		<div className='delete-character-container'>
 			<div>
-				<h2>Delete Character {characterName}?</h2>
+				<h2>Delete Character {characterName}</h2>
 				<p>Are you sure you want to delete this character? This action cannot be undone!</p>
 			</div>
 			<div id='delete-character-button'>

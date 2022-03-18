@@ -5,6 +5,6 @@ from wtforms.validators import DataRequired, Email, ValidationError
 
 
 class CampaignForm(FlaskForm):
-    title = StringField('title', validators=[DataRequired()])
+    title = StringField('title', validators=[DataRequired('Please input a title for your campaign.')])
     description = TextAreaField('description')
     owner_id = IntegerField('owner_id', validators=[DataRequired()])

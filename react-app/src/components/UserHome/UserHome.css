@@ -34,7 +34,7 @@
 #character,
 #campaign {
     display: flex;
-    margin: 10px;
+    padding: 10px;
 }
 
 #character > a:hover,
@@ -43,15 +43,16 @@
 }
 
 .fa-trash {
-    visibility: hidden;
     cursor: pointer;
     color: #B32C30;
     margin-right: 10px;
+    opacity: 0;
+    transition-duration: 100ms;
 }
 
 #character:hover > .fa-trash,
 #campaign:hover > .fa-trash {
-    visibility: visible;
+    opacity: 1;
 }
 
 #add-character-button {
