@@ -11,7 +11,7 @@ const Landing = () => {
 
 	useEffect(() => {
 		if (user) history.push('/home');
-	}, [user]);
+	}, [user, history]);
 
 	return (
 		<div className='landing-container fade-in-slide-up'>
@@ -23,7 +23,7 @@ const Landing = () => {
 			<img
 				id='splash-image'
 				src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/splash-image.jpg'
-				alt='splash image'
+				alt='splash'
 			/>
 			<p>
 				Every NPC, every item of importance in your bag of holding, every action that

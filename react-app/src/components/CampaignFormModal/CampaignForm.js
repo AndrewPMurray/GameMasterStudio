@@ -1,24 +1,23 @@
 import React, { useState } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { addCampaign } from '../../store/campaigns';
 
 import './CampaignForm.css';
 
-const CampaignForm = ({ setShowModal }) => {
+const CampaignForm = ({ setShowModal, userId }) => {
 	const dispatch = useDispatch();
-	const user = useSelector((state) => state.session.user);
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState({});
 
-	const handleSubmit = (e) => {
+	const handleSubmit = async (e) => {
 		e.preventDefault();
 		setErrors({});
 		return dispatch(
 			addCampaign({
 				title,
 				description,
-				owner_id: user.id,
+				owner_id: userId,
 			})
 		)
 			.then(() => {

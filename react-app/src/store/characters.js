@@ -42,10 +42,14 @@ export const addCharacter = (payload) => async (dispatch) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
 	});
-	const newCharacter = await response.json();
-	if (newCharacter.errors) return newCharacter;
-	dispatch(add(newCharacter));
-	return newCharacter;
+	if (response.ok) {
+		const newCharacter = await response.json();
+		dispatch(add(newCharacter));
+		return newCharacter;
+	} else {
+		const errors = await response.json();
+		return errors;
+	}
 };
 
 export const updateCharacter = (payload) => async (dispatch) => {
@@ -54,10 +58,14 @@ export const updateCharacter = (payload) => async (dispatch) => {
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
 	});
-	const editedCharacter = await response.json();
-	if (editedCharacter.errors) return editedCharacter;
-	dispatch(update(editedCharacter));
-	return editedCharacter;
+	if (response.ok) {
+		const editedCharacter = await response.json();
+		dispatch(update(editedCharacter));
+		return editedCharacter;
+	} else {
+		const errors = await response.json();
+		return errors;
+	}
 };
 
 export const deleteCharacter = (characterId) => async (dispatch) => {

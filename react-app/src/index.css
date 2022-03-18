@@ -211,3 +211,16 @@ a {
 	color: white;
 	text-decoration: none;
 }
+
+#errors-div {
+    margin-bottom: 20px;
+}
+
+#errors-div *,
+#error {
+    color: #B42D31
+}
+
+button, input, textarea {
+	font-family: 'Carrois Gothic', sans-serif;
+}

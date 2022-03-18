@@ -49,8 +49,8 @@
     margin-right: 10px;
 }
 
-#character:hover > * > .fa-trash,
-#campaign:hover > * > .fa-trash {
+#character:hover > .fa-trash,
+#campaign:hover > .fa-trash {
     visibility: visible;
 }
 

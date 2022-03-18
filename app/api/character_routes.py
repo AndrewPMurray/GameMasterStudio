@@ -14,42 +14,13 @@ def create_character():
     data = form.data
     
     if form.validate_on_submit():
-        new_character = Character(
-            type=data['type'],
-            name=data['name'],
-            class_name=data['class_name'],
-            level=data['level'],
-            background=data['background'],
-            race=data['race'],
-            alignment=data['alignment'],
-            experience=data['experience'],
-            strength=data['strength'],
-            dexterity=data['dexterity'],
-            constitution=data['constitution'],
-            intelligence=data['intelligence'],
-            wisdom=data['wisdom'],
-            charisma=data['charisma'],
-            armor_class=data['armor_class'],
-            speed=data['speed'],
-            max_hp=data['max_hp'],
-            current_hp=data['current_hp'],
-            temporary_hp=data['temporary_hp'],
-            hit_dice_total=data['hit_dice_total'],
-            hit_dice=data['hit_dice'],
-            weapons=data['weapons'],
-            equipment=data['equipment'],
-            gold_pieces=data['gold_pieces'],
-            silver_pieces=data['silver_pieces'],
-            copper_pieces=data['copper_pieces'],
-            features=data['features'],
-            biography=data['biography'],
-            user_id=data['user_id'],
-        )
+        new_character = Character()
+        form.populate_obj(new_character)
         db.session.add(new_character)
         db.session.commit()
     
         return new_character.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
 @character_routes.route('/<int:character_id>', methods=['PUT'])
@@ -95,7 +66,7 @@ def update_character(character_id):
         db.session.commit()
     
         return updated_character.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 @character_routes.route('/<int:character_id>', methods=['DELETE'])
 @login_required

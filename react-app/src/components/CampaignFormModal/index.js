@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Modal } from '../../context/Modal';
 import CampaignForm from './CampaignForm';
 
-const CampaignFormModal = () => {
+const CampaignFormModal = ({ userId }) => {
 	const [showModal, setShowModal] = useState(false);
 
 	return (
@@ -13,7 +13,7 @@ const CampaignFormModal = () => {
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
-					<CampaignForm setShowModal={setShowModal} />
+					<CampaignForm setShowModal={setShowModal} userId={userId} />
 				</Modal>
 			)}
 		</>

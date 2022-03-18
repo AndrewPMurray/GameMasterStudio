@@ -56,7 +56,7 @@ const SignUpForm = () => {
 			<div className='signup-container'>
 				<form id='signup-form' onSubmit={onSignUp}>
 					<div id='signup-form-field'>
-						<label>User Name</label>
+						<label>Username</label>
 						{errors?.username && <p id='error'>{errors.username}</p>}
 						<input
 							type='text'
@@ -86,7 +86,7 @@ const SignUpForm = () => {
 						></input>
 					</div>
 					<div id='signup-form-field'>
-						<label>Repeat Password</label>
+						<label>Confirm Password</label>
 						{errors?.repeat_password && <p id='error'>{errors.repeat_password}</p>}
 						<input
 							type='password'

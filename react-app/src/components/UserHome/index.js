@@ -1,9 +1,11 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
-import { getCampaigns, deleteCampaign } from '../../store/campaigns';
-import { getCharacters, deleteCharacter } from '../../store/characters';
+import { getCampaigns } from '../../store/campaigns';
+import { getCharacters } from '../../store/characters';
 import CampaignFormModal from '../CampaignFormModal';
+import DeleteCampaignModal from '../DeleteCampaignModal';
+import DeleteCharacterModal from '../DeleteCharacterModal';
 import './UserHome.css';
 
 export default function UserHome() {
@@ -20,14 +22,6 @@ export default function UserHome() {
 		dispatch(getCharacters(user?.id));
 	}, [dispatch, user]);
 
-	const handleCharacterDelete = async (id) => {
-		await dispatch(deleteCharacter(id));
-	};
-
-	const handleCampaignDelete = async (id) => {
-		await dispatch(deleteCampaign(id));
-	};
-
 	return (
 		<div className='user-home-container'>
 			<div id='campaigns-container'>
@@ -36,16 +30,17 @@ export default function UserHome() {
 					<div id='campaigns'>
 						{campaignsArr?.map((campaign) => (
 							<div id='campaign' key={`campaign-${campaign.id}`}>
-								<div onClick={() => handleCampaignDelete(campaign.id)}>
-									<i className='fas fa-trash'></i>
-								</div>
+								<DeleteCampaignModal
+									campaignId={campaign.id}
+									campaignTitle={campaign.title}
+								/>
 								<Link to={`/campaigns/${campaign.id}`}>{campaign.title}</Link>
 							</div>
 						))}
 					</div>
 				</div>
 				<div id='new-campaign-button'>
-					<CampaignFormModal />
+					<CampaignFormModal userId={user.id} />
 				</div>
 			</div>
 			<div id='characters-container'>
@@ -54,9 +49,10 @@ export default function UserHome() {
 					<div id='characters'>
 						{charactersArr?.map((character) => (
 							<div id='character' key={`character-${character.id}`}>
-								<div onClick={() => handleCharacterDelete(character.id)}>
-									<i className='fas fa-trash'></i>
-								</div>
+								<DeleteCharacterModal
+									characterId={character.id}
+									characterName={character.name}
+								/>
 								<Link to={`/characters/${character.id}`}>{character.name}</Link>
 							</div>
 						))}

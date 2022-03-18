@@ -78,12 +78,3 @@
     cursor: pointer;
     background-color: #930C10;
 }
-
-#errors-div {
-    margin-bottom: 20px;
-}
-
-#errors-div *,
-#error {
-    color: #B42D31
-}

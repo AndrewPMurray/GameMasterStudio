@@ -11,7 +11,7 @@
 #campaign-info {
     width: 750px;
     text-align: center;
-    line-height: 1.3;
+    line-height: 1.4;
 }
 
 #campaign-title {
@@ -21,4 +21,42 @@
 
 #campaign-description {
     text-align: justify;
+    overflow-wrap: break-word;
+    white-space: pre-line;
+    font-size: 16px;
+}
+
+#campaign-title-and-edit {
+    display: flex;
+    justify-content: center;
+}
+
+#edit-campaign-button {
+    margin-left: 20px;
+    max-height: 40px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 250ms;
+}
+
+#edit-campaign-button:hover {
+    cursor: pointer;
+    background-color: #930C10;
+}
+
+#campaign-title-and-edit input {
+    text-align: center;
+    border-radius: 5px;
+}
+
+#campaign-info textarea {
+    border-radius: 5px;
+    resize: none;
+    width: 600px;
+    height: 500px;
+    padding: 13px;
+    font-size: 16px;
 }

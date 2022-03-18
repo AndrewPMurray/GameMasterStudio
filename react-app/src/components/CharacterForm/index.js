@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Redirect, useHistory, useParams } from 'react-router-dom';
+import { useHistory, useParams } from 'react-router-dom';
 import { addCharacter, getCharacters, updateCharacter } from '../../store/characters';
 import './CharacterForm.css';
 import Money from './Money';
@@ -239,7 +239,8 @@ const CharacterForm = () => {
 			<div className='character-form-container'>
 				{Object.keys(errors).length > 0 && (
 					<p id='error'>
-						Missing data on character sheet. Please review before trying to save again.
+						Missing or incorrect data on character sheet. Please review before trying to
+						save again.
 					</p>
 				)}
 				<div id='tabs'>
@@ -252,13 +253,12 @@ const CharacterForm = () => {
 			</div>
 		);
 
-	console.log(errors);
-
 	return (
 		<div className='character-form-container' onClick={(e) => resetActiveFeature(e)}>
 			{Object.keys(errors).length > 0 && (
 				<p id='error'>
-					Missing data on character sheet. Please review before trying to save again.
+					Missing or incorrect data on character sheet. Please review before trying to
+					save again.
 				</p>
 			)}
 			<div id='tabs'>
