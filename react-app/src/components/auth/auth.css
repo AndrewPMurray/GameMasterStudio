@@ -27,7 +27,7 @@
 
 #login-form,
 #signup-form {
-    width: 285px;
+    width: 290px;
 }
 
 #login-form-field,
@@ -83,6 +83,7 @@
     margin-bottom: 20px;
 }
 
-#errors-div * {
+#errors-div *,
+#error {
     color: #B42D31
 }

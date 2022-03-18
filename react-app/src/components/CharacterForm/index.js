@@ -1,8 +1,9 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory, useParams } from 'react-router-dom';
+import { Redirect, useHistory, useParams } from 'react-router-dom';
 import { addCharacter, getCharacters, updateCharacter } from '../../store/characters';
 import './CharacterForm.css';
+import Money from './Money';
 
 const CharacterForm = () => {
 	const { characterId } = useParams() || null;
@@ -10,7 +11,7 @@ const CharacterForm = () => {
 	const character = useSelector((state) => state.characters[characterId]);
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 
 	const type = '5e';
 	const [name, setName] = useState('');
@@ -58,7 +59,9 @@ const CharacterForm = () => {
 	};
 
 	useEffect(() => {
-		if (!user) history.push('/login');
+		if (!user) {
+			history.push('/login');
+		}
 		dispatch(getCharacters(user?.id));
 	}, [dispatch, user, history, user?.id]);
 
@@ -88,9 +91,9 @@ const CharacterForm = () => {
 			setWeaponFields(character?.weapons?.length > 0 ? character.weapons.length : 1);
 			setEquipment(character?.equipment || []);
 			setEquipmentFields(character?.equipment?.length > 0 ? character.equipment.length : 1);
-			setGoldPieces(character.gold_pieces || 0);
-			setSilverPieces(character.silver_pieces || 0);
-			setCopperPieces(character.copper_pieces || 0);
+			setGoldPieces(character.gold_pieces);
+			setSilverPieces(character.silver_pieces);
+			setCopperPieces(character.copper_pieces);
 			setFeatures(character?.features || []);
 			setFeatureFields(character?.features?.length || 0);
 			setBio(character.biography || '');
@@ -148,7 +151,7 @@ const CharacterForm = () => {
 		);
 
 		if (newCharacter.errors) {
-			setErrors(newCharacter);
+			setErrors(newCharacter.errors);
 			return;
 		} else {
 			history.push('/home');
@@ -207,7 +210,7 @@ const CharacterForm = () => {
 		);
 
 		if (editedCharacter.errors) {
-			setErrors(editedCharacter);
+			setErrors(editedCharacter.errors);
 			return;
 		} else {
 			history.push('/home');
@@ -234,6 +237,11 @@ const CharacterForm = () => {
 	if (page === 2)
 		return (
 			<div className='character-form-container'>
+				{Object.keys(errors).length > 0 && (
+					<p id='error'>
+						Missing data on character sheet. Please review before trying to save again.
+					</p>
+				)}
 				<div id='tabs'>
 					<button onClick={() => setPage(1)}>Character Sheet</button>
 					<button onClick={() => setPage(2)}>Bio</button>
@@ -244,8 +252,15 @@ const CharacterForm = () => {
 			</div>
 		);
 
+	console.log(errors);
+
 	return (
 		<div className='character-form-container' onClick={(e) => resetActiveFeature(e)}>
+			{Object.keys(errors).length > 0 && (
+				<p id='error'>
+					Missing data on character sheet. Please review before trying to save again.
+				</p>
+			)}
 			<div id='tabs'>
 				<button onClick={() => setPage(1)}>Character Sheet</button>
 				<button onClick={() => setPage(2)}>Bio</button>
@@ -259,12 +274,25 @@ const CharacterForm = () => {
 							src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/dndlogo.png'
 							alt='DnD Logo'
 						/>
-						<input type='text' value={name} onChange={(e) => setName(e.target.value)} />
+						<input
+							style={
+								errors?.name ? { border: '2px solid red', borderRadius: '5px' } : {}
+							}
+							type='text'
+							value={name}
+							onChange={(e) => setName(e.target.value)}
+						/>
 						<p>Character Name</p>
 					</div>
 					<div id='character-sheet-header'>
 						<div id='class-level-background'>
-							<label>
+							<label
+								style={
+									errors?.class_name
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={className}
@@ -272,7 +300,13 @@ const CharacterForm = () => {
 								/>
 								<p>Class</p>
 							</label>
-							<label>
+							<label
+								style={
+									errors?.level
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={level}
@@ -280,7 +314,13 @@ const CharacterForm = () => {
 								/>
 								<p>Level</p>
 							</label>
-							<label>
+							<label
+								style={
+									errors?.background
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={background}
@@ -290,7 +330,13 @@ const CharacterForm = () => {
 							</label>
 						</div>
 						<div id='race-alignment-experience'>
-							<label>
+							<label
+								style={
+									errors?.race
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={race}
@@ -298,7 +344,13 @@ const CharacterForm = () => {
 								/>
 								<p>Race</p>
 							</label>
-							<label>
+							<label
+								style={
+									errors?.alignment
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={alignment}
@@ -306,7 +358,13 @@ const CharacterForm = () => {
 								/>
 								<p>Alignment</p>
 							</label>
-							<label>
+							<label
+								style={
+									errors?.experience
+										? { border: '2px solid red', borderRadius: '5px' }
+										: {}
+								}
+							>
 								<input
 									type='text'
 									value={experience}
@@ -325,6 +383,7 @@ const CharacterForm = () => {
 									<label>STRENGTH</label>
 									<h3>{modifiers.strength}</h3>
 									<input
+										style={errors?.strength ? { border: '3px solid red' } : {}}
 										type='text'
 										value={strength}
 										onChange={(e) => setStrength(e.target.value)}
@@ -334,6 +393,7 @@ const CharacterForm = () => {
 									<label>DEXTERITY</label>
 									<h3>{modifiers.dexterity}</h3>
 									<input
+										style={errors?.dexterity ? { border: '3px solid red' } : {}}
 										type='text'
 										value={dexterity}
 										onChange={(e) => setDexterity(e.target.value)}
@@ -343,6 +403,9 @@ const CharacterForm = () => {
 									<label>CONSTITUTION</label>
 									<h3>{modifiers.constitution}</h3>
 									<input
+										style={
+											errors?.constitution ? { border: '3px solid red' } : {}
+										}
 										type='text'
 										value={constitution}
 										onChange={(e) => setConstitution(e.target.value)}
@@ -352,6 +415,9 @@ const CharacterForm = () => {
 									<label>INTELLIGENCE</label>
 									<h3>{modifiers.intelligence}</h3>
 									<input
+										style={
+											errors?.intelligence ? { border: '3px solid red' } : {}
+										}
 										type='text'
 										value={intelligence}
 										onChange={(e) => setIntelligence(e.target.value)}
@@ -361,6 +427,7 @@ const CharacterForm = () => {
 									<label>WISDOM</label>
 									<h3>{modifiers.wisdom}</h3>
 									<input
+										style={errors?.wisdom ? { border: '3px solid red' } : {}}
 										type='text'
 										value={wisdom}
 										onChange={(e) => setWisdom(e.target.value)}
@@ -370,6 +437,7 @@ const CharacterForm = () => {
 									<label>CHARISMA</label>
 									<h3>{modifiers.charisma}</h3>
 									<input
+										style={errors?.charisma ? { border: '3px solid red' } : {}}
 										type='text'
 										value={charisma}
 										onChange={(e) => setCharisma(e.target.value)}
@@ -505,7 +573,10 @@ const CharacterForm = () => {
 					<div id='sheet-middle'>
 						<div id='hp-weapons'>
 							<div id='armor-initiative-speed'>
-								<div id='armor-class'>
+								<div
+									id='armor-class'
+									style={errors?.armor_class ? { border: '3px solid red' } : {}}
+								>
 									<input
 										type='text'
 										value={armorClass}
@@ -517,7 +588,10 @@ const CharacterForm = () => {
 									<p style={{ marginTop: '3px' }}>{modifiers.dexterity}</p>
 									<p id='ac-initiative-speed-text'>INITIATIVE</p>
 								</div>
-								<div id='speed'>
+								<div
+									id='speed'
+									style={errors?.speed ? { border: '3px solid red' } : {}}
+								>
 									<input
 										type='text'
 										value={speed}
@@ -530,6 +604,11 @@ const CharacterForm = () => {
 								<div id='hp-max'>
 									<label>Hit Point Maximum</label>
 									<input
+										style={
+											errors?.max_hp
+												? { border: '2px solid red', borderRadius: '3px' }
+												: {}
+										}
 										type='text'
 										value={maxHP}
 										onChange={(e) => setMaxHP(e.target.value)}
@@ -537,6 +616,14 @@ const CharacterForm = () => {
 								</div>
 								<div id='current-hp-input'>
 									<input
+										style={
+											errors?.current_hp
+												? {
+														border: '3px solid red',
+														borderRadius: '3px',
+												  }
+												: {}
+										}
 										type='number'
 										value={currentHP}
 										onChange={(e) => setCurrentHP(e.target.value)}
@@ -547,6 +634,11 @@ const CharacterForm = () => {
 							<div id='temporary-hp'>
 								<div id='temporary-hp-input'>
 									<input
+										style={
+											errors?.temporary_hp
+												? { border: '3px solid red', borderRadius: '3px' }
+												: {}
+										}
 										type='number'
 										value={temporaryHP}
 										onChange={(e) => setTemporaryHP(e.target.value)}
@@ -559,12 +651,25 @@ const CharacterForm = () => {
 									<div id='total-hit-dice'>
 										<label>Total</label>
 										<input
+											style={
+												errors?.hit_dice_total
+													? {
+															border: '3px solid red',
+															borderRadius: '3px',
+													  }
+													: {}
+											}
 											type='text'
 											value={hitDiceTotal}
 											onChange={(e) => setHitDiceTotal(e.target.value)}
 										/>
 									</div>
 									<input
+										style={
+											errors?.hit_dice
+												? { border: '3px solid red', borderRadius: '3px' }
+												: {}
+										}
 										type='number'
 										value={hitDice}
 										onChange={(e) => setHitDice(e.target.value)}
@@ -648,32 +753,16 @@ const CharacterForm = () => {
 							</div>
 							<div id='equipment-container'>
 								<div id='money-table-container'>
-									<div id='money'>
-										<div id='gold'>
-											<div id='gp'>gp</div>
-											<input
-												type='text'
-												value={goldPieces}
-												onChange={(e) => setGoldPieces(e.target.value)}
-											/>
-										</div>
-										<div id='silver'>
-											<div id='sp'>sp</div>
-											<input
-												type='text'
-												value={silverPieces}
-												onChange={(e) => setSilverPieces(e.target.value)}
-											/>
-										</div>
-										<div id='copper'>
-											<div id='cp'>cp</div>
-											<input
-												type='text'
-												value={copperPieces}
-												onChange={(e) => setCopperPieces(e.target.value)}
-											/>
-										</div>
-									</div>
+									<Money
+										errors={errors}
+										setErrors={setErrors}
+										goldPieces={goldPieces}
+										silverPieces={silverPieces}
+										copperPieces={copperPieces}
+										setGoldPieces={setGoldPieces}
+										setSilverPieces={setSilverPieces}
+										setCopperPieces={setCopperPieces}
+									/>
 									<table id='equipment-table'>
 										<thead>
 											<tr id='equipment-header'>

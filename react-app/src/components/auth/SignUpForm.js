@@ -14,11 +14,12 @@ const SignUpForm = () => {
 
 	const onSignUp = async (e) => {
 		e.preventDefault();
-		if (password === repeatPassword) {
-			const data = await dispatch(signUp(username, email, password));
-			if (data) {
-				setErrors(data);
-			}
+
+		const data = await dispatch(signUp(username, email, password));
+		if (data) {
+			setErrors(data);
+			if (password !== repeatPassword)
+				setErrors({ ...data, repeat_password: 'passwords do not match' });
 		}
 	};
 
@@ -54,13 +55,9 @@ const SignUpForm = () => {
 		>
 			<div className='signup-container'>
 				<form id='signup-form' onSubmit={onSignUp}>
-					<div>
-						{errors.map((error, ind) => (
-							<div key={ind}>{error}</div>
-						))}
-					</div>
 					<div id='signup-form-field'>
 						<label>User Name</label>
+						{errors?.username && <p id='error'>{errors.username}</p>}
 						<input
 							type='text'
 							name='username'
@@ -70,6 +67,7 @@ const SignUpForm = () => {
 					</div>
 					<div id='signup-form-field'>
 						<label>Email</label>
+						{errors?.email && <p id='error'>{errors.email}</p>}
 						<input
 							type='text'
 							name='email'
@@ -79,6 +77,7 @@ const SignUpForm = () => {
 					</div>
 					<div id='signup-form-field'>
 						<label>Password</label>
+						{errors?.password && <p id='error'>{errors.password}</p>}
 						<input
 							type='password'
 							name='password'
@@ -88,12 +87,12 @@ const SignUpForm = () => {
 					</div>
 					<div id='signup-form-field'>
 						<label>Repeat Password</label>
+						{errors?.repeat_password && <p id='error'>{errors.repeat_password}</p>}
 						<input
 							type='password'
 							name='repeat_password'
 							onChange={updateRepeatPassword}
 							value={repeatPassword}
-							required={true}
 						></input>
 					</div>
 					<button id='signup-button' type='submit'>

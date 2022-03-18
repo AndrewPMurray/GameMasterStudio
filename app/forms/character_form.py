@@ -1,8 +1,6 @@
-from tokenize import String
 from flask_wtf import FlaskForm
-from sqlalchemy import Integer
 from wtforms import StringField, TextAreaField, IntegerField
-from wtforms.validators import DataRequired, NumberRange, ValidationError
+from wtforms.validators import DataRequired, NumberRange
 
 
 class CharacterForm(FlaskForm):

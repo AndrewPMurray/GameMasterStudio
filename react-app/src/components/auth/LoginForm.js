@@ -1,11 +1,10 @@
 import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
-import { Redirect, useHistory } from 'react-router-dom';
+import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
 
 const LoginForm = () => {
-	const history = useHistory();
-	const [errors, setErrors] = useState([]);
+	const [errors, setErrors] = useState({});
 	const [email, setEmail] = useState('');
 	const [password, setPassword] = useState('');
 	const user = useSelector((state) => state.session.user);
@@ -19,14 +18,10 @@ const LoginForm = () => {
 			setErrors(data);
 			return;
 		}
-		if (!errors.length) history.push('/home');
 	};
-
-	console.log(errors);
 
 	const demoLogin = async () => {
 		await dispatch(login('demo@aa.io', 'password'));
-		history.push('/home');
 	};
 
 	const updateEmail = (e) => {
@@ -54,9 +49,9 @@ const LoginForm = () => {
 			<div className='login-container'>
 				<form id='login-form' onSubmit={(e) => onLogin(e)}>
 					<div id='errors-div'>
-						{errors.map((error, ind) => (
-							<div key={ind}>{error}</div>
-						))}
+						{Object.keys(errors).length > 0 && (
+							<div>Unable to log in with provided credentials</div>
+						)}
 					</div>
 					<div id='login-form-field'>
 						<label htmlFor='email'>Email</label>

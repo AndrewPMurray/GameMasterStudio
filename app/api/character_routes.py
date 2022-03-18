@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, request
 from flask_login import login_required
 from app.models import db, Character
 from app.forms import CharacterForm
+from app.api.auth_routes import validation_errors_to_error_messages
 
 character_routes = Blueprint('characters', __name__)
 
@@ -48,7 +49,7 @@ def create_character():
         db.session.commit()
     
         return new_character.to_dict()
-    return {'errors':'omg error!'}
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 
 @character_routes.route('/<int:character_id>', methods=['PUT'])
@@ -94,7 +95,7 @@ def update_character(character_id):
         db.session.commit()
     
         return updated_character.to_dict()
-    return {'errors':'omg error!'}
+    return {'errors': validation_errors_to_error_messages(form.errors)}
 
 @character_routes.route('/<int:character_id>', methods=['DELETE'])
 @login_required

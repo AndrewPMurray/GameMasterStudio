@@ -1,6 +1,6 @@
 import { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link, useHistory } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { getCampaigns, deleteCampaign } from '../../store/campaigns';
 import { getCharacters, deleteCharacter } from '../../store/characters';
 import CampaignFormModal from '../CampaignFormModal';
