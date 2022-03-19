@@ -1,11 +1,16 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField
-from wtforms.validators import DataRequired, NumberRange
+from wtforms.validators import DataRequired, NumberRange, ValidationError
 
 
 class CharacterForm(FlaskForm):
+    def check_character_name(form, field):
+        name = field.data
+        if name == 'game_master':
+            raise ValidationError('Name not allowed')
+    
     type = StringField('title', validators=[DataRequired()])
-    name = StringField('name', validators=[DataRequired()])
+    name = StringField('name', validators=[DataRequired(), check_character_name])
     class_name = StringField('class name', validators=[DataRequired()])
     level = IntegerField('level', validators=[DataRequired()])
     background = StringField('background', validators=[DataRequired()])

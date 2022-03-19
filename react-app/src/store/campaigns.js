@@ -32,6 +32,7 @@ export const getCampaigns = (userId) => async (dispatch) => {
 	if (response.ok) {
 		const campaigns = await response.json();
 		dispatch(load(campaigns.all_campaigns));
+		return campaigns.all_campaigns;
 	}
 };
 

@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Campaign, User
+from app.models import db, Campaign, User, Character
 from app.forms import CampaignForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
@@ -46,6 +46,15 @@ def edit_campaign(campaign_id):
         return edited_campaign.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
+@campaign_routes.route('/characters/<int:character_id>', methods=['PUT'])
+@login_required
+def add_character_to_campaign(character_id):
+    added_character = Character.query.get(character_id)
+    campaign_id = request.json['campaign_id']
+    added_character.campaign_id = campaign_id
+    db.session.commit()
+    return added_character.to_dict()
+
 
 @campaign_routes.route('/<int:campaign_id>', methods=['DELETE'])
 @login_required
@@ -54,3 +63,12 @@ def delete_campaign(campaign_id):
     db.session.delete(deleted_campaign)
     db.session.commit()
     return {'message':'success!'}
+
+
+@campaign_routes.route('/characters/<int:character_id>', methods=['DELETE'])
+@login_required
+def delete_character_from_campaign(character_id):
+    removed_character = Character.query.get(character_id)
+    removed_character.campaign_id = None
+    db.session.commit()
+    return removed_character.to_dict()

@@ -52,6 +52,26 @@ export const addCharacter = (payload) => async (dispatch) => {
 	}
 };
 
+export const addCharacterToCampaign = (payload) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/characters/${payload.character_id}`, {
+		headers: { 'Content-Type': 'application/json' },
+		method: 'PUT',
+		body: JSON.stringify(payload),
+	});
+	const editedCharacter = await response.json();
+	dispatch(update(editedCharacter));
+	return editedCharacter;
+};
+
+export const removeCharacterFromCampaign = (characterId) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/characters/${characterId}`, {
+		method: 'DELETE',
+	});
+	const removedCharacter = await response.json();
+	dispatch(update(removedCharacter));
+	return removedCharacter;
+};
+
 export const updateCharacter = (payload) => async (dispatch) => {
 	const response = await fetch(`/api/characters/${payload.character_id}`, {
 		method: 'PUT',
@@ -99,10 +119,8 @@ const charactersReducer = (state = initialState, action) => {
 			return newState;
 		}
 		case UPDATE_CHARACTER: {
-			return {
-				...state,
-				[action.character.id]: action.character,
-			};
+			const newState = { ...state, [action.character.id]: action.character };
+			return newState;
 		}
 		case REMOVE_CHARACTER: {
 			const newState = { ...state };
