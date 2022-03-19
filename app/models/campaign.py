@@ -13,6 +13,7 @@ class Campaign(db.Model):
     users = db.relationship("User", secondary="campaign_users", back_populates="campaigns")
     characters = db.relationship("Character", back_populates="campaign")
     sections = db.relationship("Section", back_populates="campaign", cascade="all, delete")
+    game_master = db.relationship("User", foreign_keys=[game_master_id])
 
     def to_dict(self):
         return {
@@ -20,7 +21,8 @@ class Campaign(db.Model):
             'title': self.title,
             'description': self.description,
             'owner_id': self.owner_id,
-            'game_master_id': self.game_master_id,
+            'game_master': self.game_master.user_info_to_dict() if self.game_master_id else None,
             'characters': [character.to_dict() for character in self.characters],
-            'sections': [section.to_dict() for section in self.sections]
+            'sections': [section.to_dict() for section in self.sections],
+            'users': [user.user_info_to_dict() for user in self.users],
         }

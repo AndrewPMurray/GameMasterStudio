@@ -72,5 +72,5 @@ class Character(db.Model):
             'features': json.loads(self.features),
             'biography': self.biography,
             'campaign_id': self.campaign_id,
-            'user_id': self.user_id,
+            'user': self.user.user_info_to_dict(),
         }

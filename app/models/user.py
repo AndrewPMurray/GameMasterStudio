@@ -36,3 +36,10 @@ class User(db.Model, UserMixin):
             'campaigns': [campaign.to_dict() for campaign in self.campaigns],
             'characters': [character.to_dict() for character in self.characters]
         }
+    
+    def user_info_to_dict(self):
+        return {
+            'username': self.username,
+            'id': self.id,
+            'profile_pic_url': self.profile_pic_url,
+        }

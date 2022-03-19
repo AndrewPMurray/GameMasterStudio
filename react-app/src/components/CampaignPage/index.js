@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import './CampaignPage.css';
 import { getCampaigns, updateCampaign } from '../../store/campaigns';
 
@@ -9,10 +9,15 @@ const CampaignPage = () => {
 	const [errors, setErrors] = useState({});
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const user = useSelector((state) => state.session.user);
+	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
 	const dispatch = useDispatch();
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
+	const [userCharacter, setUserCharacter] = useState([]);
+	const [changeCharacter, setChangeCharacter] = useState(-1);
+
+	console.log(userCharacter);
 
 	useEffect(() => {
 		if (!campaign) {
@@ -23,7 +28,10 @@ const CampaignPage = () => {
 	useEffect(() => {
 		setTitle(campaign?.title);
 		setDescription(campaign?.description);
-	}, [campaign?.title, campaign?.description]);
+		setUserCharacter(
+			campaign?.characters?.filter((character) => character?.user?.id === user?.id)
+		);
+	}, [campaign?.title, campaign?.description, campaign?.characters, user?.id]);
 
 	const handleEdit = async () => {
 		const editedForm = await dispatch(
@@ -39,10 +47,12 @@ const CampaignPage = () => {
 		else setEdit(false);
 	};
 
+	const handleRemoveCharacter = (characterId) => {};
+
 	return (
 		<div className='campaign-container'>
 			<div id='campaign-sections-container'>
-				<p>Campaign Sections</p>
+				<h3>Campaign Sections</h3>
 			</div>
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
@@ -76,7 +86,33 @@ const CampaignPage = () => {
 				)}
 			</div>
 			<div id='campaign-characters-container'>
-				<p>Campaign Characters</p>
+				<h3>Campaign Characters</h3>
+				<div id='campaign-characters-list'>
+					{campaign?.game_master && (
+						<p id='campaign-character'>Game Master: {gameMaster?.username}</p>
+					)}
+					{campaign?.characters?.map((character, i) =>
+						changeCharacter === i ? (
+							<p>change character!</p>
+						) : (
+							<div id='campaign-character' key={`character-${character.id}`}>
+								<Link to={`/characters/${character.id}`}>
+									{character.name} ({character.user.username})
+								</Link>
+								{character.user.id === user.id && (
+									<p
+										id='change-character'
+										style={{ fontSize: '12px', color: '#AAAAAA' }}
+										onClick={() => setChangeCharacter(i)}
+									>
+										change
+									</p>
+								)}
+							</div>
+						)
+					)}
+					{userCharacter?.length === 0 && <p>no character!</p>}
+				</div>
 			</div>
 		</div>
 	);

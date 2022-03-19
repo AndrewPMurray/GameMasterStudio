@@ -4,7 +4,7 @@
 }
 
 .campaign-container > * {
-    margin: 0 75px;
+    margin: 0 30px;
     margin-top: 150px;
 }
 
@@ -59,4 +59,29 @@
     height: 500px;
     padding: 13px;
     font-size: 16px;
+}
+
+#campaign-characters-list {
+    margin-top: 30px;
+}
+
+#campaign-character {
+    margin-bottom: 20px;
+    display: flex;
+}
+
+#campaign-character * {
+    margin-right: 10px;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+#change-character {
+    cursor: pointer;
+}
+
+#change-character:hover {
+    text-decoration: underline;
 }
