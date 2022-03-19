@@ -2,7 +2,7 @@ import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
 import './CampaignPage.css';
-import { getCampaigns, updateCampaign } from '../../store/campaigns';
+import { addGameMaster, getCampaigns, updateCampaign } from '../../store/campaigns';
 import {
 	addCharacterToCampaign,
 	getCharacters,
@@ -26,12 +26,28 @@ const CampaignPage = () => {
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
+
 		if (selectedCharacter === 'remove' && userCharacter) {
 			dispatch(removeCharacterFromCampaign(userCharacter?.id));
 			setChangeCharacter(() => -1);
 			setSelectedCharacter(() => '');
 			setUserCharacter({});
 			return;
+		}
+
+		if (selectedCharacter === 'game_master') {
+			if (userCharacter && Object.values(userCharacter).length > 1) {
+				dispatch(removeCharacterFromCampaign(userCharacter.id));
+			}
+			dispatch(
+				addGameMaster({
+					user_id: user.id,
+					campaign_id: campaign?.id,
+				})
+			);
+			setChangeCharacter(() => -1);
+			setSelectedCharacter(() => '');
+			setUserCharacter({ gameMaster: user.id });
 		} else if (selectedCharacter !== 'remove') {
 			dispatch(
 				addCharacterToCampaign({
@@ -43,7 +59,7 @@ const CampaignPage = () => {
 			setSelectedCharacter(() => '');
 			setUserCharacter(characters[selectedCharacter]);
 		}
-	}, [selectedCharacter, userCharacter, campaign?.id, dispatch, characters]);
+	}, [selectedCharacter, userCharacter, campaign?.id, user.id, dispatch, characters]);
 
 	useEffect(() => {
 		if (selectedCharacter !== '') handleChangeCharacter();
@@ -55,12 +71,19 @@ const CampaignPage = () => {
 	}, [dispatch, user.id, selectedCharacter]);
 
 	useEffect(() => {
-		if (characters?.length === 0) setUserCharacter({});
+		if (campaign?.game_master?.id === user.id) {
+			setUserCharacter({ gameMaster: user.id });
+			return;
+		}
+		if (characters?.length === 0) {
+			setUserCharacter({});
+			return;
+		}
 		characters?.forEach((character, i) => {
 			if (character.user.id === user.id) setUserCharacter(character);
 			if (character.user.id !== user.id && i === characters.length - 1) setUserCharacter({});
 		});
-	}, [characters, user.id, selectedCharacter]);
+	}, [characters, user.id, selectedCharacter, campaign?.game_master?.id]);
 
 	useEffect(() => {
 		setTitle(campaign?.title);
@@ -81,10 +104,12 @@ const CampaignPage = () => {
 		else setEdit(false);
 	};
 
+	console.log(userCharacter);
+
 	return (
 		<div className='campaign-container'>
 			<div id='campaign-sections-container'>
-				<h3>Campaign Sections</h3>
+				<h3>Sections</h3>
 			</div>
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
@@ -118,11 +143,37 @@ const CampaignPage = () => {
 				)}
 			</div>
 			<div id='campaign-characters-container'>
-				<h3>Campaign Characters</h3>
+				<h3>Starring:</h3>
 				<div id='campaign-characters-list'>
-					{campaign?.game_master && (
-						<p id='campaign-character'>Game Master: {gameMaster?.username}</p>
-					)}
+					{campaign?.game_master &&
+						(changeCharacter === -2 ? (
+							<select
+								value={selectedCharacter}
+								onChange={(e) => setSelectedCharacter(() => e.target.value)}
+							>
+								<option value=''>Select a character</option>
+								{!gameMaster && <option value='game_master'>Game Master</option>}
+								{user?.characters.map((userCharacter) => (
+									<option key={`${userCharacter.name}`} value={userCharacter.id}>
+										{userCharacter.name}
+									</option>
+								))}
+								<option value='remove'>Remove character</option>
+							</select>
+						) : (
+							<div>
+								<p id='campaign-character'>Game Master: {gameMaster?.username}</p>
+								{campaign?.game_master?.id === user.id && (
+									<p
+										id='change-character'
+										style={{ fontSize: '12px', color: '#AAAAAA' }}
+										onClick={() => setChangeCharacter(-2)}
+									>
+										change
+									</p>
+								)}
+							</div>
+						))}
 					{characters?.map((character, i) =>
 						changeCharacter === i ? (
 							<select

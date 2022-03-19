@@ -29,6 +29,16 @@ def create_campaign():
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
 
 
+@campaign_routes.route('/<int:campaign_id>/game_master', methods=['PUT'])
+@login_required
+def add_game_master_to_campaign(campaign_id):
+    edited_campaign = Campaign.query.get(campaign_id)
+    user_id = request.json['user_id']
+    edited_campaign.game_master_id = user_id
+    db.session.commit()
+    return edited_campaign.to_dict()
+    
+
 @campaign_routes.route('/<int:campaign_id>', methods=['PUT'])
 @login_required
 def edit_campaign(campaign_id):
@@ -45,6 +55,7 @@ def edit_campaign(campaign_id):
         
         return edited_campaign.to_dict()
     return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+
 
 @campaign_routes.route('/characters/<int:character_id>', methods=['PUT'])
 @login_required

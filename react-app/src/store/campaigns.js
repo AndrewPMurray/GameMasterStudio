@@ -52,6 +52,17 @@ export const addCampaign = (payload) => async (dispatch) => {
 	}
 };
 
+export const addGameMaster = (payload) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/${payload.campaign_id}/game_master`, {
+		method: 'PUT',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(payload),
+	});
+	const editedCampaign = await response.json();
+	dispatch(update(editedCampaign));
+	return editedCampaign;
+};
+
 export const updateCampaign = (payload) => async (dispatch) => {
 	const response = await fetch(`/api/campaigns/${payload.campaign_id}`, {
 		method: 'PUT',
