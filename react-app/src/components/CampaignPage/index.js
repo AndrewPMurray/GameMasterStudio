@@ -1,8 +1,14 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link } from 'react-router-dom';
+import InviteUsersModal from '../InviteUsersModal';
 import './CampaignPage.css';
-import { addGameMaster, getCampaigns, updateCampaign } from '../../store/campaigns';
+import {
+	addGameMaster,
+	getCampaigns,
+	removeGameMaster,
+	updateCampaign,
+} from '../../store/campaigns';
 import {
 	addCharacterToCampaign,
 	getCharacters,
@@ -23,18 +29,30 @@ const CampaignPage = () => {
 	const [userCharacter, setUserCharacter] = useState({});
 	const [changeCharacter, setChangeCharacter] = useState(-1);
 	const [selectedCharacter, setSelectedCharacter] = useState('');
+	const [showModal, setShowModal] = useState(false);
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
 
-		if (selectedCharacter === 'remove' && userCharacter) {
-			dispatch(removeCharacterFromCampaign(userCharacter?.id));
-			setChangeCharacter(() => -1);
-			setSelectedCharacter(() => '');
-			setUserCharacter({});
+		// removing character or game master
+		if (selectedCharacter === 'remove') {
+			if (userCharacter?.id) {
+				dispatch(removeCharacterFromCampaign(userCharacter?.id)).then(() => {
+					setUserCharacter({});
+					setChangeCharacter(-1);
+					setSelectedCharacter('');
+				});
+			} else if (userCharacter?.gameMaster) {
+				dispatch(removeGameMaster(campaignId)).then(() => {
+					setUserCharacter({});
+					setChangeCharacter(-1);
+					setSelectedCharacter('');
+				});
+			}
 			return;
 		}
 
+		// setting game master
 		if (selectedCharacter === 'game_master') {
 			if (userCharacter && Object.values(userCharacter).length > 1) {
 				dispatch(removeCharacterFromCampaign(userCharacter.id));
@@ -44,22 +62,29 @@ const CampaignPage = () => {
 					user_id: user.id,
 					campaign_id: campaign?.id,
 				})
-			);
-			setChangeCharacter(() => -1);
-			setSelectedCharacter(() => '');
-			setUserCharacter({ gameMaster: user.id });
-		} else if (selectedCharacter !== 'remove') {
-			dispatch(
-				addCharacterToCampaign({
-					character_id: selectedCharacter,
-					campaign_id: campaign?.id,
-				})
-			);
-			setChangeCharacter(() => -1);
-			setSelectedCharacter(() => '');
-			setUserCharacter(characters[selectedCharacter]);
+			).then(() => {
+				setUserCharacter({ gameMaster: user.id });
+				setChangeCharacter(-1);
+				setSelectedCharacter('');
+			});
+			return;
 		}
-	}, [selectedCharacter, userCharacter, campaign?.id, user.id, dispatch, characters]);
+
+		// setting character in campaign
+		if (selectedCharacter !== 'remove') {
+			if (userCharacter?.gameMaster) dispatch(removeGameMaster(campaignId));
+		}
+		dispatch(
+			addCharacterToCampaign({
+				character_id: selectedCharacter,
+				campaign_id: campaign?.id,
+			})
+		).then(() => {
+			setUserCharacter(characters[selectedCharacter]);
+			setChangeCharacter(-1);
+			setSelectedCharacter('');
+		});
+	}, [selectedCharacter, userCharacter, campaign?.id, user.id, dispatch, characters, campaignId]);
 
 	useEffect(() => {
 		if (selectedCharacter !== '') handleChangeCharacter();
@@ -68,7 +93,7 @@ const CampaignPage = () => {
 	useEffect(() => {
 		dispatch(getCampaigns(user.id));
 		dispatch(getCharacters(user.id));
-	}, [dispatch, user.id, selectedCharacter]);
+	}, [dispatch, user.id, selectedCharacter, setShowModal]);
 
 	useEffect(() => {
 		if (campaign?.game_master?.id === user.id) {
@@ -79,9 +104,14 @@ const CampaignPage = () => {
 			setUserCharacter({});
 			return;
 		}
-		characters?.forEach((character, i) => {
-			if (character.user.id === user.id) setUserCharacter(character);
-			if (character.user.id !== user.id && i === characters.length - 1) setUserCharacter({});
+		characters?.every((character, i) => {
+			if (character.user.id === user.id) {
+				setUserCharacter(() => character);
+				return false;
+			} else {
+				setUserCharacter({});
+				return true;
+			}
 		});
 	}, [characters, user.id, selectedCharacter, campaign?.game_master?.id]);
 
@@ -90,6 +120,7 @@ const CampaignPage = () => {
 		setDescription(campaign?.description);
 	}, [campaign?.title, campaign?.description]);
 
+	// Edit campaign title and description
 	const handleEdit = async () => {
 		const editedForm = await dispatch(
 			updateCampaign({
@@ -104,12 +135,14 @@ const CampaignPage = () => {
 		else setEdit(false);
 	};
 
-	console.log(userCharacter);
-
 	return (
 		<div className='campaign-container'>
 			<div id='campaign-sections-container'>
-				<h3>Sections</h3>
+				<div id='sections-header'>
+					<h3>Sections</h3>
+					<button id='add-section-user-button'>Add section</button>
+				</div>
+				<div id='campaign-sections-list'></div>
 			</div>
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
@@ -118,6 +151,7 @@ const CampaignPage = () => {
 							id='campaign-title'
 							value={title}
 							onChange={(e) => setTitle(e.target.value)}
+							autoComplete='off'
 						/>
 					) : (
 						<h2 id='campaign-title'>{campaign?.title}</h2>
@@ -143,7 +177,17 @@ const CampaignPage = () => {
 				)}
 			</div>
 			<div id='campaign-characters-container'>
-				<h3>Starring:</h3>
+				<div id='characters-header'>
+					<h3>Starring:</h3>
+					{user?.id === campaign?.owner_id && (
+						<InviteUsersModal
+							campaignUsers={campaign?.users}
+							campaignId={campaignId}
+							showModal={showModal}
+							setShowModal={setShowModal}
+						/>
+					)}
+				</div>
 				<div id='campaign-characters-list'>
 					{campaign?.game_master &&
 						(changeCharacter === -2 ? (
@@ -158,11 +202,13 @@ const CampaignPage = () => {
 										{userCharacter.name}
 									</option>
 								))}
-								<option value='remove'>Remove character</option>
+								<option value='remove' onClick={() => setUserCharacter(() => {})}>
+									Remove character
+								</option>
 							</select>
 						) : (
-							<div>
-								<p id='campaign-character'>Game Master: {gameMaster?.username}</p>
+							<div id='campaign-character'>
+								<p>Game Master: {gameMaster?.username}</p>
 								{campaign?.game_master?.id === user.id && (
 									<p
 										id='change-character'
@@ -188,7 +234,9 @@ const CampaignPage = () => {
 										{userCharacter.name}
 									</option>
 								))}
-								<option value='remove'>Remove character</option>
+								<option value='remove' onClick={() => setUserCharacter(() => {})}>
+									Remove character
+								</option>
 							</select>
 						) : (
 							<div id='campaign-character' key={`character-${character.id}`}>
@@ -207,7 +255,7 @@ const CampaignPage = () => {
 							</div>
 						)
 					)}
-					{userCharacter && Object.values(userCharacter).length === 0 ? (
+					{userCharacter && Object.values(userCharacter).length === 0 && (
 						<select
 							value={selectedCharacter}
 							onChange={(e) => setSelectedCharacter(e.target.value)}
@@ -220,7 +268,7 @@ const CampaignPage = () => {
 								</option>
 							))}
 						</select>
-					) : null}
+					)}
 				</div>
 			</div>
 		</div>

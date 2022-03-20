@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.invite-users-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-start;
+    background-color: #1E1E1E;
+    color: white;
+    border: 1px solid #2E2E2E;
+    width: 650px;
+    min-height: 550px;
+    padding: 20px;
+    border-radius: 5px;
+}
+
+.invite-users-container > * {
+    padding: 10px;
+}
+
+.invite-users-container > div > p {
+    padding-top: 15px;
+    font-size: 14px;
+    color: #AAAAAA;
+    line-height: 1.3;
+}
+
+.invite-users-form {
+    display: flex;
+    flex-direction: column;
+    height: 150px;
+}
+
+#user-container {
+    display: flex;
+    flex-wrap: wrap;
+    min-height: 95px;
+}
+
+#user-div {
+    margin: 10px 5px;
+    width: 70px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+}
+
+#invite-user-name {
+    margin-top: 5px;
+}
+
+#delete-user {
+    position: absolute;
+    top: 0;
+    right: 0;
+    visibility: hidden;
+}
+
+#user-div:hover > #delete-user {
+    visibility: visible;
+    cursor: pointer;
+}
+
+#search-users-input {
+    margin-top: 10px;
+    background-color: transparent;
+    border: 1px solid #666666;
+    font-family: 'Montserrat';
+    font-size: 20px;
+    height: 35px;
+    color: white;
+    padding: 5px 5px;
+}
+
+
+#invite-users-button {
+    align-self: flex-end;
+    display: flex;
+    align-items: flex-end;
+    max-width: 100px;
+    flex-grow: 1;
+    margin-top: 50px;
+}
+
+#invite-users-button > button {
+    background-color: black;
+    color: white;
+    width: 200px;
+    height: 30px;
+    border: none;
+    border-radius: 3px;
+    cursor: pointer;
+    transition-duration: 250ms;
+}
+
+#invite-users-button:hover > button {
+    background-color: #930C10;
+}
+
+.form-field {
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+}
+
+#invite-users-button > button:disabled {
+    color: rgba(16, 16, 16, 0.3);
+    background-color: #555555;
+    cursor: not-allowed;
+}
+
+#user-result {
+    display: flex;
+    padding: 10px;
+    align-items: center;
+}
+
+#user-result:hover {
+    cursor: pointer;
+    background-color: #555555;
+}
+
+#user-result > p {
+    padding-left: 5px;
+}
+
+#user-input-container {
+	position: relative;
+}
+
+#user-search-results {
+	position: absolute;
+	border: 1px solid black;
+	border-radius: 3px;
+	top: 70px;
+	width: 300px;
+	min-height: 200px;
+	background-color: #333333;
+}

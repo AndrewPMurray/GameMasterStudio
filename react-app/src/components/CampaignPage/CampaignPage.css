@@ -4,12 +4,37 @@
 }
 
 .campaign-container > * {
-    margin: 0 30px;
+    margin: 0 25px;
     margin-top: 150px;
+    margin-right: 50px;
+}
+
+#campaign-sections-container,
+#campaign-characters-container {
+    width: 250px;
+}
+
+#sections-header,
+#characters-header {
+    display: flex;
+    justify-content: space-between;
+}
+
+#campaign-sections-list,
+#campaign-characters-list {
+    margin-top: 10px;
+    padding: 10px;
+    padding-top: 15px;
+    border: 3px solid black;
+    min-height: 600px;
+    border-radius: 10px;
+    background-color: #333333;
+    width: 250px;
 }
 
 #campaign-info {
-    width: 750px;
+    width: 700px;
+    min-width: 600px;
     text-align: center;
     line-height: 1.4;
 }
@@ -31,9 +56,24 @@
     justify-content: center;
 }
 
+#add-section-user-button {
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 250ms;
+}
+
+#add-section-user-button:hover {
+    cursor: pointer;
+    background-color: #930C10;
+}
+
 #edit-campaign-button {
     margin-left: 20px;
-    max-height: 40px;
+    height: 30px;
     width: 100px;
     color: white;
     background-color: black;
@@ -50,6 +90,7 @@
 #campaign-title-and-edit input {
     text-align: center;
     border-radius: 5px;
+    border: none;
 }
 
 #campaign-info textarea {
@@ -61,12 +102,8 @@
     font-size: 16px;
 }
 
-#campaign-characters-list {
-    margin-top: 30px;
-}
-
 #campaign-character {
-    margin-bottom: 20px;
+    margin: 10px 0;
     display: flex;
 }
 

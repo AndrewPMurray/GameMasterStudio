@@ -59,6 +59,7 @@
     font-size: 20px;
     height: 35px;
     color: white;
+    padding: 5px 5px;
 }
 
 
@@ -100,4 +101,5 @@
 .form-field textarea {
     resize: none;
     min-height: 200px;
+    padding: 5px 5px;
 }

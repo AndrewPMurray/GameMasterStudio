@@ -63,6 +63,37 @@ export const addGameMaster = (payload) => async (dispatch) => {
 	return editedCampaign;
 };
 
+export const removeGameMaster = (campaignId) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/${campaignId}/game_master`, {
+		method: 'DELETE',
+	});
+	const editedCampaign = await response.json();
+	dispatch(update(editedCampaign));
+	return editedCampaign;
+};
+
+export const addUsersToCampaign = (payload, campaignId) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/${campaignId}/users`, {
+		method: 'POST',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(payload),
+	});
+	const editedCampaign = await response.json();
+	dispatch(update(editedCampaign));
+	return editedCampaign;
+};
+
+export const removeUsersFromCampaign = (payload, campaignId) => async (dispatch) => {
+	const response = await fetch(`/api/campaigns/${campaignId}/users`, {
+		method: 'DELETE',
+		headers: { 'Content-Type': 'application/json' },
+		body: JSON.stringify(payload),
+	});
+	const editedCampaign = await response.json();
+	dispatch(update(editedCampaign));
+	return editedCampaign;
+};
+
 export const updateCampaign = (payload) => async (dispatch) => {
 	const response = await fetch(`/api/campaigns/${payload.campaign_id}`, {
 		method: 'PUT',

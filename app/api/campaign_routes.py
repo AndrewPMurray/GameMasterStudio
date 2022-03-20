@@ -67,6 +67,40 @@ def add_character_to_campaign(character_id):
     return added_character.to_dict()
 
 
+@campaign_routes.route('/<int:campaign_id>/users', methods=['POST'])
+@login_required
+def add_users_to_campaign(campaign_id):
+    users_to_add = request.json
+    campaign = Campaign.query.get(campaign_id)
+    
+    for user_obj in users_to_add:
+        user = User.query.get(user_obj['id'])
+        user.campaigns.append(campaign)
+    
+    db.session.commit()
+    return campaign.to_dict()
+
+
+@campaign_routes.route('/<int:campaign_id>/users', methods=['DELETE'])
+@login_required
+def remove_users_from_campaign(campaign_id):
+    users_to_remove = request.json
+    campaign = Campaign.query.get(campaign_id)
+    
+    for user_obj in users_to_remove:
+        user = User.query.get(user_obj['id'])
+        character = Character.query.filter(Character.campaign_id == campaign_id and Character.user_id == user.id).first()
+        print('STUFF HERE YO', campaign.game_master_id, user.id)
+        if campaign.game_master_id == user.id:
+            campaign.game_master_id = None
+        if character != None:
+            character.campaign_id = None
+        user.campaigns.remove(campaign)
+    
+    db.session.commit()
+    return campaign.to_dict()
+
+
 @campaign_routes.route('/<int:campaign_id>', methods=['DELETE'])
 @login_required
 def delete_campaign(campaign_id):
@@ -83,3 +117,11 @@ def delete_character_from_campaign(character_id):
     removed_character.campaign_id = None
     db.session.commit()
     return removed_character.to_dict()
+
+@campaign_routes.route('/<int:campaign_id>/game_master', methods=['DELETE'])
+@login_required
+def remove_game_master_from_campaign(campaign_id):
+    edited_campaign = Campaign.query.get(campaign_id)
+    edited_campaign.game_master_id = None
+    db.session.commit()
+    return edited_campaign.to_dict()
