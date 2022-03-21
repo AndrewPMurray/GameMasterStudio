@@ -30,10 +30,14 @@ export default function UserHome() {
 					<div id='campaigns'>
 						{campaignsArr?.map((campaign) => (
 							<div id='campaign' key={`campaign-${campaign.id}`}>
-								<DeleteCampaignModal
-									campaignId={campaign.id}
-									campaignTitle={campaign.title}
-								/>
+								{user.id === campaign.owner_id ? (
+									<DeleteCampaignModal
+										campaignId={campaign.id}
+										campaignTitle={campaign.title}
+									/>
+								) : (
+									<div style={{ marginRight: '10px', width: '15px' }}></div>
+								)}
 								<Link to={`/campaigns/${campaign.id}`}>{campaign.title}</Link>
 							</div>
 						))}

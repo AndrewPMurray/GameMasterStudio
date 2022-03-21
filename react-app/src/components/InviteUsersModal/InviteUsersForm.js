@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useHistory } from 'react-router-dom';
 import { getCampaigns, removeUsersFromCampaign, addUsersToCampaign } from '../../store/campaigns';
 
 import './InviteUsersForm.css';
@@ -14,7 +13,6 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 	const [invitedUsers, setInvitedUsers] = useState([]);
 	const [removeUsers, setRemoveUsers] = useState([]);
 	const [existingUsers, setExistingUsers] = useState([]);
-	const history = useHistory();
 
 	useEffect(() => {
 		async function fetchData() {
