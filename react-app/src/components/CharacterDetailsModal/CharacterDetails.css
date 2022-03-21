@@ -1,18 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
 
-#new-campaign-button {
-    cursor: pointer;
-    max-height: 40px;
-    border: none;
-    border-radius: 5px;
-    background: black;
-    color: white;
-    line-height: 2;
-    height: 40px;
-    width: 150px;
-    transition-duration: 250ms;
-}
-
 .character-details-container {
     display: flex;
     flex-direction: column;

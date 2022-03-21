@@ -2,24 +2,24 @@
 
 #new-campaign-button {
     cursor: pointer;
-    max-height: 40px;
-    margin: 20px;
-    border: none;
+    margin: 40px 20px;
+    border: 1px solid gray;
     border-radius: 5px;
     background: black;
     color: white;
     line-height: 2;
-    height: 40px;
-    width: 150px;
+    height: 50px;
+    width: 175px;
     transition-duration: 250ms;
 }
 
 #new-campaign-button:hover {
     background-color: #930C10;
+    border: none;
 }
 
 #user-home-button {
-    max-height: 40px;
+    max-height: 50px;
 }
 
 .create-campaign-container {

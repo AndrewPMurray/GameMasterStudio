@@ -89,23 +89,25 @@
     border: none;
     border-radius: 5px;
     background-color: black;
+    border: 1px solid gray;
     color: white;
-    height: 40px;
-    width: 150px;
+    height: 50px;
+    width: 170px;
     transition-duration: 250ms;
 }
 
 #add-character-button:hover {
     background-color: #930C10;
+    border: none;
     cursor: pointer;
 }
 
 #user-home-button {
-    max-height: 40px;
-    margin: 20px;
+    max-height: 50px;
+    margin: 40px 20px;
 }
 
 #campaigns-list,
 #characters-list {
-    padding: 50px 50px;
+    padding: 50px;
 }

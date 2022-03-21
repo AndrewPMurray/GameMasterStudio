@@ -33,7 +33,7 @@ export default function UserHome() {
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: '1900px 200%',
 						zIndex: 0,
-						opacity: 0.15,
+						opacity: 0.11,
 					}}
 				></div>
 				<div id='campaigns-list'>
@@ -64,7 +64,7 @@ export default function UserHome() {
 							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/characterbackground.jpg) no-repeat',
 						backgroundSize: '1900px',
 						zIndex: '0',
-						opacity: 0.3,
+						opacity: 0.17,
 					}}
 				></div>
 				<div id='characters-list'>
