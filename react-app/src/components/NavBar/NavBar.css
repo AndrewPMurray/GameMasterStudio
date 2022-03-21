@@ -1,3 +1,7 @@
+#navbar-container * {
+    z-index: 1000;
+}
+
 #navbar-container {
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid #AAAAAA;
@@ -7,6 +11,7 @@
     width: auto;
     font-size: 20px;
     padding-left: 20px;
+    max-width: 1880px;
 }
 
 #navbar-container a {
@@ -53,6 +58,7 @@
 #user-navbar-menu * {
     padding: 0;
     margin: 10px 5px;
+    z-index: 1000;
 }
 
 #change-profile-pic-button {

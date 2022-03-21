@@ -48,22 +48,33 @@ const CharacterForm = () => {
 	const [page, setPage] = useState(1);
 
 	const modifiers = {
-		strength: strength > -1 && strength <= 30 ? `${Math.floor(strength / 2) - 5}` : 0,
-		dexterity: dexterity > -1 && dexterity <= 30 ? `${Math.floor(dexterity / 2) - 5}` : 0,
+		strength: strength >= 0 && strength <= 30 ? `${Math.floor(strength / 2) - 5}` : 0,
+		dexterity: dexterity >= 0 && dexterity <= 30 ? `${Math.floor(dexterity / 2) - 5}` : 0,
 		constitution:
-			constitution > -1 && constitution <= 30 ? `${Math.floor(constitution / 2) - 5}` : 0,
+			constitution >= 0 && constitution <= 30 ? `${Math.floor(constitution / 2) - 5}` : 0,
 		intelligence:
-			intelligence > -1 && intelligence <= 30 ? `${Math.floor(intelligence / 2) - 5}` : 0,
-		wisdom: wisdom > -1 && wisdom <= 30 ? `${Math.floor(wisdom / 2) - 5}` : 0,
-		charisma: charisma > -1 && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
+			intelligence >= 0 && intelligence <= 30 ? `${Math.floor(intelligence / 2) - 5}` : 0,
+		wisdom: wisdom >= 0 && wisdom <= 30 ? `${Math.floor(wisdom / 2) - 5}` : 0,
+		charisma: charisma >= 0 && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
 	};
 
 	useEffect(() => {
 		if (!user) {
 			history.push('/login');
 		}
-		dispatch(getCharacters(user?.id));
-	}, [dispatch, user, history, user?.id]);
+		dispatch(getCharacters(user?.id)).then((res) => {
+			res.every((char, i) => {
+				if (!characterId) return false;
+				let characterExists = false;
+				if (char.id === +characterId) {
+					characterExists = true;
+					return false;
+				}
+				if (!characterExists && i === res.length - 1) history.push('/not-found');
+				return true;
+			});
+		});
+	}, [dispatch, user, history, user?.id, characterId]);
 
 	useEffect(() => {
 		if (character) {
@@ -254,7 +265,7 @@ const CharacterForm = () => {
 						Save Character
 					</button>
 				</div>
-				<label>Character Biography</label>
+				<label style={{ marginBottom: '10px' }}>Character Biography</label>
 				<textarea id='bio-input' value={bio} onChange={(e) => setBio(e.target.value)} />
 			</div>
 		);
@@ -291,10 +302,21 @@ const CharacterForm = () => {
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
-						<p style={{ borderTop: '1px solid black' }}>Character Name*</p>
+						<p style={{ borderTop: '1px solid gray' }}>Character Name*</p>
 					</div>
 					<div id='character-sheet-header'>
 						<div id='class-level-background'>
+							<i className='fas fa-question-circle' id='tooltip'>
+								<p id='popup-text'>
+									Class, Level, and Experience: These fields are for basic
+									information about your character. Class is for whether they're a
+									warrior, rogue, wizard, etc. Level is based on experience
+									(usually starts at 1), and background is usually additional info
+									about your character that provides skills in addition to the
+									class. Please see the Dungeons and Dragons playbook for more
+									information
+								</p>
+							</i>
 							<label
 								style={
 									errors?.class_name
@@ -307,7 +329,7 @@ const CharacterForm = () => {
 									value={className}
 									onChange={(e) => setClassName(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black' }}>Class*</p>
+								<p style={{ borderTop: '1px solid gray' }}>Class*</p>
 							</label>
 							<label
 								style={
@@ -321,7 +343,7 @@ const CharacterForm = () => {
 									value={level}
 									onChange={(e) => setLevel(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black' }}>Level*</p>
+								<p style={{ borderTop: '1px solid gray' }}>Level*</p>
 							</label>
 							<label
 								style={
@@ -335,12 +357,20 @@ const CharacterForm = () => {
 									value={background}
 									onChange={(e) => setBackground(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black', width: '100px' }}>
+								<p style={{ borderTop: '1px solid gray', width: '100px' }}>
 									Background*
 								</p>
 							</label>
 						</div>
 						<div id='race-alignment-experience'>
+							<i className='fas fa-question-circle' id='tooltip'>
+								<p id='popup-text'>
+									Race, Alignment, and Experience: These fields determine the race
+									of your character (elf, human, dwarf, etc), their alignment
+									(i.e. lawful good or chaotic evil), and the experience points
+									gained during their adventure
+								</p>
+							</i>
 							<label
 								style={
 									errors?.race
@@ -353,7 +383,7 @@ const CharacterForm = () => {
 									value={race}
 									onChange={(e) => setRace(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black' }}>Race*</p>
+								<p style={{ borderTop: '1px solid gray' }}>Race*</p>
 							</label>
 							<label
 								style={
@@ -367,7 +397,7 @@ const CharacterForm = () => {
 									value={alignment}
 									onChange={(e) => setAlignment(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black' }}>Alignment*</p>
+								<p style={{ borderTop: '1px solid gray' }}>Alignment*</p>
 							</label>
 							<label
 								style={
@@ -381,7 +411,7 @@ const CharacterForm = () => {
 									value={experience}
 									onChange={(e) => setExperience(e.target.value)}
 								/>
-								<p style={{ borderTop: '1px solid black', width: '100px' }}>
+								<p style={{ borderTop: '1px solid gray', width: '100px' }}>
 									Experience*
 								</p>
 							</label>
@@ -393,6 +423,15 @@ const CharacterForm = () => {
 						<div id='attributes-skills'>
 							<div id='attributes'>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Strength: Determines the strength of your character.
+											Also affects saving throws and skills related to
+											strength. The big number in the center is your modifier
+											and requires no input. Please input a number in the
+											circle on the bottom of this area.
+										</p>
+									</i>
 									<label>STRENGTH*</label>
 									<h3>{modifiers.strength}</h3>
 									<input
@@ -403,6 +442,15 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Dexterity: Determines the dexterity of your character.
+											Also affects saving throws and skills related to
+											dexterity. The big number in the center is your modifier
+											and requires no input. Please input a number in the
+											circle on the bottom of this area.
+										</p>
+									</i>
 									<label>DEXTERITY*</label>
 									<h3>{modifiers.dexterity}</h3>
 									<input
@@ -413,6 +461,15 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Constitution: Determines the constitution of your
+											character. Affects Hit Points, saving throws, and skills
+											related to constitution. The big number in the center is
+											your modifier and requires no input. Please input a
+											number in the circle on the bottom of this area.
+										</p>
+									</i>
 									<label>CONSTITUTION*</label>
 									<h3>{modifiers.constitution}</h3>
 									<input
@@ -425,6 +482,15 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Intelligence: Determines the intelligence of your
+											character. Also affects saving throws and skills related
+											to intelligence. The big number in the center is your
+											modifier and requires no input. Please input a number in
+											the circle on the bottom of this area.
+										</p>
+									</i>
 									<label>INTELLIGENCE*</label>
 									<h3>{modifiers.intelligence}</h3>
 									<input
@@ -437,6 +503,15 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Wisdom: Determines the wisdom of your character. Also
+											affects saving throws, and skills related to wisdom. The
+											big number in the center is your modifier and requires
+											no input. Please input a number in the circle on the
+											bottom of this area.
+										</p>
+									</i>
 									<label>WISDOM*</label>
 									<h3>{modifiers.wisdom}</h3>
 									<input
@@ -447,6 +522,15 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Charisma: Determines the charisma of your character.
+											Also affects saving throws, and skills related to
+											charisma. The big number in the center is your modifier
+											and requires no input. Please input a number in the
+											circle on the bottom of this area.
+										</p>
+									</i>
 									<label>CHARISMA*</label>
 									<h3>{modifiers.charisma}</h3>
 									<input
@@ -459,6 +543,13 @@ const CharacterForm = () => {
 							</div>
 							<div id='skills-and-throws'>
 								<div id='proficiency'>
+									<i className='fas fa-question-circle' id='tooltip'>
+										<p id='popup-text'>
+											Proficiency: This number is based on your level and
+											cannot be modified. If you are proficient in a skill or
+											attribute, add your proficiency to those checks.
+										</p>
+									</i>
 									<h3>
 										{level
 											? level < 5
@@ -579,6 +670,14 @@ const CharacterForm = () => {
 							</div>
 						</div>
 						<div id='passive-perception'>
+							<i className='fas fa-question-circle' id='tooltip'>
+								<p id='popup-text'>
+									Passive Perception: Your wisdom modifier + 10. Lets your
+									character see certain things based on DC set by the game master.
+									Cannot be rolled for, and can only be modified by increasing
+									your wisdom modifier
+								</p>
+							</i>
 							<p id='passive-perception-value'>{+modifiers.wisdom + 10}</p>
 							<p id='passive-perception-text'>PASSIVE WISDOM(perception)</p>
 						</div>

@@ -8,7 +8,7 @@ const CampaignFormModal = ({ userId }) => {
 	return (
 		<>
 			<button id='new-campaign-button' onClick={() => setShowModal(true)}>
-				<i className='fas fa-plus-square' style={{ paddingRight: '10px' }}></i>
+				<i className='fas fa-book-dead' style={{ paddingRight: '10px' }}></i>
 				New Campaign
 			</button>
 			{showModal && (

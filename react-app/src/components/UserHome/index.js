@@ -25,6 +25,17 @@ export default function UserHome() {
 	return (
 		<div className='user-home-container'>
 			<div id='campaigns-container'>
+				<div
+					id='campaign-image'
+					style={{
+						backgroundImage:
+							'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/campaignbackground.jpg)',
+						backgroundRepeat: 'no-repeat',
+						backgroundSize: '1900px 200%',
+						zIndex: 0,
+						opacity: 0.15,
+					}}
+				></div>
 				<div id='campaigns-list'>
 					<p>Campaigns</p>
 					<div id='campaigns'>
@@ -43,11 +54,19 @@ export default function UserHome() {
 						))}
 					</div>
 				</div>
-				<div id='new-campaign-button'>
-					<CampaignFormModal userId={user.id} />
-				</div>
+				<CampaignFormModal userId={user.id} />
 			</div>
 			<div id='characters-container'>
+				<div
+					id='character-image'
+					style={{
+						background:
+							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/characterbackground.jpg) no-repeat',
+						backgroundSize: '1900px',
+						zIndex: '0',
+						opacity: 0.3,
+					}}
+				></div>
 				<div id='characters-list'>
 					<p>Characters</p>
 					<div id='characters'>
@@ -64,7 +83,7 @@ export default function UserHome() {
 				</div>
 				<Link id='user-home-button' to='/characters'>
 					<button id='add-character-button'>
-						<i className='fas fa-plus-square' style={{ paddingRight: '10px' }}></i>New
+						<i className='fas fa-hat-wizard' style={{ paddingRight: '10px' }}></i>New
 						Character
 					</button>
 				</Link>

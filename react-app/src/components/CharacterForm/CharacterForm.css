@@ -7,6 +7,7 @@
     padding: 20px;
     color: black;
     width: 885px;
+    position: relative;
 }
 
 .character-form-container input {
@@ -70,6 +71,11 @@
     margin-top: 40px;
 }
 
+#class-level-background,
+#race-alignment-experience {
+    position: relative;
+}
+
 #attributes-skills {
     display: flex;
 }
@@ -78,6 +84,11 @@
     width: 95px;
     font-size: 12px;
     text-align: center;
+    position: relative;
+}
+
+#attribute-div > #tooltip {
+    bottom: -15px;
 }
 
 #attribute-div {
@@ -112,6 +123,14 @@
     margin-bottom: 10px;
 }
 
+#passive-perception {
+    position: relative;
+}
+
+#passive-perception > #tooltip {
+    bottom: -10px;
+}
+
 #skills-and-throws {
     width: 125px;
     margin-left: 20px;
@@ -121,6 +140,11 @@
 #proficiency {
     display: flex;
     align-items: center;
+    position: relative;
+}
+
+#proficiency > #tooltip {
+    left: 150px;
 }
 
 #proficiency h3 {
@@ -449,4 +473,33 @@
     resize: none;
     min-height: 500px;
     padding: 10px;
+}
+
+#tooltip {
+    position: absolute;
+    bottom: 0;
+    left: -15px;
+    font-size: 12px;
+    cursor: pointer;
+    text-align: left;
+    max-width: 12px;
+}
+
+#popup-text {
+    position: absolute;
+    padding: 5px;
+    font-size: 14px;
+    background-color: #DDDDDD;
+    border: 1px solid black;
+    border-radius: 3px;
+    width: 200px;
+    z-index: 100;
+    font-weight: normal;
+    visibility: hidden;
+    line-height: 1.3;
+    text-align: left;
+}
+
+#tooltip:hover > #popup-text {
+    visibility: visible;
 }
