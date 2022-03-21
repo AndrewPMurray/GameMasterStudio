@@ -12,7 +12,7 @@ export default function Money({
 	return (
 		<div id='money'>
 			<div id='gold' style={errors?.gold_pieces ? { border: '3px solid red' } : {}}>
-				<div id='gp'>gp</div>
+				<div id='gp'>gp*</div>
 				<input
 					type='text'
 					value={goldPieces}
@@ -20,7 +20,7 @@ export default function Money({
 				/>
 			</div>
 			<div id='silver' style={errors?.silver_pieces ? { border: '3px solid red' } : {}}>
-				<div id='sp'>sp</div>
+				<div id='sp'>sp*</div>
 				<input
 					type='text'
 					value={silverPieces}
@@ -28,7 +28,7 @@ export default function Money({
 				/>
 			</div>
 			<div id='copper' style={errors.copper_pieces ? { border: '3px solid red' } : {}}>
-				<div id='cp'>cp</div>
+				<div id='cp'>cp*</div>
 				<input
 					type='text'
 					value={copperPieces}

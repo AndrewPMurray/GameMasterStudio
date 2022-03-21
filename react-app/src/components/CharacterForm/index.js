@@ -48,14 +48,14 @@ const CharacterForm = () => {
 	const [page, setPage] = useState(1);
 
 	const modifiers = {
-		strength: strength && strength <= 30 ? `${Math.floor(strength / 2) - 5}` : 0,
-		dexterity: dexterity && dexterity <= 30 ? `${Math.floor(dexterity / 2) - 5}` : 0,
+		strength: strength > -1 && strength <= 30 ? `${Math.floor(strength / 2) - 5}` : 0,
+		dexterity: dexterity > -1 && dexterity <= 30 ? `${Math.floor(dexterity / 2) - 5}` : 0,
 		constitution:
-			constitution && constitution <= 30 ? `${Math.floor(constitution / 2) - 5}` : 0,
+			constitution > -1 && constitution <= 30 ? `${Math.floor(constitution / 2) - 5}` : 0,
 		intelligence:
-			intelligence && intelligence <= 30 ? `${Math.floor(intelligence / 2) - 5}` : 0,
-		wisdom: wisdom && wisdom <= 30 ? `${Math.floor(wisdom / 2) - 5}` : 0,
-		charisma: charisma && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
+			intelligence > -1 && intelligence <= 30 ? `${Math.floor(intelligence / 2) - 5}` : 0,
+		wisdom: wisdom > -1 && wisdom <= 30 ? `${Math.floor(wisdom / 2) - 5}` : 0,
+		charisma: charisma > -1 && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
 	};
 
 	useEffect(() => {
@@ -291,7 +291,7 @@ const CharacterForm = () => {
 							value={name}
 							onChange={(e) => setName(e.target.value)}
 						/>
-						<p>Character Name</p>
+						<p style={{ borderTop: '1px solid black' }}>Character Name*</p>
 					</div>
 					<div id='character-sheet-header'>
 						<div id='class-level-background'>
@@ -307,7 +307,7 @@ const CharacterForm = () => {
 									value={className}
 									onChange={(e) => setClassName(e.target.value)}
 								/>
-								<p>Class</p>
+								<p style={{ borderTop: '1px solid black' }}>Class*</p>
 							</label>
 							<label
 								style={
@@ -321,7 +321,7 @@ const CharacterForm = () => {
 									value={level}
 									onChange={(e) => setLevel(e.target.value)}
 								/>
-								<p>Level</p>
+								<p style={{ borderTop: '1px solid black' }}>Level*</p>
 							</label>
 							<label
 								style={
@@ -335,7 +335,9 @@ const CharacterForm = () => {
 									value={background}
 									onChange={(e) => setBackground(e.target.value)}
 								/>
-								<p>Background</p>
+								<p style={{ borderTop: '1px solid black', width: '100px' }}>
+									Background*
+								</p>
 							</label>
 						</div>
 						<div id='race-alignment-experience'>
@@ -351,7 +353,7 @@ const CharacterForm = () => {
 									value={race}
 									onChange={(e) => setRace(e.target.value)}
 								/>
-								<p>Race</p>
+								<p style={{ borderTop: '1px solid black' }}>Race*</p>
 							</label>
 							<label
 								style={
@@ -365,7 +367,7 @@ const CharacterForm = () => {
 									value={alignment}
 									onChange={(e) => setAlignment(e.target.value)}
 								/>
-								<p>Alignment</p>
+								<p style={{ borderTop: '1px solid black' }}>Alignment*</p>
 							</label>
 							<label
 								style={
@@ -379,7 +381,9 @@ const CharacterForm = () => {
 									value={experience}
 									onChange={(e) => setExperience(e.target.value)}
 								/>
-								<p>Experience</p>
+								<p style={{ borderTop: '1px solid black', width: '100px' }}>
+									Experience*
+								</p>
 							</label>
 						</div>
 					</div>
@@ -389,7 +393,7 @@ const CharacterForm = () => {
 						<div id='attributes-skills'>
 							<div id='attributes'>
 								<div id='attribute-div'>
-									<label>STRENGTH</label>
+									<label>STRENGTH*</label>
 									<h3>{modifiers.strength}</h3>
 									<input
 										style={errors?.strength ? { border: '3px solid red' } : {}}
@@ -399,7 +403,7 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<label>DEXTERITY</label>
+									<label>DEXTERITY*</label>
 									<h3>{modifiers.dexterity}</h3>
 									<input
 										style={errors?.dexterity ? { border: '3px solid red' } : {}}
@@ -409,7 +413,7 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<label>CONSTITUTION</label>
+									<label>CONSTITUTION*</label>
 									<h3>{modifiers.constitution}</h3>
 									<input
 										style={
@@ -421,7 +425,7 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<label>INTELLIGENCE</label>
+									<label>INTELLIGENCE*</label>
 									<h3>{modifiers.intelligence}</h3>
 									<input
 										style={
@@ -433,7 +437,7 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<label>WISDOM</label>
+									<label>WISDOM*</label>
 									<h3>{modifiers.wisdom}</h3>
 									<input
 										style={errors?.wisdom ? { border: '3px solid red' } : {}}
@@ -443,7 +447,7 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<label>CHARISMA</label>
+									<label>CHARISMA*</label>
 									<h3>{modifiers.charisma}</h3>
 									<input
 										style={errors?.charisma ? { border: '3px solid red' } : {}}
@@ -591,7 +595,7 @@ const CharacterForm = () => {
 										value={armorClass}
 										onChange={(e) => setArmorClass(e.target.value)}
 									/>
-									<p id='ac-initiative-speed-text'>ARMOR CLASS</p>
+									<p id='ac-initiative-speed-text'>ARMOR CLASS*</p>
 								</div>
 								<div id='initiative'>
 									<p style={{ marginTop: '3px' }}>{modifiers.dexterity}</p>
@@ -606,12 +610,12 @@ const CharacterForm = () => {
 										value={speed}
 										onChange={(e) => setSpeed(e.target.value)}
 									/>
-									<p id='ac-initiative-speed-text'>SPEED</p>
+									<p id='ac-initiative-speed-text'>SPEED*</p>
 								</div>
 							</div>
 							<div id='current-hp'>
 								<div id='hp-max'>
-									<label>Hit Point Maximum</label>
+									<label>Hit Point Maximum*</label>
 									<input
 										style={
 											errors?.max_hp
@@ -637,7 +641,7 @@ const CharacterForm = () => {
 										value={currentHP}
 										onChange={(e) => setCurrentHP(e.target.value)}
 									/>
-									<p>CURRENT HIT POINTS</p>
+									<p>CURRENT HIT POINTS*</p>
 								</div>
 							</div>
 							<div id='temporary-hp'>
@@ -652,13 +656,13 @@ const CharacterForm = () => {
 										value={temporaryHP}
 										onChange={(e) => setTemporaryHP(e.target.value)}
 									/>
-									<p>TEMPORARY HIT POINTS</p>
+									<p>TEMPORARY HIT POINTS*</p>
 								</div>
 							</div>
 							<div id='hit-dice-death-saves'>
 								<div id='hit-dice'>
 									<div id='total-hit-dice'>
-										<label>Total</label>
+										<label>Total*</label>
 										<input
 											style={
 												errors?.hit_dice_total
@@ -683,7 +687,7 @@ const CharacterForm = () => {
 										value={hitDice}
 										onChange={(e) => setHitDice(e.target.value)}
 									/>
-									<p>HIT DICE</p>
+									<p>HIT DICE*</p>
 								</div>
 							</div>
 							<div id='weapons-container'>

@@ -38,7 +38,7 @@ const CampaignForm = ({ setShowModal, userId }) => {
 			</div>
 			<form className='create-campaign-form' onSubmit={handleSubmit}>
 				<div className='form-field'>
-					<label htmlFor='title'>Title</label>
+					<label htmlFor='title'>Title*</label>
 					{errors.title && (
 						<p style={{ marginTop: '5px' }} id='error'>
 							{errors.title}
