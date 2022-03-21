@@ -88,7 +88,7 @@
 }
 
 #attribute-div > #tooltip {
-    bottom: -15px;
+    top: -20px;
 }
 
 #attribute-div {
@@ -231,6 +231,10 @@
     display: flex;
 }
 
+#armor-initiative-speed {
+    position: relative;
+}
+
 #armor-initiative-speed > * {
     text-align: center;
     font-size: 24px;
@@ -242,6 +246,14 @@
     height: 60px;
     flex-direction: column;
     position: relative;
+}
+
+#armor-initiative-speed > #tooltip {
+    height: auto;
+    border: none;
+    padding: 0;
+    position: absolute;
+    left: 265px;
 }
 
 #armor-initiative-speed > * input {
@@ -269,6 +281,11 @@
     position: relative;
 }
 
+#current-hp > #tooltip {
+    bottom: -9px;
+    left: 265px;
+}
+
 #temporary-hp {
     width: 250px;
     height: 75px;
@@ -287,6 +304,15 @@
     margin-top: 5px;
     flex-direction: column;
     position: relative;
+}
+
+#hit-dice-death-saves > #tooltip {
+    bottom: -12px;
+    left: 263px;
+}
+
+#hit-dice-death-saves > #tooltip > #popup-text {
+    width: 350px;
 }
 
 #hp-max,
@@ -389,6 +415,17 @@
     text-align: center;
 }
 
+#weapons-container > #tooltip {
+    bottom: -12px;
+    left: 263px;
+}
+
+#weapons-container > #tooltip > #popup-text {
+    bottom: 12px;
+    left: 10px;
+}
+
+
 #money-table-container {
     display: flex;
     position: relative;
@@ -404,6 +441,19 @@
     border: 1px solid black;
     border-radius: 5px;
     background-color: white;
+}
+
+#money > #tooltip {
+    position: absolute;
+    bottom: 0;
+    left: -45px;
+    height: 12px;
+    border: none;
+}
+
+#money > #tooltip > #popup-text {
+    position: absolute;
+    right: 15px;
 }
 
 #money input {
@@ -437,6 +487,18 @@
         display: flex;
         flex-direction: column;
         position: relative;
+}
+
+#features-container > #tooltip {
+    top: -15px;
+    left: 260px;
+    height: 12px;
+    width: 12px;
+}
+
+#features-container > #tooltip > #popup-text {
+    position: absolute;
+    left: -300px;
 }
 
 #feature-editor input {
@@ -492,14 +554,43 @@
     background-color: #DDDDDD;
     border: 1px solid black;
     border-radius: 3px;
-    width: 200px;
+    width: 350px;
     z-index: 100;
     font-weight: normal;
     visibility: hidden;
     line-height: 1.3;
     text-align: left;
+    overflow-wrap: break-word;
+    white-space: pre-line;
 }
 
 #tooltip:hover > #popup-text {
     visibility: visible;
+    z-index: 1000;
+}
+
+@media print {
+    #navbar-container {
+        display: none;
+    }
+
+    #tooltip {
+        display: none;
+    }
+
+    #sheet-right {
+        margin-right: 100px;
+    }
+
+    #character-sheet-button {
+        display: none;
+    }
+
+    #race-alignment-experience {
+        border-top: 1px solid gray;
+    }
+
+    .fa-plus {
+        display: none;
+    }
 }

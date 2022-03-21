@@ -425,11 +425,13 @@ const CharacterForm = () => {
 								<div id='attribute-div'>
 									<i className='fas fa-question-circle' id='tooltip'>
 										<p id='popup-text'>
-											Strength: Determines the strength of your character.
-											Also affects saving throws and skills related to
-											strength. The big number in the center is your modifier
-											and requires no input. Please input a number in the
-											circle on the bottom of this area.
+											Attributes: These determine the abilities of your
+											character. They also affect saving throws and skills
+											related to them (ie a strength modifier of 4 will
+											increase all checks in Athletics by 4 as well). The big
+											number in the center is your modifier and requires no
+											input. The actual attribute goes in the circle on the
+											bottom of these areas.
 										</p>
 									</i>
 									<label>STRENGTH*</label>
@@ -442,15 +444,6 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Dexterity: Determines the dexterity of your character.
-											Also affects saving throws and skills related to
-											dexterity. The big number in the center is your modifier
-											and requires no input. Please input a number in the
-											circle on the bottom of this area.
-										</p>
-									</i>
 									<label>DEXTERITY*</label>
 									<h3>{modifiers.dexterity}</h3>
 									<input
@@ -461,15 +454,6 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Constitution: Determines the constitution of your
-											character. Affects Hit Points, saving throws, and skills
-											related to constitution. The big number in the center is
-											your modifier and requires no input. Please input a
-											number in the circle on the bottom of this area.
-										</p>
-									</i>
 									<label>CONSTITUTION*</label>
 									<h3>{modifiers.constitution}</h3>
 									<input
@@ -482,15 +466,6 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Intelligence: Determines the intelligence of your
-											character. Also affects saving throws and skills related
-											to intelligence. The big number in the center is your
-											modifier and requires no input. Please input a number in
-											the circle on the bottom of this area.
-										</p>
-									</i>
 									<label>INTELLIGENCE*</label>
 									<h3>{modifiers.intelligence}</h3>
 									<input
@@ -503,15 +478,6 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Wisdom: Determines the wisdom of your character. Also
-											affects saving throws, and skills related to wisdom. The
-											big number in the center is your modifier and requires
-											no input. Please input a number in the circle on the
-											bottom of this area.
-										</p>
-									</i>
 									<label>WISDOM*</label>
 									<h3>{modifiers.wisdom}</h3>
 									<input
@@ -522,15 +488,6 @@ const CharacterForm = () => {
 									/>
 								</div>
 								<div id='attribute-div'>
-									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Charisma: Determines the charisma of your character.
-											Also affects saving throws, and skills related to
-											charisma. The big number in the center is your modifier
-											and requires no input. Please input a number in the
-											circle on the bottom of this area.
-										</p>
-									</i>
 									<label>CHARISMA*</label>
 									<h3>{modifiers.charisma}</h3>
 									<input
@@ -685,6 +642,17 @@ const CharacterForm = () => {
 					<div id='sheet-middle'>
 						<div id='hp-weapons'>
 							<div id='armor-initiative-speed'>
+								<i className='fas fa-question-circle' id='tooltip'>
+									<p id='popup-text'>
+										Armor class, Initiative, and Speed: These values determine
+										various things in battle. Armor class is how high an enemy
+										needs to roll to land a hit on you. Initiative is a bonus to
+										your initiative rolls and determines your turn order in
+										battle (This is determined by your dex modifier and cannot
+										be changed). Speed determines how fast you move and how far
+										you can move on the battlefield per turn.
+									</p>
+								</i>
 								<div
 									id='armor-class'
 									style={errors?.armor_class ? { border: '3px solid red' } : {}}
@@ -713,6 +681,17 @@ const CharacterForm = () => {
 								</div>
 							</div>
 							<div id='current-hp'>
+								<i className='fas fa-question-circle' id='tooltip'>
+									<p id='popup-text'>
+										Hit Points: These determine how well you stay alive. Taking
+										damage reduces hit points. Once they hit 0, you must perform
+										death saving throws. 3 failed death saving throws will
+										result in death. Hit points can be recovered up to max
+										during short and long rests, and by certain spells and
+										abilities. Certain abilities also allow temporary hit
+										points.
+									</p>
+								</i>
 								<div id='hp-max'>
 									<label>Hit Point Maximum*</label>
 									<input
@@ -759,6 +738,17 @@ const CharacterForm = () => {
 								</div>
 							</div>
 							<div id='hit-dice-death-saves'>
+								<i className='fas fa-question-circle' id='tooltip'>
+									<pre id='popup-text'>
+										{`Hit Dice: To summarize, Hit Dice are a reservoir of natural healing all creatures have. 
+										
+										In order to spend Hit Dice, you need to take a rest, specifically a Short Rest. This allows you to expend and roll as many Hit Dice as you want from your available pool, adding your Constitution Modifier to the result in order to heal. The size of your pool is equal to your character level, for example, a 5th level Fighter will have a maximum of five Hit Dice (in this case, D10s).
+										
+										Another time to roll Hit Dice is when you level up, you can either take the average result of your new Hit Die (so if you gained a D8 and use an average of 5), or you can roll.  This allows you to roll the Hit Die you gain from your new class level (which determines its size) once, adding your Constitution Modifier, and increasing your current and maximum HP by that amount; using a Hit Die in this way doesn’t expend one from your available pool. No matter what you roll, or how low your Constitution modifier is, you always gain a minimum of 1 Hit Point each level.
+
+										These are the two uses available to all characters, some features will allow you to use your Hit Dice in other ways. An example of this is the Dwarf exclusive feat Dwarven Fortitude which, among other things, allows you to roll a single Hit Die when you take the Dodge action, regaining Hit Points as if you had rolled it during a short rest.`}
+									</pre>
+								</i>
 								<div id='hit-dice'>
 									<div id='total-hit-dice'>
 										<label>Total*</label>
@@ -790,6 +780,15 @@ const CharacterForm = () => {
 								</div>
 							</div>
 							<div id='weapons-container'>
+								<i className='fas fa-question-circle' id='tooltip'>
+									<pre id='popup-text'>
+										{`Weapons & Equipment: What good is an adventure without weapons to defend yourself, or equipment to protect or use against the enemy?
+										
+										All classes start with specific weapons that the character is proficient in. The name of the weapon indicates what type of weapon it is, with the attack being a modifier based on a specific attribute (ie daggers use the dexterity attribute to increase their attack). The damage determines which dice to roll on an attack, such as a 1d8, 1d10, or 1d12. The type of damage determines if it does slashing, piercing, or blunt damage. Enemies may be weak to or strong against a specific attack type, so best to keep a few different weapons handy.
+										
+										As for equipment, these can be anything in the characters inventory, from jewelry to potions to bags to increase the weight you may carry. Characters have a certain maximum weight before it starts to encumber them so don't be too careless in picking up everything you see.`}
+									</pre>
+								</i>
 								<table id='weapons-table'>
 									<thead>
 										<tr id='weapons-header'>
@@ -960,6 +959,17 @@ const CharacterForm = () => {
 					</div>
 					<div id='sheet-right'>
 						<div id='features-container'>
+							<i className='fas fa-question-circle' id='tooltip'>
+								<p id='popup-text'>{`Features & Traits: Traits are aspects of a character's personality, background, or physique that make him better at some activities and worse at others. In many ways, traits resemble feats: A character can have only a limited number of traits, and each trait provides some benefit. Unlike feats, however, traits always carry a corresponding drawback. In addition to their game effects, traits suggest characteristics about the character's personality that might lead to interesting roleplaying opportunities. Together with a character's class and feat selection, traits offer a way for game mechanics to encourage deeper character backgrounds and consistent roleplaying.
+
+													Traits serve as an interesting starting point for roleplaying, reminding players of their characters' most prominent strengths and weaknesses. However, roleplaying a certain aspect of a character's personality does not require possessing the trait. For example, a paladin can be honest and forthright without the Honest trait. The player should roleplay the character consistently even though the character's honesty has no effect on his skill checks.
+
+													A character can begin play with up to two traits, chosen by the player at the time of character creation. Alternatively, the game master can require players to roll on Table: Character Traits to determine the traits possessed by their characters.
+
+													As characters advance in level and ability, they might want to get rid of the traits that they chose at the beginning of play. Although characters cannot rid themselves of a trait directly, specific feats, skill ranks, or magic items can compensate for the penalties imposed by a trait. For example, an abrasive character can work on becoming more personable by spending skill points to gain a rank in Bluff and a rank in Diplomacy, thereby offsetting the drawback from the Abrasive trait.
+
+													If the game master allows it, players may add traits to their characters after 1st level. The game master might allow a player to assign a trait to her character after she has roleplayed the character in a manner consistent with the trait in question, or after a traumatic or life changing experience (after dying, a character might develop the Cautious trait or the Aggressive trait). If the game master includes this option, a character should gain a new trait no more frequently than once every five levels.`}</p>
+							</i>
 							<div id='features'>
 								{Array.apply(null, { length: featureFields }).map((el, i) =>
 									activeFeature === i ? (

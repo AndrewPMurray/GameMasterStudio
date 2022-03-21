@@ -16,8 +16,6 @@ import {
 } from '../../store/characters';
 import CharacterDetailsModal from '../CharacterDetailsModal';
 
-// todo: change logic of displaying characters to show users even if they haven't selected a character
-
 const CampaignPage = () => {
 	const { campaignId } = useParams();
 	const [errors, setErrors] = useState({});
