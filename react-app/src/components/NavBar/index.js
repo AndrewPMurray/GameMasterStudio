@@ -37,8 +37,8 @@ export default function NavBar() {
 		image.onload = () => {
 			const canvas = document.createElement('canvas');
 			const ctx = canvas.getContext('2d');
-			ctx.canvas.width = 500;
-			ctx.canvas.height = 500;
+			ctx.canvas.width = 300;
+			ctx.canvas.height = 300;
 			const imgSize = Math.min(image.width, image.height);
 			const left = (image.width - imgSize) / 2;
 			const top = (image.height - imgSize) / 2;

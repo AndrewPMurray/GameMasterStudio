@@ -36,7 +36,7 @@ export default function UserHome() {
 						opacity: 0.11,
 					}}
 				></div>
-				<div id='campaigns-list'>
+				<div id='campaigns-list' style={{ zIndex: 0 }}>
 					<p>Campaigns</p>
 					<div id='campaigns'>
 						{campaignsArr?.map((campaign) => (
@@ -63,11 +63,11 @@ export default function UserHome() {
 						background:
 							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/characterbackground.jpg) no-repeat',
 						backgroundSize: '1900px',
-						zIndex: '0',
+						zIndex: 0,
 						opacity: 0.17,
 					}}
 				></div>
-				<div id='characters-list'>
+				<div id='characters-list' style={{ zIndex: 0 }}>
 					<p>Characters</p>
 					<div id='characters'>
 						{charactersArr?.map((character) => (
@@ -81,7 +81,7 @@ export default function UserHome() {
 						))}
 					</div>
 				</div>
-				<Link id='user-home-button' to='/characters'>
+				<Link id='user-home-button' to='/characters' style={{ zIndex: 0 }}>
 					<button id='add-character-button'>
 						<i className='fas fa-hat-wizard' style={{ paddingRight: '10px' }}></i>New
 						Character
