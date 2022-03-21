@@ -13,7 +13,7 @@ export default function Money({
 		<div id='money'>
 			<i className='fas fa-question-circle' id='tooltip'>
 				<pre id='popup-text'>
-					{`Currency: This determines how much you have to buy stuff at shops. More is usually better.
+					{`Currency: This determines how much you can buy at shops. More is usually better.
 					
 					One gold piece is worth ten silver pieces, the most prevalent coin among commoners. A silver piece buys a laborer's work for half a day, a flask of lamp oil, or a night's rest in a poor inn.
 

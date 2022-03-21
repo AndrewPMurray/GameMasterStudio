@@ -35,7 +35,7 @@ export default function UserHome() {
 						opacity: 0.11,
 					}}
 				></div>
-				<div id='campaigns-list'>
+				<div id='campaigns-list' style={{ zIndex: 20 }}>
 					<p>Campaigns</p>
 					<div id='campaigns'>
 						{campaignsArr?.map((campaign) => (
@@ -65,7 +65,7 @@ export default function UserHome() {
 						opacity: 0.17,
 					}}
 				></div>
-				<div id='characters-list'>
+				<div id='characters-list' style={{ zIndex: 20 }}>
 					<p>Characters</p>
 					<div id='characters'>
 						{charactersArr?.map((character) => (
@@ -79,7 +79,7 @@ export default function UserHome() {
 						))}
 					</div>
 				</div>
-				<Link id='user-home-button' to='/characters'>
+				<Link id='user-home-button' to='/characters' style={{ zIndex: 20 }}>
 					<button id='add-character-button'>
 						<i className='fas fa-hat-wizard' style={{ paddingRight: '10px' }}></i>New
 						Character
