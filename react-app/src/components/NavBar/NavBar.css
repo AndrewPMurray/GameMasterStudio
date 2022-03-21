@@ -1,7 +1,3 @@
-#navbar-container * {
-    z-index: 1000;
-}
-
 #navbar-container {
     background-color: rgba(0, 0, 0, 0.5);
     border-bottom: 1px solid #AAAAAA;
@@ -47,6 +43,7 @@
     border-radius: 5px;
     margin: 10px;
     padding: 5px;
+    z-index: 100;
 }
 
 #user-navbar-container > img,
@@ -58,7 +55,6 @@
 #user-navbar-menu * {
     padding: 0;
     margin: 10px 5px;
-    z-index: 1000;
 }
 
 #change-profile-pic-button {

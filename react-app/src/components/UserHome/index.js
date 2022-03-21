@@ -32,11 +32,10 @@ export default function UserHome() {
 							'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/campaignbackground.jpg)',
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: '1900px 200%',
-						zIndex: 0,
 						opacity: 0.11,
 					}}
 				></div>
-				<div id='campaigns-list' style={{ zIndex: 0 }}>
+				<div id='campaigns-list'>
 					<p>Campaigns</p>
 					<div id='campaigns'>
 						{campaignsArr?.map((campaign) => (
@@ -63,11 +62,10 @@ export default function UserHome() {
 						background:
 							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/characterbackground.jpg) no-repeat',
 						backgroundSize: '1900px',
-						zIndex: 0,
 						opacity: 0.17,
 					}}
 				></div>
-				<div id='characters-list' style={{ zIndex: 0 }}>
+				<div id='characters-list'>
 					<p>Characters</p>
 					<div id='characters'>
 						{charactersArr?.map((character) => (
@@ -81,7 +79,7 @@ export default function UserHome() {
 						))}
 					</div>
 				</div>
-				<Link id='user-home-button' to='/characters' style={{ zIndex: 0 }}>
+				<Link id='user-home-button' to='/characters'>
 					<button id='add-character-button'>
 						<i className='fas fa-hat-wizard' style={{ paddingRight: '10px' }}></i>New
 						Character

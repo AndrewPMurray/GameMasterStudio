@@ -14,11 +14,6 @@
     position: relative;
 }
 
-#campaigns-container *:not(#campaign-image),
-#characters-container *:not(#character-image) {
-    z-index: 500;
-}
-
 #campaign-image {
     position: absolute;
     top: 0;
