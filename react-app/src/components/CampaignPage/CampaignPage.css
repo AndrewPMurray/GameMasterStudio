@@ -49,6 +49,10 @@
     line-height: 1.4;
 }
 
+#campaign-title-and-edit {
+    position: relative;
+}
+
 #campaign-title {
     margin-bottom: 100px;
     font-size: 36px;
@@ -90,6 +94,9 @@
     border: none;
     border-radius: 5px;
     transition-duration: 250ms;
+    position: absolute;
+    top: 45px;
+    right: 5%;
 }
 
 #edit-campaign-button:hover {
