@@ -14,6 +14,7 @@ import {
 	getCharacters,
 	removeCharacterFromCampaign,
 } from '../../store/characters';
+import CharacterDetailsModal from '../CharacterDetailsModal';
 
 const CampaignPage = () => {
 	const { campaignId } = useParams();
@@ -263,9 +264,7 @@ const CampaignPage = () => {
 									id='profile-pic'
 									style={{ height: '30px', borderWidth: '1px' }}
 								/>
-								<Link to={`/characters/${character.id}`}>
-									{character.name} ({character.user.username})
-								</Link>
+								<CharacterDetailsModal character={character} user={user} />
 								{character.user.id === user.id && (
 									<p
 										id='change-character'

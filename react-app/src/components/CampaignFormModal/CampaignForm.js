@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { useDispatch } from 'react-redux';
+import { useHistory } from 'react-router-dom';
 import { addCampaign } from '../../store/campaigns';
 
 import './CampaignForm.css';
 
 const CampaignForm = ({ setShowModal, userId }) => {
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState({});
@@ -20,7 +22,7 @@ const CampaignForm = ({ setShowModal, userId }) => {
 			})
 		).then((res) => {
 			if (res.errors) setErrors(res.errors);
-			else setShowModal(false);
+			else history.push(`/campaigns/${res.id}`);
 		});
 	};
 
