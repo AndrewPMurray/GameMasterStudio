@@ -244,9 +244,15 @@ const CharacterForm = () => {
 					</p>
 				)}
 				<div id='tabs'>
-					<button onClick={() => setPage(1)}>Character Sheet</button>
-					<button onClick={() => setPage(2)}>Bio</button>
-					<button onClick={character ? handleEdit : handleSubmit}>Save Character</button>
+					<button id='character-sheet-button' onClick={() => setPage(1)}>
+						Character Sheet
+					</button>
+					<button
+						id='character-sheet-button'
+						onClick={character ? handleEdit : handleSubmit}
+					>
+						Save Character
+					</button>
 				</div>
 				<label>Character Biography</label>
 				<textarea id='bio-input' value={bio} onChange={(e) => setBio(e.target.value)} />
@@ -262,9 +268,12 @@ const CharacterForm = () => {
 				</p>
 			)}
 			<div id='tabs'>
-				<button onClick={() => setPage(1)}>Character Sheet</button>
-				<button onClick={() => setPage(2)}>Bio</button>
-				<button onClick={character ? handleEdit : handleSubmit}>Save Character</button>
+				<button id='character-sheet-button' onClick={() => setPage(2)}>
+					Bio
+				</button>
+				<button id='character-sheet-button' onClick={character ? handleEdit : handleSubmit}>
+					Save Character
+				</button>
 			</div>
 			<div id='character-form'>
 				<div id='character-header-container'>

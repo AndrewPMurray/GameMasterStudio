@@ -33,6 +33,16 @@
     width: 250px;
 }
 
+#campaign-characters-list select {
+    width: 100%;
+    height: 30px;
+    text-align: center;
+    color: white;
+    background-color: #555555;
+    border: none;
+    border-radius: 5px;
+}
+
 #campaign-info {
     width: 700px;
     text-align: center;

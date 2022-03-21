@@ -42,6 +42,20 @@
     flex-direction: column;
 }
 
+#character-sheet-button {
+    text-align: center;
+    height: 30px;
+    min-width: 50px;
+    border: none;
+    border-radius: 5px;
+    background-color: #CCCCCC;
+    cursor: pointer;
+}
+
+#character-sheet-button:hover {
+    background-color: #999999;
+}
+
 #character-sheet-header {
     display: flex;
     flex-direction: column;

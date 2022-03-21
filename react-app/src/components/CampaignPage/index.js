@@ -177,7 +177,11 @@ const CampaignPage = () => {
 						onChange={(e) => setDescription(e.target.value)}
 					/>
 				) : (
-					<pre id='campaign-description'>{campaign?.description}</pre>
+					<pre id='campaign-description'>
+						{campaign?.description.length > 0
+							? campaign.description
+							: 'This campaign does not have a description. Ask the owner of the campaign to add one!'}
+					</pre>
 				)}
 			</div>
 			<div id='campaign-characters-container'>

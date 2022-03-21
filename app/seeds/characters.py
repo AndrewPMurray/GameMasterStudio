@@ -32,8 +32,7 @@ def seed_characters():
         copper_pieces=13,
         features='[{"name":"Really Big","description":"He can smash big things and do lots of damage. Weighs over 700 lbs, all muscle"},{"name":"Mountain Born","description":"Goliath ability"}]',
         biography=
-"""
-Grog Strongjaw is a goliath barbarian/fighter and a member of Vox Machina. He is played by Travis Willingham.
+"""Grog Strongjaw is a goliath barbarian/fighter and a member of Vox Machina. He is played by Travis Willingham.
 
 When he was young, Grog was exiled from the Herd of Storms by it's leader, Grog's uncle Kevdak, for taking pity on a helpless old gnome that the tribe was attacking. He was then taken in by that same gnome, Wilhand Trickfoot, and raised alongside his great-great-granddaughter Pike.
 
