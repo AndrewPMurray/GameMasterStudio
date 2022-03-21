@@ -389,21 +389,25 @@
     margin: 5px;
     background-color: #CCCCCC;
     border-radius: 3px;
+    text-align: center;
 }
 
 #weapon-name input,
 #equipment-name input {
     width: 100px;
+    text-align: center;
 }
 
 #weapon-atk input,
 #quantity input {
     width: 25px;
+    text-align: center;
 }
 
 #weapon-damage input,
 #weight input {
     width: 80%;
+    text-align: center;
 }
 
 #weapons-container > p,

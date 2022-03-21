@@ -93,6 +93,7 @@
     color: white;
     height: 50px;
     width: 170px;
+    font-size: 16px;
     transition-duration: 250ms;
 }
 

@@ -11,6 +11,7 @@
     height: 50px;
     width: 175px;
     transition-duration: 250ms;
+    font-size: 16px;
 }
 
 #new-campaign-button:hover {

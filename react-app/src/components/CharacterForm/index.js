@@ -501,11 +501,13 @@ const CharacterForm = () => {
 							<div id='skills-and-throws'>
 								<div id='proficiency'>
 									<i className='fas fa-question-circle' id='tooltip'>
-										<p id='popup-text'>
-											Proficiency: This number is based on your level and
+										<pre id='popup-text'>
+											{`Proficiency: This number is based on your level and
 											cannot be modified. If you are proficient in a skill or
 											attribute, add your proficiency to those checks.
-										</p>
+											
+											Savings Throws & Skills: These are used in various checks. Your attribute modifiers directly affect these skills, either increasing or decreasing your dice roll by the amount next to the skill being checked. If you are proficient in that skill or attribute, add your proficiency bonus.`}
+										</pre>
 									</i>
 									<h3>
 										{level
@@ -629,10 +631,10 @@ const CharacterForm = () => {
 						<div id='passive-perception'>
 							<i className='fas fa-question-circle' id='tooltip'>
 								<p id='popup-text'>
-									Passive Perception: Your wisdom modifier + 10. Lets your
-									character see certain things based on DC set by the game master.
-									Cannot be rolled for, and can only be modified by increasing
-									your wisdom modifier
+									Passive Wisdom: Your wisdom modifier + 10. Lets your character
+									see certain things based on DC set by the game master. Cannot be
+									rolled for, and can only be modified by increasing your wisdom
+									modifier
 								</p>
 							</i>
 							<p id='passive-perception-value'>{+modifiers.wisdom + 10}</p>
@@ -782,11 +784,11 @@ const CharacterForm = () => {
 							<div id='weapons-container'>
 								<i className='fas fa-question-circle' id='tooltip'>
 									<pre id='popup-text'>
-										{`Weapons & Equipment: What good is an adventure without weapons to defend yourself, or equipment to protect or use against the enemy?
+										{`Weapons & Equipment: What good is an adventure without equipment to defend or protect yourself, or trinkets to use against the enemy?
 										
 										All classes start with specific weapons that the character is proficient in. The name of the weapon indicates what type of weapon it is, with the attack being a modifier based on a specific attribute (ie daggers use the dexterity attribute to increase their attack). The damage determines which dice to roll on an attack, such as a 1d8, 1d10, or 1d12. The type of damage determines if it does slashing, piercing, or blunt damage. Enemies may be weak to or strong against a specific attack type, so best to keep a few different weapons handy.
 										
-										As for equipment, these can be anything in the characters inventory, from jewelry to potions to bags to increase the weight you may carry. Characters have a certain maximum weight before it starts to encumber them so don't be too careless in picking up everything you see.`}
+										As for equipment, these can be anything in the characters inventory, from jewelry to potions to bags to increase the weight they may carry. Characters have a certain maximum weight before it starts to encumber them so don't be too careless in picking up everything you see.`}
 									</pre>
 								</i>
 								<table id='weapons-table'>
