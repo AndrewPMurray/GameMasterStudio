@@ -94,6 +94,21 @@ export const signUp = (username, email, password) => async (dispatch) => {
 	}
 };
 
+export const updateProfilePic = (image, userId) => async (dispatch) => {
+	const formData = new FormData();
+	formData.append('image', image);
+
+	const response = await fetch(`/api/users/${userId}`, {
+		method: 'PUT',
+		body: formData,
+	});
+	if (response.ok) {
+		const data = await response.json();
+		dispatch(setUser(data));
+		return null;
+	}
+};
+
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:

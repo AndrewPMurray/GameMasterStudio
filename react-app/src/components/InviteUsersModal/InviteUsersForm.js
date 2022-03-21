@@ -118,7 +118,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 								<img
 									src={
 										invitedUser?.profile_pic_url
-											? invitedUser.url
+											? invitedUser.profile_pic_url
 											: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
 									}
 									alt='user-profile'
@@ -178,8 +178,8 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 								>
 									<img
 										src={
-											result?.url
-												? result.url
+											result?.profile_pic_url
+												? result.profile_pic_url
 												: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
 										}
 										alt='user-profile'

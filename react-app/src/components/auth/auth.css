@@ -16,15 +16,6 @@
     z-index: 0;
 }
 
-#logout-button {
-    border: none;
-    background-color: transparent;
-    color: white;
-    cursor: pointer;
-    font-family: 'Carrois Gothic', sans-serif;
-    font-size: 20px;
-}
-
 #login-form,
 #signup-form {
     width: 290px;
@@ -78,4 +69,14 @@
 #demo-button:hover {
     cursor: pointer;
     background-color: #930C10;
+}
+
+#logout-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    cursor: pointer;
+    font-family: 'Carrois Gothic', sans-serif;
+    font-size: 20px;
+    margin: 10px;
 }

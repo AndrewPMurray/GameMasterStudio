@@ -7,6 +7,7 @@
     margin: 0 25px;
     margin-top: 150px;
     margin-right: 50px;
+    width: 100%;
 }
 
 #campaign-sections-container,
@@ -34,7 +35,6 @@
 
 #campaign-info {
     width: 700px;
-    min-width: 600px;
     text-align: center;
     line-height: 1.4;
 }
@@ -105,6 +105,7 @@
 #campaign-character {
     margin: 10px 0;
     display: flex;
+    align-items: center;
 }
 
 #campaign-character * {

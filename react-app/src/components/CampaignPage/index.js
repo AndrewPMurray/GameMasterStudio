@@ -147,12 +147,15 @@ const CampaignPage = () => {
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
 					{edit ? (
-						<input
-							id='campaign-title'
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-							autoComplete='off'
-						/>
+						<div>
+							{errors.title && <p id='error'>{errors.title}</p>}
+							<input
+								id='campaign-title'
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+								autoComplete='off'
+							/>
+						</div>
 					) : (
 						<h2 id='campaign-title'>{campaign?.title}</h2>
 					)}
@@ -208,6 +211,16 @@ const CampaignPage = () => {
 							</select>
 						) : (
 							<div id='campaign-character'>
+								<img
+									src={
+										gameMaster?.profile_pic_url
+											? gameMaster.profile_pic_url
+											: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+									}
+									alt='user-profile'
+									id='profile-pic'
+									style={{ height: '30px', borderWidth: '1px' }}
+								/>
 								<p>Game Master: {gameMaster?.username}</p>
 								{campaign?.game_master?.id === user.id && (
 									<p
@@ -240,6 +253,16 @@ const CampaignPage = () => {
 							</select>
 						) : (
 							<div id='campaign-character' key={`character-${character.id}`}>
+								<img
+									src={
+										character.user.profile_pic_url
+											? character.user.profile_pic_url
+											: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+									}
+									alt='user-profile'
+									id='profile-pic'
+									style={{ height: '30px', borderWidth: '1px' }}
+								/>
 								<Link to={`/characters/${character.id}`}>
 									{character.name} ({character.user.username})
 								</Link>

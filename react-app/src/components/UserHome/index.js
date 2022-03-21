@@ -18,6 +18,7 @@ export default function UserHome() {
 	const campaignsArr = Object.values(campaigns);
 
 	useEffect(() => {
+		console.log(user?.id);
 		dispatch(getCampaigns(user?.id));
 		dispatch(getCharacters(user?.id));
 	}, [dispatch, user]);

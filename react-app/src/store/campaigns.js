@@ -104,6 +104,9 @@ export const updateCampaign = (payload) => async (dispatch) => {
 		const editedCampaign = await response.json();
 		dispatch(update(editedCampaign));
 		return editedCampaign;
+	} else {
+		const errors = await response.json();
+		return errors;
 	}
 };
 

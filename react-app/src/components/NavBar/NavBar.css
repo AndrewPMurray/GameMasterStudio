@@ -22,7 +22,44 @@
     height: 80%;
 }
 
-#login-logout-container * {
-    display: flex;
+#login-logout-items > * {
     margin: 20px 20px;
+}
+
+#user-navbar-container {
+    display: flex;
+    align-items: center;
+    position: relative;
+}
+
+#user-navbar-menu {
+    position: absolute;    
+    top: 50px;
+    right: 0;
+    width: 250px;
+    background-color: black;
+    border: 1px solid white;
+    border-radius: 5px;
+    margin: 10px;
+    padding: 5px;
+}
+
+#user-navbar-container > img,
+#user-navbar-container > h2,
+#user-navbar-container > i {
+    cursor: pointer;
+}
+
+#user-navbar-menu * {
+    padding: 0;
+    margin: 10px 5px;
+}
+
+#change-profile-pic-button {
+    border: none;
+    background-color: transparent;
+    color: white;
+    font-size: 20px;
+    cursor: pointer;
+    margin: 0;
 }
