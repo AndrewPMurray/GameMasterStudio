@@ -123,6 +123,16 @@ const CampaignPage = () => {
 		setDescription(campaign?.description);
 	}, [campaign?.title, campaign?.description]);
 
+	// filter out users who have not selected a character yet, for display in character list prior to char selection
+	const noCharUsers = campaign?.users?.filter((campaignUser) => {
+		if (campaignUser.id === gameMaster?.id) return false;
+		let hasCharacter = false;
+		characters?.forEach((character) => {
+			if (campaignUser.id === character.user.id) hasCharacter = true;
+		});
+		return !hasCharacter;
+	});
+
 	// Edit campaign title and description
 	const handleEdit = async () => {
 		const editedForm = await dispatch(
@@ -249,7 +259,7 @@ const CampaignPage = () => {
 							>
 								<option value=''>Select a character</option>
 								{!gameMaster && <option value='game_master'>Game Master</option>}
-								{user?.characters.map((userCharacter) => (
+								{user?.characters?.map((userCharacter) => (
 									<option key={`${userCharacter.name}`} value={userCharacter.id}>
 										{userCharacter.name}
 									</option>
@@ -283,6 +293,21 @@ const CampaignPage = () => {
 							</div>
 						)
 					)}
+					{noCharUsers?.map((noCharUser) => (
+						<div id='campaign-character' key={`no-char-${noCharUser.id}`}>
+							<img
+								src={
+									noCharUser.profile_pic_url
+										? noCharUser.profile_pic_url
+										: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+								}
+								alt='user-profile'
+								id='profile-pic'
+								style={{ height: '30px', borderWidth: '1px' }}
+							/>
+							<p>{noCharUser.username} (No character selected)</p>
+						</div>
+					))}
 					{userCharacter && Object.values(userCharacter).length === 0 && (
 						<select
 							value={selectedCharacter}

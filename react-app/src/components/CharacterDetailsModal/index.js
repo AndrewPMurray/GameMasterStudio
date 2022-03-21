@@ -8,7 +8,7 @@ const CharacterDetailsModal = ({ character, user }) => {
 	return (
 		<>
 			<div id='character-details-modal' onClick={() => setShowModal(true)}>
-				{character.name} ({character.user.username})
+				{character.user.username} ({character.name})
 			</div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>
