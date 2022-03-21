@@ -89,8 +89,7 @@ def remove_users_from_campaign(campaign_id):
     
     for user_obj in users_to_remove:
         user = User.query.get(user_obj['id'])
-        character = Character.query.filter(Character.campaign_id == campaign_id and Character.user_id == user.id).first()
-        print('STUFF HERE YO', campaign.game_master_id, user.id)
+        character = Character.query.filter(Character.campaign_id == campaign_id, Character.user_id == user.id).first()
         if campaign.game_master_id == user.id:
             campaign.game_master_id = None
         if character != None:

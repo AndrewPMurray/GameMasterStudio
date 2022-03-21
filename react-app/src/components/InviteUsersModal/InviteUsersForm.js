@@ -32,6 +32,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		document.querySelector('#modal-content').style.opacity = 0;
 
 		dispatch(addUsersToCampaign(invitedUsers, campaignId))
 			.then(() => dispatch(removeUsersFromCampaign(removeUsers, campaignId)))
@@ -59,7 +60,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 				<p>
 					Invite users to share your campaign. Other users can add and edit sections and
 					articles, but they cannot edit the campaign title or description or invite other
-					users.
+					users. You can also remove users here.
 				</p>
 			</div>
 			<form className='invite-users-form' onSubmit={handleSubmit}>
@@ -197,7 +198,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 						type='submit'
 						disabled={invitedUsers.length === 0 && removeUsers.length === 0}
 					>
-						Confirm invites
+						Confirm changes
 					</button>
 				</div>
 			</form>
