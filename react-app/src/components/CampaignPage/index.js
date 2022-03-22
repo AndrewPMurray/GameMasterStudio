@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import InviteUsersModal from '../InviteUsersModal';
 import './CampaignPage.css';
 import {
@@ -15,12 +15,15 @@ import {
 	removeCharacterFromCampaign,
 } from '../../store/characters';
 import CharacterDetailsModal from '../CharacterDetailsModal';
+import SectionFormModal from '../SectionFormModal';
+import { getSectionsByCampaign } from '../../store/sections';
 
 const CampaignPage = () => {
 	const { campaignId } = useParams();
 	const [errors, setErrors] = useState({});
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
-	const characters = useSelector((state) => state.campaigns[campaignId]?.characters);
+	const characters = campaign?.characters;
+	const sections = useSelector((state) => Object.values(state.sections));
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
@@ -30,7 +33,6 @@ const CampaignPage = () => {
 	const [userCharacter, setUserCharacter] = useState({});
 	const [changeCharacter, setChangeCharacter] = useState(-1);
 	const [selectedCharacter, setSelectedCharacter] = useState('');
-	const [showModal, setShowModal] = useState(false);
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
@@ -94,7 +96,8 @@ const CampaignPage = () => {
 	useEffect(() => {
 		dispatch(getCampaigns(user.id));
 		dispatch(getCharacters(user.id));
-	}, [dispatch, user.id, selectedCharacter, setShowModal]);
+		dispatch(getSectionsByCampaign(campaignId));
+	}, [dispatch, user.id, selectedCharacter]);
 
 	useEffect(() => {
 		if (campaign?.game_master?.id === user.id) {
@@ -151,9 +154,17 @@ const CampaignPage = () => {
 			<div id='campaign-sections-container'>
 				<div id='sections-header'>
 					<h3>Sections</h3>
-					<button id='add-section-user-button'>Add section</button>
+					<SectionFormModal campaignId={campaignId} />
 				</div>
-				<div id='campaign-sections-list'></div>
+				<div id='campaign-sections-list'>
+					{sections?.map((section, i) => (
+						<div id='section' key={`section-${i}`}>
+							<Link to={`/campaigns/${campaignId}/${section.id}`}>
+								{section.title}
+							</Link>
+						</div>
+					))}
+				</div>
 			</div>
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
@@ -198,12 +209,7 @@ const CampaignPage = () => {
 				<div id='characters-header'>
 					<h3>Starring:</h3>
 					{user?.id === campaign?.owner_id && (
-						<InviteUsersModal
-							campaignUsers={campaign?.users}
-							campaignId={campaignId}
-							showModal={showModal}
-							setShowModal={setShowModal}
-						/>
+						<InviteUsersModal campaignUsers={campaign?.users} campaignId={campaignId} />
 					)}
 				</div>
 				<div id='campaign-characters-list'>

@@ -23,6 +23,7 @@
 #characters-header {
     display: flex;
     justify-content: space-between;
+    align-items: center;
 }
 
 #campaign-sections-list,
@@ -35,6 +36,11 @@
     border-radius: 10px;
     background-color: #333333;
     width: 275px;
+}
+
+#section {
+    margin-top: 10px;
+    font-size: 16px;
 }
 
 #campaign-characters-list select {
@@ -75,8 +81,8 @@
 }
 
 #add-section-user-button {
-    height: 30px;
-    width: 100px;
+    height: 40px;
+    width: 130px;
     color: white;
     background-color: black;
     border: none;

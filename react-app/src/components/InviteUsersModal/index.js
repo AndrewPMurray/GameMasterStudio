@@ -1,11 +1,14 @@
 import { Modal } from '../../context/Modal';
 import InviteUsersForm from './InviteUsersForm';
+import React, { useState } from 'react';
 
-const InviteUsersModal = ({ campaignUsers, campaignId, showModal, setShowModal }) => {
+const InviteUsersModal = ({ campaignUsers, campaignId }) => {
+	const [showModal, setShowModal] = useState(false);
+
 	return (
 		<>
 			<button id='add-section-user-button' onClick={() => setShowModal(true)}>
-				Invite Users
+				<i className='fas fa-hat-wizard'></i>Invite Users
 			</button>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>

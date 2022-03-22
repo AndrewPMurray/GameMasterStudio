@@ -1,0 +1,27 @@
+.section-container {
+    margin-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 150px;
+    position: relative;
+}
+
+#back-to-campaign {
+    position: absolute;
+    top: -125px;
+    left: -50px;
+    color: white;
+}
+
+#section-title {
+    width: 400px;
+    font-size: 40px;
+    margin-bottom: 40px;
+    text-align: center;
+}
+
+#article-link {
+    width: 300px;
+    text-align: left;
+}

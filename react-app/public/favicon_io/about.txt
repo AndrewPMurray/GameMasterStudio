@@ -1,0 +1,6 @@
+This favicon was generated using the following font:
+
+- Font Title: Germania One
+- Font Author: Copyright (c) 2011 by John Vargas Beltran (john.vargasbeltran@gmail.com), with Reserved Font Name "Germania One"
+- Font Source: http://fonts.gstatic.com/s/germaniaone/v18/Fh4yPjrqIyv2ucM2qzBjeS3ezAJONau6ew.ttf
+- Font License: SIL Open Font License, 1.1 (http://scripts.sil.org/OFL))

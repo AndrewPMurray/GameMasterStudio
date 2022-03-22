@@ -14,6 +14,7 @@ import Landing from './components/Landing';
 import CharacterForm from './components/CharacterForm';
 import CampaignPage from './components/CampaignPage';
 import Footer from './components/Footer';
+import SectionPage from './components/SectionPage';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -44,6 +45,9 @@ function App() {
 				<Route path='/sign-up' exact={true}>
 					<SignUpForm />
 				</Route>
+				<ProtectedRoute path='/home' exact={true}>
+					<UserHome />
+				</ProtectedRoute>
 				<ProtectedRoute path='/characters/' exact={true}>
 					<CharacterForm />
 				</ProtectedRoute>
@@ -53,9 +57,13 @@ function App() {
 				<ProtectedRoute path='/campaigns/:campaignId' exact={true}>
 					<CampaignPage />
 				</ProtectedRoute>
-				<ProtectedRoute path='/home' exact={true}>
-					<UserHome />
+				<ProtectedRoute path='/campaigns/:campaignId/:sectionId' exact={true}>
+					<SectionPage />
 				</ProtectedRoute>
+				<ProtectedRoute
+					path='/campaigns/:campaignId/:sectionId/:articleId'
+					exact={true}
+				></ProtectedRoute>
 			</Switch>
 		</BrowserRouter>
 	);

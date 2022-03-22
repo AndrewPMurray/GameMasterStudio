@@ -1,10 +1,16 @@
 from flask import Blueprint, jsonify, request
 from flask_login import login_required
-from app.models import db, Campaign, User, Character
-from app.forms import CampaignForm
+from app.models import db, Campaign, User, Character, Section
+from app.forms import CampaignForm, SectionForm
 from app.api.auth_routes import validation_errors_to_error_messages
 
 campaign_routes = Blueprint('campaigns', __name__)
+
+@campaign_routes.route('/<int:campaign_id>/sections')
+@login_required
+def get_sections_by_campaign(campaign_id):
+    campaign = Campaign.query.get(campaign_id)
+    return {'all_sections': [section.to_dict() for section in campaign.sections]}
 
 @campaign_routes.route('/', methods=['POST'])
 @login_required

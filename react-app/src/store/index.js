@@ -3,10 +3,12 @@ import thunk from 'redux-thunk';
 import session from './session';
 import campaignsReducer from './campaigns';
 import charactersReducer from './characters';
+import sectionsReducer from './sections';
 
 const rootReducer = combineReducers({
 	session,
 	campaigns: campaignsReducer,
+	sections: sectionsReducer,
 	characters: charactersReducer,
 });
 
