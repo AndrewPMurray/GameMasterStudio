@@ -105,7 +105,7 @@
     border-radius: 5px;
     transition-duration: 250ms;
     position: absolute;
-    top: -30px;
+    top: -35px;
     right: 5%;
 }
 
@@ -123,7 +123,7 @@
 #campaign-info textarea {
     border-radius: 5px;
     resize: none;
-    width: 600px;
+    width: 30vw;
     height: 500px;
     padding: 13px;
     font-size: 16px;

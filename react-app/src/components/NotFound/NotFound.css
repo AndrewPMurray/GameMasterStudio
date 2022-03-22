@@ -1,0 +1,19 @@
+.not-found-container {
+    display: flex;
+    flex-direction: column;
+    width: 100vw;
+    align-items: center;
+    margin-top: 15%;
+}
+
+.not-found-container * {
+    margin-bottom: 20px;
+}
+
+#not-found-image {
+    border-radius: 15px;
+}
+
+#not-found-text {
+    font-size: 28px;
+}

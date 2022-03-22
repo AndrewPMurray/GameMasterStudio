@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import InviteUsersModal from '../InviteUsersModal';
 import './CampaignPage.css';
 import {
@@ -24,7 +24,7 @@ const CampaignPage = () => {
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const characters = campaign?.characters;
 	const userCharactersList = useSelector((state) => Object.values(state.characters));
-	const sections = useSelector((state) => Object.values(state.sections));
+	const sections = campaign.sections;
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
@@ -34,6 +34,7 @@ const CampaignPage = () => {
 	const [userCharacter, setUserCharacter] = useState({});
 	const [changeCharacter, setChangeCharacter] = useState(-1);
 	const [selectedCharacter, setSelectedCharacter] = useState('');
+	const history = useHistory();
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
@@ -92,17 +93,25 @@ const CampaignPage = () => {
 		}
 	}, [selectedCharacter, userCharacter, campaign?.id, user.id, dispatch, characters, campaignId]);
 
-	console.log(userCharacter);
-
 	useEffect(() => {
 		if (selectedCharacter !== '') handleChangeCharacter();
 	}, [handleChangeCharacter, selectedCharacter]);
 
 	useEffect(() => {
-		dispatch(getCampaigns(user.id));
+		dispatch(getCampaigns(user.id)).then((res) => {
+			let campaignExists = false;
+			res.every((campaign) => {
+				if (campaign.id === +campaignId) {
+					campaignExists = true;
+					return false;
+				}
+				return true;
+			});
+			if (!campaignExists) history.push('/not-found');
+		});
 		dispatch(getCharacters(user.id));
 		dispatch(getSectionsByCampaign(campaignId));
-	}, [dispatch, user.id, selectedCharacter, campaignId]);
+	}, [dispatch, user.id, selectedCharacter, campaignId, history]);
 
 	useEffect(() => {
 		if (campaign?.game_master?.id === user.id) {

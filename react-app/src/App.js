@@ -15,6 +15,7 @@ import CharacterForm from './components/CharacterForm';
 import CampaignPage from './components/CampaignPage';
 import Footer from './components/Footer';
 import SectionPage from './components/SectionPage';
+import NotFound from './components/NotFound';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -64,6 +65,9 @@ function App() {
 					path='/campaigns/:campaignId/:sectionId/:articleId'
 					exact={true}
 				></ProtectedRoute>
+				<Route>
+					<NotFound />
+				</Route>
 			</Switch>
 		</BrowserRouter>
 	);
