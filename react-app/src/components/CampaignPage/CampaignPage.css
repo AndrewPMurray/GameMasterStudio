@@ -129,6 +129,10 @@
     font-size: 16px;
 }
 
+#no-invite-users-div {
+    height: 40px;
+}
+
 #campaign-character {
     margin: 10px 0;
     display: flex;

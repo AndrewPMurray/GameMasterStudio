@@ -223,8 +223,10 @@ const CampaignPage = () => {
 			<div id='campaign-characters-container'>
 				<div id='characters-header'>
 					<h3>Starring:</h3>
-					{user?.id === campaign?.owner_id && (
+					{user?.id === campaign?.owner_id ? (
 						<InviteUsersModal campaignUsers={campaign?.users} campaignId={campaignId} />
+					) : (
+						<div id='no-invite-users-div'></div>
 					)}
 				</div>
 				<div id='campaign-characters-list'>

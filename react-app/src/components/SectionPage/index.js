@@ -20,8 +20,12 @@ export default function SectionPage() {
 				Back to campaign
 			</Link>
 			<h2 id='section-title'>{section?.title}</h2>
-			{articles?.map((article) => (
-				<Link to={`/campaigns/${campaignId}/${sectionId}/${article.id}`} id='article-link'>
+			{articles?.map((article, i) => (
+				<Link
+					to={`/campaigns/${campaignId}/${sectionId}/${article.id}`}
+					id='article-link'
+					key={`article-${i}`}
+				>
 					{article.title}
 				</Link>
 			))}
