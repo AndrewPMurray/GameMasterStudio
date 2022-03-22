@@ -11,8 +11,8 @@ export default function SectionPage() {
 	const articles = section?.articles;
 
 	useEffect(() => {
-		dispatch(getSectionsByCampaign(+campaignId));
-	}, []);
+		dispatch(getSectionsByCampaign(campaignId));
+	}, [campaignId, dispatch]);
 
 	return (
 		<div className='section-container'>

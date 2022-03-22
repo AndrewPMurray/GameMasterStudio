@@ -97,7 +97,7 @@ const CampaignPage = () => {
 		dispatch(getCampaigns(user.id));
 		dispatch(getCharacters(user.id));
 		dispatch(getSectionsByCampaign(campaignId));
-	}, [dispatch, user.id, selectedCharacter]);
+	}, [dispatch, user.id, selectedCharacter, campaignId]);
 
 	useEffect(() => {
 		if (campaign?.game_master?.id === user.id) {

@@ -44,7 +44,7 @@ export const addSection = (payload) => async (dispatch) => {
 	});
 	if (response.ok) {
 		const newSection = await response.json();
-		dispatch(update(newSection));
+		dispatch(add(newSection));
 		return newSection;
 	} else {
 		const errors = await response.json();
