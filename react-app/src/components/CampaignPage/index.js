@@ -16,7 +16,7 @@ import {
 } from '../../store/characters';
 import CharacterDetailsModal from '../CharacterDetailsModal';
 import SectionFormModal from '../SectionFormModal';
-import { getSectionsByCampaign } from '../../store/sections';
+import { clearSectionState, getSectionsByCampaign } from '../../store/sections';
 
 const CampaignPage = () => {
 	const { campaignId } = useParams();
@@ -24,7 +24,7 @@ const CampaignPage = () => {
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const characters = campaign?.characters;
 	const userCharactersList = useSelector((state) => Object.values(state.characters));
-	const sections = campaign.sections;
+	const sections = useSelector((state) => Object.values(state.sections));
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
@@ -98,6 +98,7 @@ const CampaignPage = () => {
 	}, [handleChangeCharacter, selectedCharacter]);
 
 	useEffect(() => {
+		dispatch(clearSectionState());
 		dispatch(getCampaigns(user.id)).then((res) => {
 			let campaignExists = false;
 			res.every((campaign) => {
