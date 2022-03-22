@@ -89,45 +89,6 @@ table {
 	}
 }
 
-@keyframes slide-from-left-offscreen {
-	from{
-		transform: translateX(-100%);
-	}
-	to{
-		transform: translateX(0%);
-	}
-}
-
-@keyframes hide-left {
-	from {
-		transform: translateX(0);
-	}
-	to {
-		transform: translateX(-100%);;
-	}
-}
-
-@keyframes slide-right {
-	from{
-		transform: translateX(0);
-		width: 100%;
-	}
-	to{
-		transform: translateX(calc(50px + 40vw))
-	}
-}
-
-@keyframes slide-left {
-	from {
-		transform: translateX(0);
-		width: calc(10px + 55vw);
-	}
-	to {
-		transform: translateX(-1);
-		width: 100%;
-	}
-}
-
 @keyframes fade-in-slide-up {
 	from {
 		opacity: 0;

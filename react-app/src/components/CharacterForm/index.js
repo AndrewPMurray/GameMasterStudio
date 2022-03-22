@@ -59,9 +59,6 @@ const CharacterForm = () => {
 	};
 
 	useEffect(() => {
-		if (!user) {
-			history.push('/login');
-		}
 		dispatch(getCharacters(user?.id)).then((res) => {
 			res.every((char, i) => {
 				if (!characterId) return false;

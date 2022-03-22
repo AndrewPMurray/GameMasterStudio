@@ -6,7 +6,7 @@ function Footer() {
 			<div id='footer'>
 				<div id='programmer-info'>
 					Created by Andrew Murray
-					<div>
+					<div id='links-div'>
 						<a
 							style={{ color: 'white' }}
 							href='https://github.com/AndrewPMurray/GameMasterStudio'
@@ -23,6 +23,9 @@ function Footer() {
 							<i className='fab fa-linkedin'></i>
 						</a>
 					</div>
+					<p>
+						Notice: this website is not affiliated with or used by Wizards of the Coast
+					</p>
 				</div>
 			</div>
 		</footer>

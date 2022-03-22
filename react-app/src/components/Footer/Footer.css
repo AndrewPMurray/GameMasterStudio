@@ -16,13 +16,17 @@
   font-size: 20px;
 }
 
-#programmer-info > div {
+#programmer-info > p {
+  font-size: 12px;
+}
+
+#links-div {
   display: flex;
   justify-content: space-around;
   width: 200px;
 }
 
-#programmer-info > div > a {
+#links-div > a {
   line-height: 2;
   font-size: 36px;
   max-width: 36px;
