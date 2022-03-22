@@ -13,6 +13,7 @@ import UserHome from './components/UserHome/';
 import Landing from './components/Landing';
 import CharacterForm from './components/CharacterForm';
 import CampaignPage from './components/CampaignPage';
+import Footer from './components/Footer';
 
 function App() {
 	const [loaded, setLoaded] = useState(false);
@@ -35,6 +36,7 @@ function App() {
 			<Switch>
 				<Route path='/' exact={true}>
 					<Landing />
+					<Footer />
 				</Route>
 				<Route path='/login' exact={true}>
 					<LoginForm />

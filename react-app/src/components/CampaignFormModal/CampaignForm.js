@@ -62,9 +62,7 @@ const CampaignForm = ({ setShowModal, userId }) => {
 					/>
 				</div>
 				<div id='create-campaign-button'>
-					<button type='submit' disabled={title.length === 0}>
-						Create
-					</button>
+					<button type='submit'>Create</button>
 				</div>
 			</form>
 		</div>
