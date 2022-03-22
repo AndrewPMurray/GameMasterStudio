@@ -58,8 +58,9 @@
 12. You may use the Demo user by clicking on the `Log In` button or create a new user by clicking on the `Sign Up` button. Then you can create a new character or campaign or invite other users to a campaign.
 
 ## To-Do (Bonus Features)
--[ ] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
--[ ] Search campaigns for articles within that campaign
+
+- [ ] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
+- [ ] Search campaigns for articles within that campaign
 
 
 ---------------------
