@@ -1,6 +1,6 @@
 from flask_wtf import FlaskForm
 from wtforms import StringField, TextAreaField, IntegerField
-from wtforms.validators import DataRequired, NumberRange, ValidationError
+from wtforms.validators import DataRequired, NumberRange, ValidationError, Length
 
 
 class CharacterForm(FlaskForm):
@@ -9,13 +9,13 @@ class CharacterForm(FlaskForm):
         if name == 'game_master':
             raise ValidationError('Name not allowed')
     
-    type = StringField('title', validators=[DataRequired()])
-    name = StringField('name', validators=[DataRequired(), check_character_name])
-    class_name = StringField('class name', validators=[DataRequired()])
+    type = StringField('title', validators=[DataRequired(), Length(max=50)])
+    name = StringField('name', validators=[DataRequired(), check_character_name, Length(max=100)])
+    class_name = StringField('class name', validators=[DataRequired(), Length(max=50)])
     level = IntegerField('level', validators=[DataRequired()])
-    background = StringField('background', validators=[DataRequired()])
-    race = StringField('race', validators=[DataRequired()])
-    alignment = StringField('alignment', validators=[DataRequired()])
+    background = StringField('background', validators=[DataRequired(), Length(max=50)])
+    race = StringField('race', validators=[DataRequired(), Length(max=50)])
+    alignment = StringField('alignment', validators=[DataRequired(), Length(max=50)])
     experience = IntegerField('experience', validators=[NumberRange(min=0)])
     strength = IntegerField('strength', validators=[NumberRange(min=0)])
     dexterity = IntegerField('dexterity', validators=[NumberRange(min=0)])

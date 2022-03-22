@@ -24,7 +24,7 @@ function Footer() {
 						</a>
 					</div>
 					<p>
-						Notice: this website is not affiliated with or used by Wizards of the Coast
+						Notice: This website is not affiliated with or used by Wizards of the Coast
 					</p>
 				</div>
 			</div>
