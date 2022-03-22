@@ -23,6 +23,7 @@ const CampaignPage = () => {
 	const [errors, setErrors] = useState({});
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const characters = campaign?.characters;
+	const userCharactersList = useSelector((state) => Object.values(state.characters));
 	const sections = useSelector((state) => Object.values(state.sections));
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
@@ -74,20 +75,24 @@ const CampaignPage = () => {
 		}
 
 		// setting character in campaign
-		if (selectedCharacter !== 'remove') {
+		else {
 			if (userCharacter?.gameMaster) dispatch(removeGameMaster(campaignId));
+			if (userCharacter?.id) dispatch(removeCharacterFromCampaign(userCharacter.id));
+
+			dispatch(
+				addCharacterToCampaign({
+					character_id: selectedCharacter,
+					campaign_id: campaign?.id,
+				})
+			).then(() => {
+				setUserCharacter(characters[selectedCharacter]);
+				setChangeCharacter(-1);
+				setSelectedCharacter('');
+			});
 		}
-		dispatch(
-			addCharacterToCampaign({
-				character_id: selectedCharacter,
-				campaign_id: campaign?.id,
-			})
-		).then(() => {
-			setUserCharacter(characters[selectedCharacter]);
-			setChangeCharacter(-1);
-			setSelectedCharacter('');
-		});
 	}, [selectedCharacter, userCharacter, campaign?.id, user.id, dispatch, characters, campaignId]);
+
+	console.log(userCharacter);
 
 	useEffect(() => {
 		if (selectedCharacter !== '') handleChangeCharacter();
@@ -221,7 +226,7 @@ const CampaignPage = () => {
 							>
 								<option value=''>Select a character</option>
 								{!gameMaster && <option value='game_master'>Game Master</option>}
-								{user?.characters.map((userCharacter) => (
+								{userCharactersList?.map((userCharacter) => (
 									<option key={`${userCharacter.name}`} value={userCharacter.id}>
 										{userCharacter.name}
 									</option>
@@ -263,7 +268,7 @@ const CampaignPage = () => {
 							>
 								<option value=''>Select a character</option>
 								{!gameMaster && <option value='game_master'>Game Master</option>}
-								{user?.characters?.map((userCharacter) => (
+								{userCharactersList?.map((userCharacter) => (
 									<option key={`${userCharacter.name}`} value={userCharacter.id}>
 										{userCharacter.name}
 									</option>
@@ -319,7 +324,7 @@ const CampaignPage = () => {
 						>
 							<option value=''>Select a character</option>
 							{!gameMaster && <option value='game_master'>Game Master</option>}
-							{user?.characters.map((character) => (
+							{userCharactersList?.map((character) => (
 								<option key={`${character.name}`} value={character.id}>
 									{character.name}
 								</option>
