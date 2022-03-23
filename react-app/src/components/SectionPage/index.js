@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link } from 'react-router-dom';
+import { useParams, Link, useHistory } from 'react-router-dom';
 import { getSectionsByCampaign, updateSection } from '../../store/sections';
 import CampaignSections from '../CampaignPage/CampaignSections';
 import './SectionPage.css';
@@ -12,13 +12,26 @@ export default function SectionPage() {
 	const [title, setTitle] = useState('');
 	const section = useSelector((state) => state.sections[sectionId]);
 	const dispatch = useDispatch();
+	const history = useHistory();
 	const articles = section?.articles;
 
 	useEffect(() => {
-		dispatch(getSectionsByCampaign(campaignId)).then(setTitle(section?.title));
-	}, [campaignId, dispatch, section?.title]);
+		dispatch(getSectionsByCampaign(campaignId)).then((res) => {
+			let sectionExists = false;
+			res.every((section) => {
+				if (section.id === +sectionId) {
+					sectionExists = true;
+					return false;
+				}
+				return true;
+			});
+			if (!sectionExists) history.push(`/campaigns/${campaignId}`);
+			setTitle(section?.title);
+		});
+	}, [campaignId, dispatch, section?.title, history, sectionId]);
 
-	const handleEdit = () => {
+	const handleEdit = (e) => {
+		if (e.key && e.key !== 'Enter') return;
 		dispatch(
 			updateSection(
 				{
@@ -29,7 +42,7 @@ export default function SectionPage() {
 			)
 		).then((res) => {
 			if (res.errors) setErrors(res.errors);
-			else setEdit(!edit);
+			else setEdit(false);
 		});
 	};
 
@@ -61,6 +74,7 @@ export default function SectionPage() {
 								id='section-title'
 								value={title}
 								onChange={(e) => setTitle(e.target.value)}
+								onKeyDown={(e) => handleEdit(e)}
 							/>
 						</>
 					) : (

@@ -4,12 +4,14 @@ import session from './session';
 import campaignsReducer from './campaigns';
 import charactersReducer from './characters';
 import sectionsReducer from './sections';
+import articlesReducer from './articles';
 
 const rootReducer = combineReducers({
 	session,
 	campaigns: campaignsReducer,
-	sections: sectionsReducer,
 	characters: charactersReducer,
+	sections: sectionsReducer,
+	articles: articlesReducer,
 });
 
 let enhancer;

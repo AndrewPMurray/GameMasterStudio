@@ -1,7 +1,7 @@
-const LOAD_SECTIONS = 'sections/LOAD_Csection';
-const ADD_SECTION = 'sections/ADD_section';
-const REMOVE_SECTION = 'sections/REMOVE_section';
-const UPDATE_SECTION = 'sections/UPDATE_section';
+const LOAD_SECTIONS = 'sections/LOAD_SECTION';
+const ADD_SECTION = 'sections/ADD_SECTION';
+const REMOVE_SECTION = 'sections/REMOVE_SECTION';
+const UPDATE_SECTION = 'sections/UPDATE_SECTION';
 const RESET_STATE = 'sections/RESET_STATE';
 
 const load = (sections) => ({

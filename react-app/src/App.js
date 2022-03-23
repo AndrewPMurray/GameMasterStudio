@@ -15,6 +15,7 @@ import CharacterForm from './components/CharacterForm';
 import CampaignPage from './components/CampaignPage';
 import Footer from './components/Footer';
 import SectionPage from './components/SectionPage';
+import ArticlePage from './components/ArticlePage';
 import NotFound from './components/NotFound';
 
 function App() {
@@ -60,6 +61,9 @@ function App() {
 				</ProtectedRoute>
 				<ProtectedRoute path='/campaigns/:campaignId/:sectionId' exact={true}>
 					<SectionPage />
+				</ProtectedRoute>
+				<ProtectedRoute path='/campaigns/:campaignId/:sectionId/:articleId' exact={true}>
+					<ArticlePage />
 				</ProtectedRoute>
 				<ProtectedRoute
 					path='/campaigns/:campaignId/:sectionId/:articleId'

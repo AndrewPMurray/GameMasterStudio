@@ -4,35 +4,35 @@ import { useParams, useHistory } from 'react-router-dom';
 import InviteUsersModal from '../InviteUsersModal';
 import './CampaignPage.css';
 import {
-	addGameMaster,
 	getCampaigns,
-	removeGameMaster,
 	updateCampaign,
+	addGameMaster,
+	removeGameMaster,
 } from '../../store/campaigns';
 import {
-	addCharacterToCampaign,
 	getCharacters,
+	addCharacterToCampaign,
 	removeCharacterFromCampaign,
 } from '../../store/characters';
 import CampaignSections from './CampaignSections';
 import CharacterDetailsModal from '../CharacterDetailsModal';
 
 const CampaignPage = () => {
+	const dispatch = useDispatch();
 	const { campaignId } = useParams();
 	const [errors, setErrors] = useState({});
+	const history = useHistory();
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const characters = campaign?.characters;
 	const userCharactersList = useSelector((state) => Object.values(state.characters));
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
-	const dispatch = useDispatch();
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [userCharacter, setUserCharacter] = useState({});
 	const [changeCharacter, setChangeCharacter] = useState(-1);
 	const [selectedCharacter, setSelectedCharacter] = useState('');
-	const history = useHistory();
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
