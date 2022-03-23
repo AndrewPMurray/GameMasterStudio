@@ -40,31 +40,33 @@ export default function SectionPage() {
 			</Link>
 			<CampaignSections campaignId={campaignId} />
 			<div id='section-list'>
-				{edit ? (
-					<>
-						{errors.title && (
-							<p id='error' style={{ marginBottom: '10px' }}>
-								{errors.title}
-							</p>
-						)}
-						<input
-							id='section-title'
-							value={title}
-							onChange={(e) => setTitle(e.target.value)}
-						/>
-					</>
-				) : (
-					<h2 id='section-title'>{section?.title}</h2>
-				)}
-				{edit ? (
-					<button id='edit-section-button' onClick={handleEdit}>
-						Save
-					</button>
-				) : (
-					<button id='edit-section-button' onClick={() => setEdit(!edit)}>
-						Edit Title
-					</button>
-				)}
+				<div id='section-title-container'>
+					{edit ? (
+						<button id='edit-section-button' onClick={handleEdit}>
+							Save
+						</button>
+					) : (
+						<button id='edit-section-button' onClick={() => setEdit(!edit)}>
+							Edit Title
+						</button>
+					)}
+					{edit ? (
+						<>
+							{errors.title && (
+								<p id='error' style={{ marginBottom: '10px' }}>
+									{errors.title}
+								</p>
+							)}
+							<input
+								id='section-title'
+								value={title}
+								onChange={(e) => setTitle(e.target.value)}
+							/>
+						</>
+					) : (
+						<h2 id='section-title'>{section?.title}</h2>
+					)}
+				</div>
 				{articles?.map((article, i) => (
 					<Link
 						to={`/campaigns/${campaignId}/${sectionId}/${article.id}`}

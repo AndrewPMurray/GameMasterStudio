@@ -95,6 +95,7 @@
 
 #campaign-title-and-edit {
     display: flex;
+    flex-direction: column;
     justify-content: center;
 }
 
@@ -122,9 +123,7 @@
     border: none;
     border-radius: 5px;
     transition-duration: 250ms;
-    position: absolute;
-    top: -35px;
-    right: 5%;
+    align-self: flex-end;
 }
 
 #edit-campaign-button:hover {

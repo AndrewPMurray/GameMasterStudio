@@ -165,6 +165,16 @@ const CampaignPage = () => {
 			<CampaignSections campaignId={campaignId} />
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
+					{user?.id === campaign?.owner_id &&
+						(edit ? (
+							<button onClick={handleEdit} id='edit-campaign-button'>
+								Save
+							</button>
+						) : (
+							<button onClick={() => setEdit(!edit)} id='edit-campaign-button'>
+								Edit Campaign
+							</button>
+						))}
 					{edit ? (
 						<div>
 							{errors.title && <p id='error'>{errors.title}</p>}
@@ -178,16 +188,6 @@ const CampaignPage = () => {
 					) : (
 						<h2 id='campaign-title'>{campaign?.title}</h2>
 					)}
-					{user?.id === campaign?.owner_id &&
-						(edit ? (
-							<button onClick={handleEdit} id='edit-campaign-button'>
-								Save
-							</button>
-						) : (
-							<button onClick={() => setEdit(!edit)} id='edit-campaign-button'>
-								Edit Campaign
-							</button>
-						))}
 				</div>
 				{edit ? (
 					<textarea
