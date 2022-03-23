@@ -1,6 +1,6 @@
 import { useCallback, useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { useParams, Link, useHistory } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import InviteUsersModal from '../InviteUsersModal';
 import './CampaignPage.css';
 import {
@@ -14,9 +14,8 @@ import {
 	getCharacters,
 	removeCharacterFromCampaign,
 } from '../../store/characters';
+import CampaignSections from './CampaignSections';
 import CharacterDetailsModal from '../CharacterDetailsModal';
-import SectionFormModal from '../SectionFormModal';
-import { clearSectionState, getSectionsByCampaign } from '../../store/sections';
 
 const CampaignPage = () => {
 	const { campaignId } = useParams();
@@ -24,7 +23,6 @@ const CampaignPage = () => {
 	const campaign = useSelector((state) => state.campaigns[campaignId]);
 	const characters = campaign?.characters;
 	const userCharactersList = useSelector((state) => Object.values(state.characters));
-	const sections = useSelector((state) => Object.values(state.sections));
 	const user = useSelector((state) => state.session.user);
 	const gameMaster = campaign?.game_master;
 	const [edit, setEdit] = useState(false);
@@ -98,7 +96,6 @@ const CampaignPage = () => {
 	}, [handleChangeCharacter, selectedCharacter]);
 
 	useEffect(() => {
-		dispatch(clearSectionState());
 		dispatch(getCampaigns(user.id)).then((res) => {
 			let campaignExists = false;
 			res.every((campaign) => {
@@ -111,7 +108,6 @@ const CampaignPage = () => {
 			if (!campaignExists) history.push('/not-found');
 		});
 		dispatch(getCharacters(user.id));
-		dispatch(getSectionsByCampaign(campaignId));
 	}, [dispatch, user.id, selectedCharacter, campaignId, history]);
 
 	useEffect(() => {
@@ -166,21 +162,7 @@ const CampaignPage = () => {
 
 	return (
 		<div className='campaign-container'>
-			<div id='campaign-sections-container'>
-				<div id='sections-header'>
-					<h3>Sections</h3>
-					<SectionFormModal campaignId={campaignId} />
-				</div>
-				<div id='campaign-sections-list'>
-					{sections?.map((section, i) => (
-						<div id='section' key={`section-${i}`}>
-							<Link to={`/campaigns/${campaignId}/${section.id}`}>
-								{section.title}
-							</Link>
-						</div>
-					))}
-				</div>
-			</div>
+			<CampaignSections campaignId={campaignId} />
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>
 					{edit ? (

@@ -92,7 +92,7 @@ const sectionsReducer = (state = initialState, action) => {
 			action.sections.forEach((section) => {
 				sections[section.id] = section;
 			});
-			return { ...state, ...sections };
+			return { ...sections };
 		}
 		case ADD_SECTION: {
 			const newState = { ...state, [action.section.id]: action.section };
