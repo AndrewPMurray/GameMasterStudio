@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Campaign, User, Character, Section
 from app.forms import CampaignForm, SectionForm
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -10,7 +10,11 @@ campaign_routes = Blueprint('campaigns', __name__)
 @login_required
 def get_sections_by_campaign(campaign_id):
     campaign = Campaign.query.get(campaign_id)
-    return {'all_sections': [section.to_dict() for section in campaign.sections]}
+    current_user_id = int(current_user.get_id())
+    for user in campaign.users:
+        if user.id == current_user_id:
+            return {'all_sections': [section.to_dict() for section in campaign.sections]}
+    return {'error':'unauthorized'}, 401
 
 @campaign_routes.route('/', methods=['POST'])
 @login_required
@@ -20,19 +24,21 @@ def create_campaign():
     data = form.data
     user = User.query.get(data['owner_id'])
     
-    if form.validate_on_submit():
-        new_campaign = Campaign(
-            title=data['title'],
-            description=data['description'],
-            owner_id=data['owner_id']
-        )
-        
-        user.campaigns.append(new_campaign)
-        db.session.add(new_campaign)
-        db.session.commit()
-        
-        return new_campaign.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    if user.id == int(current_user.get_id()):
+        if form.validate_on_submit():
+            new_campaign = Campaign(
+                title=data['title'],
+                description=data['description'],
+                owner_id=data['owner_id']
+            )
+            
+            user.campaigns.append(new_campaign)
+            db.session.add(new_campaign)
+            db.session.commit()
+            
+            return new_campaign.to_dict()
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'error':'unauthorized'}, 401
 
 
 @campaign_routes.route('/<int:campaign_id>/game_master', methods=['PUT'])
@@ -110,9 +116,11 @@ def remove_users_from_campaign(campaign_id):
 @login_required
 def delete_campaign(campaign_id):
     deleted_campaign = Campaign.query.get(campaign_id)
-    db.session.delete(deleted_campaign)
-    db.session.commit()
-    return {'message':'success!'}
+    if deleted_campaign.owner_id == int(current_user.get_id()):
+        db.session.delete(deleted_campaign)
+        db.session.commit()
+        return {'message':'success!'}
+    return {'error':'unauthorized'}, 401
 
 
 @campaign_routes.route('/characters/<int:character_id>', methods=['DELETE'])

@@ -15,6 +15,9 @@
 #section-list {
     width: 500px;
     margin-left: 150px;
+    display: flex;
+    flex-direction: column;
+    position: relative;
 }
 
 #section-title {
@@ -24,4 +27,23 @@
 
 #article-link {
     font-size: 24px;
+}
+
+#edit-section-button {
+    margin-left: 20px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 250ms;
+    position: absolute;
+    top: -35px;
+    right: 20%;
+}
+
+#edit-section-button:hover {
+    cursor: pointer;
+    background-color: #930C10;
 }

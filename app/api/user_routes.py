@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import current_user, login_required
 from app.models import db, User
 from app.aws import (
     delete_image_from_s3, upload_file_to_s3, allowed_file, get_unique_filename
@@ -57,12 +57,16 @@ def change_profile_pic(user_id):
 @user_routes.route('/<int:user_id>/campaigns/')
 @login_required
 def get_campaigns_by_user(user_id):
-    campaigns = User.query.get(user_id).campaigns
-    return {"all_campaigns": [campaign.to_dict() for campaign in campaigns]}
+    if user_id == int(current_user.get_id()):
+        campaigns = User.query.get(user_id).campaigns
+        return {"all_campaigns": [campaign.to_dict() for campaign in campaigns]}
+    return {"error": "Unauthorized"}, 401
 
 
 @user_routes.route('/<int:user_id>/characters/')
 @login_required
 def get_characters_by_user(user_id):
-    characters = User.query.get(user_id).characters
-    return {"all_characters": [character.to_dict() for character in characters]}
+    if user_id == int(current_user.get_id()):
+        characters = User.query.get(user_id).characters
+        return {"all_characters": [character.to_dict() for character in characters]}
+    return {"error": "Unauthorized"}, 401

@@ -1,5 +1,5 @@
 from flask import Blueprint, jsonify, request
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app.models import db, Campaign, Section
 from app.forms import SectionForm
 from app.api.auth_routes import validation_errors_to_error_messages
@@ -42,7 +42,11 @@ def edit_section(section_id):
 @section_routes.route('/<int:section_id>', methods=['DELETE'])
 @login_required
 def delete_section(section_id):
-    deleted_section = Section.query.get(section_id)
-    db.session.delete(deleted_section)
-    db.session.commit()
-    return {'message':'success!'}
+    owner_id = request.json['owner_id']
+    if owner_id == int(current_user.get_id()):
+        deleted_section = Section.query.get(section_id)
+        db.session.delete(deleted_section)
+        db.session.commit()
+        return {'message':'success!'}
+    return {'error': 'unauthorized'}, 401
+

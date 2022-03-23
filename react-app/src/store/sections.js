@@ -52,8 +52,8 @@ export const addSection = (payload) => async (dispatch) => {
 	}
 };
 
-export const updateSection = (payload) => async (dispatch) => {
-	const response = await fetch(`/api/sections/${payload.section_id}`, {
+export const updateSection = (payload, sectionId) => async (dispatch) => {
+	const response = await fetch(`/api/sections/${sectionId}`, {
 		method: 'PUT',
 		headers: { 'Content-Type': 'application/json' },
 		body: JSON.stringify(payload),
@@ -68,12 +68,13 @@ export const updateSection = (payload) => async (dispatch) => {
 	}
 };
 
-export const deleteSection = (sectionId) => async (dispatch) => {
+export const deleteSection = (sectionId, ownerId) => async (dispatch) => {
 	const response = await fetch(`/api/sections/${sectionId}`, {
 		method: 'DELETE',
 		headers: {
 			'Content-Type': 'application/json',
 		},
+		body: JSON.stringify({ owner_id: ownerId }),
 	});
 
 	if (response.ok) {
