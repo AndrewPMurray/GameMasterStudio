@@ -6,7 +6,7 @@ import './CharacterForm.css';
 import Money from './Money';
 
 const CharacterForm = () => {
-	const { characterId } = useParams() || null;
+	const { characterId } = useParams();
 	const user = useSelector((state) => state.session.user);
 	const character = useSelector((state) => state.characters[characterId]);
 	const dispatch = useDispatch();
@@ -45,31 +45,32 @@ const CharacterForm = () => {
 	const [featureFields, setFeatureFields] = useState(0);
 	const [activeFeature, setActiveFeature] = useState(-1);
 	const [bio, setBio] = useState('');
+
 	const [page, setPage] = useState(1);
 
 	const modifiers = {
-		strength: strength >= 0 && strength <= 30 ? `${Math.floor(strength / 2) - 5}` : 0,
-		dexterity: dexterity >= 0 && dexterity <= 30 ? `${Math.floor(dexterity / 2) - 5}` : 0,
+		strength: strength >= 0 && strength <= 30 ? Math.floor(strength / 2) - 5 : 0,
+		dexterity: dexterity >= 0 && dexterity <= 30 ? Math.floor(dexterity / 2) - 5 : 0,
 		constitution:
-			constitution >= 0 && constitution <= 30 ? `${Math.floor(constitution / 2) - 5}` : 0,
+			constitution >= 0 && constitution <= 30 ? Math.floor(constitution / 2) - 5 : 0,
 		intelligence:
-			intelligence >= 0 && intelligence <= 30 ? `${Math.floor(intelligence / 2) - 5}` : 0,
-		wisdom: wisdom >= 0 && wisdom <= 30 ? `${Math.floor(wisdom / 2) - 5}` : 0,
-		charisma: charisma >= 0 && charisma <= 30 ? `${Math.floor(charisma / 2) - 5}` : 0,
+			intelligence >= 0 && intelligence <= 30 ? Math.floor(intelligence / 2) - 5 : 0,
+		wisdom: wisdom >= 0 && wisdom <= 30 ? Math.floor(wisdom / 2) - 5 : 0,
+		charisma: charisma >= 0 && charisma <= 30 ? Math.floor(charisma / 2) - 5 : 0,
 	};
 
 	useEffect(() => {
 		dispatch(getCharacters(user?.id)).then((res) => {
-			res.every((char, i) => {
-				if (!characterId) return false;
-				let characterExists = false;
+			if (!characterId) return;
+			let characterExists = false;
+			res.every((char) => {
 				if (char.id === +characterId) {
 					characterExists = true;
 					return false;
 				}
-				if (!characterExists && i === res.length - 1) history.push('/not-found');
 				return true;
 			});
+			if (!characterExists) history.push('/not-found');
 		});
 	}, [dispatch, user, history, user?.id, characterId]);
 

@@ -19,7 +19,7 @@ const SignUpForm = () => {
 		if (data) {
 			setErrors(data);
 			if (password !== repeatPassword)
-				setErrors({ ...data, repeat_password: 'passwords do not match' });
+				setErrors({ ...data, repeat_password: 'Passwords do not match' });
 		}
 	};
 
