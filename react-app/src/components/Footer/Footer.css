@@ -1,8 +1,8 @@
 #footer {
-  height: 125px;
+  height: 150px;
   background-color: #110000;
-  position: absolute;
-  bottom: 0px;
+  position: fixed;
+  bottom: 0;
   width: 100%;
   padding-bottom: 20px;
   border-top: 1px solid #AAAAAA;
@@ -14,21 +14,31 @@
   align-items: center;
   margin-top: 30px;
   font-size: 20px;
+  width: 100%;
 }
 
-#programmer-info > p {
+#about-text {
+  font-size: 16px;
+  overflow-wrap: break-word;
+  white-space: pre-line;
+  text-align: center;
+  line-height: 1.5;
+}
+
+#footer-bottom {
+  margin-top: 5px;
   font-size: 12px;
 }
 
 #links-div {
   display: flex;
   justify-content: space-around;
-  width: 200px;
+  width: 150px;
 }
 
 #links-div > a {
   line-height: 2;
-  font-size: 36px;
+  font-size: 24px;
   max-width: 36px;
 }
 

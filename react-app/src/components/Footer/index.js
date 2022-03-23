@@ -5,7 +5,10 @@ function Footer() {
 		<footer>
 			<div id='footer'>
 				<div id='programmer-info'>
-					Created by Andrew Murray
+					<pre id='about-text'>
+						{`Game Master Studio is inspired by Dungeons & Dragons character creators such as Roll20.net and DnDBeyond.
+						It has the additional feature of adding sections and articles to specific campaigns.`}
+					</pre>
 					<div id='links-div'>
 						<a
 							style={{ color: 'white' }}
@@ -23,7 +26,8 @@ function Footer() {
 							<i className='fab fa-linkedin'></i>
 						</a>
 					</div>
-					<p>
+					<p id='footer-bottom'>Developed by: Andrew Murray</p>
+					<p id='footer-bottom'>
 						Notice: This website is not affiliated with or used by Wizards of the Coast
 					</p>
 				</div>
