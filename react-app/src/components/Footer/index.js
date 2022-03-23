@@ -7,7 +7,7 @@ function Footer() {
 				<div id='programmer-info'>
 					<pre id='about-text'>
 						{`Game Master Studio is inspired by Dungeons & Dragons character creators such as Roll20.net and DnDBeyond.
-						It has the additional feature of adding sections and articles to specific campaigns.`}
+						It has the additional feature of adding sections and articles to campaigns.`}
 					</pre>
 					<div id='links-div'>
 						<a
