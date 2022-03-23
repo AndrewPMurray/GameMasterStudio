@@ -1,7 +1,8 @@
 # GameMasterStudio
 ## A website to create Dungeons & Dragons characters and campaigns
 
-![gamemasterstudio_home page](https://user-images.githubusercontent.com/92741849/159520146-1be87f68-eaa2-424d-8ffe-13da974546d1.png)
+![gamemasterstudio_home page](https://user-images.githubusercontent.com/92741849/159765489-b1d8cac2-d29f-469b-8ffc-f0a791cf182d.png)
+
 
 
 [GameMasterStudio](https://gamemasterstudio.herokuapp.com/), a fullstack website inspired partially by Roll20.net and DnD Beyond, is an online Dungeons & Dragons character & campaign creator. Users who have created campaigns can invite other users to those campaigns, who can add the characters they've created.
@@ -25,7 +26,7 @@
  ![character_sheet](https://user-images.githubusercontent.com/92741849/159521980-05178918-c7ba-4113-992e-c2e5de771725.png)
  -----------------------------
  - Campaign Page
- ![campaign_page](https://user-images.githubusercontent.com/92741849/159522340-a83e6dcd-d5e6-4ccd-bebd-8edae9d5e95c.png)
+ ![campaign_page](https://user-images.githubusercontent.com/92741849/159765338-7f2e1523-ce81-411c-980a-513cc685615b.png)
  -----------------------------
 
 ## Install Instructions
