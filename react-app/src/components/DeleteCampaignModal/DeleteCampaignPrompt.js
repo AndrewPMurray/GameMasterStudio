@@ -15,6 +15,7 @@ const DeleteCampaignPrompt = ({ setShowModal, campaignId, campaignTitle }) => {
 	}, []);
 
 	const handleDelete = () => {
+		document.querySelector('#modal-content').style.opacity = 0;
 		dispatch(deleteCampaign(campaignId));
 		setShowModal(false);
 	};

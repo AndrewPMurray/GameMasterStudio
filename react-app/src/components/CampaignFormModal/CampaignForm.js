@@ -14,6 +14,7 @@ const CampaignForm = ({ setShowModal, userId }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		document.querySelector('#modal-content').style.opacity = 0;
 		return dispatch(
 			addCampaign({
 				title,
