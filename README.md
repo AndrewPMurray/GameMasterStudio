@@ -10,7 +10,7 @@
 ## Technologies Used
 
  - **Backend:** Python, Flask, WTForms, boto3/botocore (for uploading to AWS/S3)
- - **Frontend:** JavaScript, React/Redux, AJAX, React-Drag-And-Drop(for image upload functionality)
+ - **Frontend:** JavaScript, React/Redux, AJAX, React-Drag-And-Drop(for image upload functionality), react-quilljs (for creating and editing articles)
  - **Database:** PostgresSQL
  - **Image hosting:** AWS/S3
 
