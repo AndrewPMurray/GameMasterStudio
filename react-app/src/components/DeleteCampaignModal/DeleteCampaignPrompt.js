@@ -16,7 +16,7 @@ const DeleteCampaignPrompt = ({ setShowModal, campaignId, campaignTitle }) => {
 
 	const handleDelete = () => {
 		setDisabled(true);
-		dispatch(deleteCampaign(campaignId));
+		dispatch(deleteCampaign(campaignId)).catch(() => setDisabled(false));
 		setShowModal(false);
 	};
 

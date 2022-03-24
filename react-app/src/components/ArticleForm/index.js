@@ -83,20 +83,22 @@ export default function ArticleForm() {
 				photo_url: url,
 				section_id: sectionId,
 			})
-		).then((res) => {
-			if (res.errors) {
-				setErrors(res.errors);
-				fetch('/api/articles/images', {
-					method: 'DELETE',
-					body: JSON.stringify({ url }),
-				});
-				setLoading(false);
-				return;
-			} else {
-				setLoading(false);
-				history.push(`/campaigns/${campaignId}/${sectionId}/${res.id}`);
-			}
-		});
+		)
+			.then((res) => {
+				if (res.errors) {
+					setErrors(res.errors);
+					fetch('/api/articles/images', {
+						method: 'DELETE',
+						body: JSON.stringify({ url }),
+					});
+					setLoading(false);
+					return;
+				} else {
+					setLoading(false);
+					history.push(`/campaigns/${campaignId}/${sectionId}/${res.id}`);
+				}
+			})
+			.catch(() => setLoading(false));
 	};
 
 	const handleEdit = async () => {
@@ -129,20 +131,22 @@ export default function ArticleForm() {
 				},
 				articleId
 			)
-		).then((res) => {
-			if (res.errors) {
-				setErrors(res.errors);
-				fetch('/api/articles/images', {
-					method: 'DELETE',
-					body: JSON.stringify({ url }),
-				});
-				setLoading(false);
-				return;
-			} else {
-				setLoading(false);
-				history.push(`/campaigns/${campaignId}/${sectionId}/${res.id}`);
-			}
-		});
+		)
+			.then((res) => {
+				if (res.errors) {
+					setErrors(res.errors);
+					fetch('/api/articles/images', {
+						method: 'DELETE',
+						body: JSON.stringify({ url }),
+					});
+					setLoading(false);
+					return;
+				} else {
+					setLoading(false);
+					history.push(`/campaigns/${campaignId}/${sectionId}/${res.id}`);
+				}
+			})
+			.catch(() => setLoading(false));
 	};
 
 	return (

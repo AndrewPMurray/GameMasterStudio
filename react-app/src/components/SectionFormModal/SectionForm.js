@@ -17,14 +17,16 @@ const SectionForm = ({ setShowModal, campaignId }) => {
 				title,
 				campaign_id: campaignId,
 			})
-		).then((res) => {
-			if (res.errors) {
-				setErrors(res.errors);
-				setDisabled(false);
-				return;
-			}
-			setShowModal(false);
-		});
+		)
+			.then((res) => {
+				if (res.errors) {
+					setErrors(res.errors);
+					setDisabled(false);
+					return;
+				}
+				setShowModal(false);
+			})
+			.catch(() => setDisabled(false));
 	};
 
 	return (

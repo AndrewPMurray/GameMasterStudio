@@ -9,7 +9,7 @@ const DeleteSectionPrompt = ({ section, ownerId, setShowModal }) => {
 
 	const handleDelete = () => {
 		setDisabled(true);
-		dispatch(deleteSection(section.id, ownerId));
+		dispatch(deleteSection(section.id, ownerId)).catch(() => setDisabled(false));
 		setShowModal(false);
 	};
 

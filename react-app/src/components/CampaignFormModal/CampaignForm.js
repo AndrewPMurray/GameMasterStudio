@@ -22,12 +22,14 @@ const CampaignForm = ({ setShowModal, userId }) => {
 				description,
 				owner_id: userId,
 			})
-		).then((res) => {
-			if (res.errors) {
-				setSubmitted(false);
-				setErrors(res.errors);
-			} else history.push(`/campaigns/${res.id}`);
-		});
+		)
+			.then((res) => {
+				if (res.errors) {
+					setSubmitted(false);
+					setErrors(res.errors);
+				} else history.push(`/campaigns/${res.id}`);
+			})
+			.catch(() => setSubmitted(false));
 	};
 
 	return (

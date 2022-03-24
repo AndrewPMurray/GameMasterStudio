@@ -34,7 +34,8 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 
 		dispatch(addUsersToCampaign(invitedUsers, campaignId))
 			.then(() => dispatch(removeUsersFromCampaign(removeUsers, campaignId)))
-			.then(() => setShowModal(false));
+			.then(() => setShowModal(false))
+			.catch(() => (document.querySelector('#modal-content').style.opacity = 1));
 	};
 
 	const resultsArr = users.filter((availableUser) => {

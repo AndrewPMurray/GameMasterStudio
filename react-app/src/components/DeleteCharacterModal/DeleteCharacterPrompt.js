@@ -17,7 +17,7 @@ const DeleteCharacterPrompt = ({ setShowModal, characterId, characterName }) => 
 	const handleDelete = () => {
 		setDisabled(true);
 		document.querySelector('#modal-content').style.opacity = 0;
-		dispatch(deleteCharacter(characterId));
+		dispatch(deleteCharacter(characterId)).catch(() => setDisabled(false));
 		setShowModal(false);
 	};
 
