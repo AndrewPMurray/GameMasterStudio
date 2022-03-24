@@ -60,7 +60,7 @@
 
 ## To-Do (Bonus Features)
 
-- [ ] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
+- [X] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
 - [ ] Search campaigns for articles within that campaign
 
 
