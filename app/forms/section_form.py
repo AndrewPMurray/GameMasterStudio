@@ -1,4 +1,3 @@
-from operator import length_hint
 from flask_wtf import FlaskForm
 from wtforms import StringField, IntegerField
 from wtforms.validators import DataRequired, Length

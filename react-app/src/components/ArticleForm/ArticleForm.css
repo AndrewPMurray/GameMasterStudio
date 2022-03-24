@@ -1,0 +1,95 @@
+.edit-article-page-container {
+    margin: 150px;
+    margin-left: 25px;
+    position: relative;
+    display: flex;
+}
+
+#article-editor-container {
+    margin-left: 90px;
+    width: 800px;
+    display: flex;
+    flex-direction: column;
+}
+
+#edit-title {
+    display: flex;
+    flex-direction: column;
+}
+
+#edit-title input {
+    width: 350px;
+    height: 15px;
+    padding: 10px;
+    font-size: 20px;
+    border-radius: 8px;
+}
+
+#edit-article-image {
+    height: 135px;
+    border: 2px dotted black;
+    margin: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    justify-content: space-between;
+}
+
+#edit-article-image p {
+    margin-bottom: 20px;
+}
+
+.fa-camera {
+    font-size: 48px;
+    margin-top: 20px;
+}
+
+#edit-content {
+    height: 400px;
+    font-size: 16px;
+    background-color: #333333;
+}
+
+#save-article {
+    margin-top: 10px;
+    height: 40px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 250ms;
+    align-self: flex-end;
+}
+
+#save-article:hover {
+    cursor: pointer;
+    background-color: #930C10;
+}
+
+#preview-div {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 10px;
+    position: relative;
+}
+
+#preview-div > label {
+    margin-bottom: 10px;
+}
+
+#preview {
+    max-width: 300px;
+    border: 1px solid white;
+}
+
+#remove-image {
+    margin-top: 5px;
+    width: 110px;
+    cursor: pointer;
+}
+
+#remove-image:hover {
+    text-decoration: underline;
+}

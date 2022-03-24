@@ -30,14 +30,38 @@
     margin-bottom: 40px;
 }
 
+#section-article-div {
+    display: flex;
+    align-items: center;
+}
+
 #article-link {
     font-size: 24px;
 }
 
-#edit-section-button {
+#delete-article {
+    margin-left: 10px;
+    visibility: hidden;
+    color: gray;
+    font-size: 12px;
+    cursor: pointer;
+}
+
+#delete-article:hover {
+    text-decoration: underline;
+}
+
+#section-article-div:hover > #delete-article {
+    visibility: visible;
+}
+
+#section-buttons-div {
     margin-bottom: 20px;
+}
+
+#edit-section-button {
     height: 30px;
-    max-width: 100px;
+    width: 100px;
     color: white;
     background-color: black;
     border: none;
@@ -45,7 +69,23 @@
     transition-duration: 250ms;
 }
 
-#edit-section-button:hover {
+#add-article-button {
+    margin-left: 20px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    background-color: black;
+    border: none;
+    border-radius: 5px;
+    transition-duration: 250ms;
+}
+
+#add-article-button > .fa-plus {
+    margin-right: 5px;
+}
+
+#edit-section-button:hover,
+#add-article-button:hover {
     cursor: pointer;
     background-color: #930C10;
 }

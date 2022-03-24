@@ -2,18 +2,21 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { getSectionsByCampaign, updateSection } from '../../store/sections';
+import { deleteArticle, getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
 import './SectionPage.css';
 
 export default function SectionPage() {
 	const { campaignId, sectionId } = useParams();
+	const campaign = useSelector((state) => state.campaigns[campaignId]);
+	const user = useSelector((state) => state.session.user);
 	const [errors, setErrors] = useState({});
 	const [edit, setEdit] = useState(false);
 	const [title, setTitle] = useState('');
 	const section = useSelector((state) => state.sections[sectionId]);
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const articles = section?.articles;
+	const articles = useSelector((state) => Object.values(state.articles));
 
 	useEffect(() => {
 		dispatch(getSectionsByCampaign(campaignId)).then((res) => {
@@ -28,6 +31,7 @@ export default function SectionPage() {
 			if (!sectionExists) history.push(`/campaigns/${campaignId}`);
 			setTitle(section?.title);
 		});
+		dispatch(getArticlesBySection(sectionId));
 	}, [campaignId, dispatch, section?.title, history, sectionId]);
 
 	const handleEdit = (e) => {
@@ -46,6 +50,10 @@ export default function SectionPage() {
 		});
 	};
 
+	const handleDelete = (articleId) => {
+		dispatch(deleteArticle(articleId, campaign.owner_id));
+	};
+
 	return (
 		<div className='section-container'>
 			<Link id='back-to-campaign' to={`/campaigns/${campaignId}`} style={{ margin: '20px' }}>
@@ -54,15 +62,22 @@ export default function SectionPage() {
 			<CampaignSections campaignId={campaignId} />
 			<div id='section-list'>
 				<div id='section-title-container'>
-					{edit ? (
-						<button id='edit-section-button' onClick={handleEdit}>
-							Save
-						</button>
-					) : (
-						<button id='edit-section-button' onClick={() => setEdit(!edit)}>
-							Edit Title
-						</button>
-					)}
+					<div id='section-buttons-div'>
+						{edit ? (
+							<button id='edit-section-button' onClick={handleEdit}>
+								Save
+							</button>
+						) : (
+							<>
+								<button id='edit-section-button' onClick={() => setEdit(!edit)}>
+									Edit Title
+								</button>
+								<Link to={`/campaigns/${campaignId}/${sectionId}/new-article`}>
+									<button id='add-article-button'>Add Article</button>
+								</Link>
+							</>
+						)}
+					</div>
 					{edit ? (
 						<>
 							{errors.title && (
@@ -82,13 +97,21 @@ export default function SectionPage() {
 					)}
 				</div>
 				{articles?.map((article, i) => (
-					<Link
-						to={`/campaigns/${campaignId}/${sectionId}/${article.id}`}
-						id='article-link'
-						key={`article-${i}`}
-					>
-						{article.title}
-					</Link>
+					<div id='section-article-div'>
+						<Link
+							to={`/campaigns/${campaignId}/${sectionId}/${article.id}`}
+							id='article-link'
+							key={`article-${i}`}
+							style={{ marginBottom: '10px' }}
+						>
+							{article.title}
+						</Link>
+						{campaign?.owner_id === user?.id && (
+							<div id='delete-article' onClick={() => handleDelete(article.id)}>
+								delete
+							</div>
+						)}
+					</div>
 				))}
 			</div>
 		</div>

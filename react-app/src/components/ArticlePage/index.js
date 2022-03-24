@@ -34,13 +34,17 @@ export default function ArticlePage() {
 			<div id='article-content-container'>
 				<div id='article-title-container'>
 					<h2 id='article-title'>{article?.title}</h2>
+					<Link to={`/campaigns/${campaignId}/${sectionId}/${articleId}/edit`}>
+						<button id='edit-article-button'>Edit Article</button>
+					</Link>
 				</div>
-				<pre id='article-content'>
-					{article?.photo_url && (
-						<img src={article.photo_url} id='article-photo' alt='article' />
-					)}
-					{article?.content}
-				</pre>
+				{article?.photo_url && (
+					<img src={article.photo_url} id='article-photo' alt='article' />
+				)}
+				<pre
+					id='article-content'
+					dangerouslySetInnerHTML={{ __html: article?.content }}
+				></pre>
 			</div>
 		</div>
 	);
