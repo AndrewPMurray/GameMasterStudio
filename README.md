@@ -26,7 +26,10 @@
  ![character_sheet](https://user-images.githubusercontent.com/92741849/159521980-05178918-c7ba-4113-992e-c2e5de771725.png)
  -----------------------------
  - Campaign Page
- ![campaign_page](https://user-images.githubusercontent.com/92741849/159765338-7f2e1523-ce81-411c-980a-513cc685615b.png)
+ ![campaign_page](https://user-images.githubusercontent.com/92741849/159986244-efa2f67d-7c36-4e0d-9eca-00b23a5c8673.png)
+ -----------------------------
+ - Article Page
+ ![article_page](https://user-images.githubusercontent.com/92741849/159986403-103bafe7-fcd3-488d-aa9d-f146f2cd52c3.png)
  -----------------------------
 
 ## Install Instructions
