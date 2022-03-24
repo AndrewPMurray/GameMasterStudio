@@ -1,6 +1,7 @@
 .campaign-container {
     display: flex;
     justify-content: space-between;
+    position: relative;
 }
 
 .campaign-container > * {
@@ -8,6 +9,40 @@
     margin-top: 150px;
     margin-right: 50px;
     width: 100%;
+}
+
+#campaign-search-container {
+    position: absolute;
+    display: flex;
+    align-items: center;
+    top: -100px;
+    left: 15px;
+    width: 200px;
+}
+
+#search {
+    margin-left: 10px;
+    border-radius: 5px;
+    padding: 5px;
+}
+
+#results-container {
+    position: absolute;
+    top: 40px;
+    width: 450px;
+    height: 400px;
+    background-color: white;
+    color: black;
+    padding: 10px;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+#result {
+    color: black;
+    font-size: 24px;
+    z-index: 100;
 }
 
 #campaign-sections-container,

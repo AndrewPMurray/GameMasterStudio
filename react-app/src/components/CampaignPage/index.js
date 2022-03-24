@@ -16,6 +16,7 @@ import {
 } from '../../store/characters';
 import CampaignSections from './CampaignSections';
 import CharacterDetailsModal from '../CharacterDetailsModal';
+import CampaignSearch from './CampaignSearch';
 
 const CampaignPage = () => {
 	const dispatch = useDispatch();
@@ -162,6 +163,7 @@ const CampaignPage = () => {
 
 	return (
 		<div className='campaign-container'>
+			<CampaignSearch />
 			<CampaignSections campaignId={campaignId} />
 			<div id='campaign-info'>
 				<div id='campaign-title-and-edit'>

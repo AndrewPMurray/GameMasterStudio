@@ -5,6 +5,7 @@ import { FileUploader } from 'react-drag-drop-files';
 import { useQuill } from 'react-quilljs';
 import { addArticle, updateArticle, getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
+import CampaignSearch from '../CampaignPage/CampaignSearch';
 import './quill.snow.css';
 import './ArticleForm.css';
 
@@ -146,6 +147,7 @@ export default function ArticleForm() {
 
 	return (
 		<div className='edit-article-page-container'>
+			<CampaignSearch />
 			<Link id='back-to-campaign' to={`/campaigns/${campaignId}`} style={{ margin: '20px' }}>
 				Back to campaign
 			</Link>

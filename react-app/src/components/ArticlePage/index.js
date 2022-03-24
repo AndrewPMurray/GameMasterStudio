@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useEffect } from 'react';
 import { getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
+import CampaignSearch from '../CampaignPage/CampaignSearch';
 import './ArticlePage.css';
 
 export default function ArticlePage() {
@@ -27,6 +28,7 @@ export default function ArticlePage() {
 
 	return (
 		<div className='article-container'>
+			<CampaignSearch />
 			<Link id='back-to-campaign' to={`/campaigns/${campaignId}/`} style={{ margin: '20px' }}>
 				Back to campaign
 			</Link>

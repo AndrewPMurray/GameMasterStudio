@@ -4,6 +4,7 @@ import { useParams, Link, useHistory } from 'react-router-dom';
 import { getSectionsByCampaign, updateSection } from '../../store/sections';
 import { deleteArticle, getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
+import CampaignSearch from '../CampaignPage/CampaignSearch';
 import './SectionPage.css';
 
 export default function SectionPage() {
@@ -56,6 +57,7 @@ export default function SectionPage() {
 
 	return (
 		<div className='section-container'>
+			<CampaignSearch />
 			<Link id='back-to-campaign' to={`/campaigns/${campaignId}`} style={{ margin: '20px' }}>
 				Back to campaign
 			</Link>
