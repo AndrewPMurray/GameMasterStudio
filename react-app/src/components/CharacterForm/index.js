@@ -243,6 +243,8 @@ const CharacterForm = () => {
 		}
 	};
 
+	console.log(errors);
+
 	if (page === 2)
 		return (
 			<div className='character-form-container'>
@@ -253,6 +255,7 @@ const CharacterForm = () => {
 					</p>
 				)}
 				<div id='tabs'>
+					<p>error</p>
 					<button id='character-sheet-button' onClick={() => setPage(1)}>
 						Character Sheet
 					</button>

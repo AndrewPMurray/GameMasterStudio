@@ -12,7 +12,7 @@ class CharacterForm(FlaskForm):
     type = StringField('title', validators=[DataRequired(), Length(max=50)])
     name = StringField('name', validators=[DataRequired(), check_character_name, Length(max=100)])
     class_name = StringField('class name', validators=[DataRequired(), Length(max=50)])
-    level = IntegerField('level', validators=[DataRequired()])
+    level = IntegerField('level', validators=[DataRequired(), NumberRange(min=1, max=20)])
     background = StringField('background', validators=[DataRequired(), Length(max=50)])
     race = StringField('race', validators=[DataRequired(), Length(max=50)])
     alignment = StringField('alignment', validators=[DataRequired(), Length(max=50)])
