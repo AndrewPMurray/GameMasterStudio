@@ -7,10 +7,11 @@ const SectionForm = ({ setShowModal, campaignId }) => {
 	const dispatch = useDispatch();
 	const [title, setTitle] = useState('');
 	const [errors, setErrors] = useState({});
+	const [disabled, setDisabled] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		document.querySelector('#modal-content').style.opacity = 0;
+		setDisabled(true);
 		dispatch(
 			addSection({
 				title,
@@ -19,6 +20,7 @@ const SectionForm = ({ setShowModal, campaignId }) => {
 		).then((res) => {
 			if (res.errors) {
 				setErrors(res.errors);
+				setDisabled(false);
 				return;
 			}
 			setShowModal(false);
@@ -51,7 +53,9 @@ const SectionForm = ({ setShowModal, campaignId }) => {
 					/>
 				</div>
 				<div id='create-section-button'>
-					<button type='submit'>Create</button>
+					<button type='submit' disabled={disabled}>
+						Create
+					</button>
 				</div>
 			</form>
 		</div>

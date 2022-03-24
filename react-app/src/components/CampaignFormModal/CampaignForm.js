@@ -11,10 +11,11 @@ const CampaignForm = ({ setShowModal, userId }) => {
 	const [title, setTitle] = useState('');
 	const [description, setDescription] = useState('');
 	const [errors, setErrors] = useState({});
+	const [submitted, setSubmitted] = useState(false);
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		document.querySelector('#modal-content').style.opacity = 0;
+		setSubmitted(true);
 		return dispatch(
 			addCampaign({
 				title,
@@ -22,8 +23,10 @@ const CampaignForm = ({ setShowModal, userId }) => {
 				owner_id: userId,
 			})
 		).then((res) => {
-			if (res.errors) setErrors(res.errors);
-			else history.push(`/campaigns/${res.id}`);
+			if (res.errors) {
+				setSubmitted(false);
+				setErrors(res.errors);
+			} else history.push(`/campaigns/${res.id}`);
 		});
 	};
 
@@ -63,7 +66,9 @@ const CampaignForm = ({ setShowModal, userId }) => {
 					/>
 				</div>
 				<div id='create-campaign-button'>
-					<button type='submit'>Create</button>
+					<button type='submit' disabled={submitted}>
+						Create
+					</button>
 				</div>
 			</form>
 		</div>

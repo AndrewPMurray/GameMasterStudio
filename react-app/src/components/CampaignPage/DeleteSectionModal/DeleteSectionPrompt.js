@@ -1,12 +1,16 @@
+import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { deleteSection } from '../../../store/sections';
 import './DeleteSectionPrompt.css';
 
-const DeleteSectionPrompt = ({ section, ownerId }) => {
+const DeleteSectionPrompt = ({ section, ownerId, setShowModal }) => {
 	const dispatch = useDispatch();
+	const [disabled, setDisabled] = useState(false);
 
 	const handleDelete = () => {
+		setDisabled(true);
 		dispatch(deleteSection(section.id, ownerId));
+		setShowModal(false);
 	};
 
 	return (
@@ -19,7 +23,9 @@ const DeleteSectionPrompt = ({ section, ownerId }) => {
 				</p>
 			</div>
 			<div id='delete-section-button'>
-				<button onClick={handleDelete}>Delete</button>
+				<button onClick={handleDelete} disabled={disabled}>
+					Delete
+				</button>
 			</div>
 		</div>
 	);
