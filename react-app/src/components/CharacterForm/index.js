@@ -255,7 +255,6 @@ const CharacterForm = () => {
 					</p>
 				)}
 				<div id='tabs'>
-					<p>error</p>
 					<button id='character-sheet-button' onClick={() => setPage(1)}>
 						Character Sheet
 					</button>
