@@ -97,7 +97,7 @@ export default function SectionPage() {
 					)}
 				</div>
 				{articles?.map((article, i) => (
-					<div id='section-article-div'>
+					<div id='section-article-div' key={`article-${i}`}>
 						<Link
 							to={`/campaigns/${campaignId}/${sectionId}/${article.id}`}
 							id='article-link'

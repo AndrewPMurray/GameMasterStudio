@@ -5,7 +5,7 @@ import { FileUploader } from 'react-drag-drop-files';
 import { useQuill } from 'react-quilljs';
 import { addArticle, updateArticle, getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
-import 'quill/dist/quill.snow.css';
+import './quill.snow.css';
 import './ArticleForm.css';
 
 export default function ArticleForm() {
@@ -163,7 +163,7 @@ export default function ArticleForm() {
 						handleChange={(file) => setImage(file)}
 					>
 						<div id='edit-article-image'>
-							<i class='fas fa-camera'></i>
+							<i className='fas fa-camera'></i>
 							<p>
 								Click here or drag and drop to add a photo (One photo only at this
 								time)
