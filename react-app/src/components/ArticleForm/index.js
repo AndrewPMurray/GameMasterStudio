@@ -11,19 +11,21 @@ import './ArticleForm.css';
 export default function ArticleForm() {
 	const dispatch = useDispatch();
 	const history = useHistory();
-	const modules = {
-		toolbar: [['bold', 'italic', 'underline', 'strike']],
-	};
-	const formats = ['size', 'bold', 'italic', 'underline', 'strike'];
-
 	const { campaignId, sectionId, articleId } = useParams();
+
 	const article = useSelector((state) => state.articles[articleId]);
+
 	const [loading, setLoading] = useState(false);
 	const [errors, setErrors] = useState({});
 	const [title, setTitle] = useState('');
 	const [content, setContent] = useState('');
 	const [image, setImage] = useState(null);
+
 	const fileTypes = ['JPG', 'PNG', ' JPEG', 'jpg', 'jpeg'];
+	const modules = {
+		toolbar: [['bold', 'italic', 'underline', 'strike']],
+	};
+	const formats = ['bold', 'italic', 'underline', 'strike'];
 
 	const { quill, quillRef } = useQuill({
 		theme: 'snow',
@@ -187,7 +189,13 @@ export default function ArticleForm() {
 				<button id='save-article' onClick={article ? handleEdit : handleSubmit}>
 					{article ? 'Save Edits' : 'Create Article'}
 				</button>
-				{loading && <p>Creating Article, please wait...</p>}
+				{loading && (
+					<p>
+						{article
+							? `Saving edits, please wait...`
+							: `Creating Article, please wait...`}
+					</p>
+				)}
 			</div>
 		</div>
 	);
