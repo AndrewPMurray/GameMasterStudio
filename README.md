@@ -58,7 +58,7 @@
 11. In your browser go to `localhost:3000`
 12. You may use the Demo user by clicking on the `Login` button or create a new user by clicking on the `Sign Up` button. Then you can create a new character or campaign or invite other users to a campaign.
 
-## To-Do (Bonus Features)
+## Additional Features:
 
 - [X] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
 - [X] Search campaigns for articles within that campaign
