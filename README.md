@@ -26,7 +26,10 @@
  ![character_sheet](https://user-images.githubusercontent.com/92741849/159521980-05178918-c7ba-4113-992e-c2e5de771725.png)
  -----------------------------
  - Campaign Page
- ![campaign_page](https://user-images.githubusercontent.com/92741849/159765338-7f2e1523-ce81-411c-980a-513cc685615b.png)
+ ![campaign_page](https://user-images.githubusercontent.com/92741849/159986244-efa2f67d-7c36-4e0d-9eca-00b23a5c8673.png)
+ -----------------------------
+ - Article Page
+ ![article_page](https://user-images.githubusercontent.com/92741849/159986403-103bafe7-fcd3-488d-aa9d-f146f2cd52c3.png)
  -----------------------------
 
 ## Install Instructions
@@ -58,10 +61,10 @@
 11. In your browser go to `localhost:3000`
 12. You may use the Demo user by clicking on the `Login` button or create a new user by clicking on the `Sign Up` button. Then you can create a new character or campaign or invite other users to a campaign.
 
-## To-Do (Bonus Features)
+## Additional Features:
 
 - [X] Ability to add sections/articles to campaigns, for users in a campaign to keep track of their sessions
-- [ ] Search campaigns for articles within that campaign
+- [X] Search campaigns for articles within that campaign
 
 
 ---------------------
