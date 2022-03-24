@@ -37,7 +37,7 @@ def create_campaign():
             db.session.commit()
             
             return new_campaign.to_dict()
-        return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+        return {'errors': validation_errors_to_error_messages(form.errors)}, 400
     return {'error':'unauthorized'}, 401
 
 
@@ -66,7 +66,7 @@ def edit_campaign(campaign_id):
         db.session.commit()
         
         return edited_campaign.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @campaign_routes.route('/characters/<int:character_id>', methods=['PUT'])
@@ -120,7 +120,7 @@ def delete_campaign(campaign_id):
         db.session.delete(deleted_campaign)
         db.session.commit()
         return {'message':'success!'}
-    return {'error':'unauthorized'}, 401
+    return {'error':'unauthorized'}, 400
 
 
 @campaign_routes.route('/characters/<int:character_id>', methods=['DELETE'])

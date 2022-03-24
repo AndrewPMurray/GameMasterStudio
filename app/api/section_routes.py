@@ -21,7 +21,7 @@ def create_section():
         db.session.add(new_section)
         db.session.commit()
         return new_section.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @section_routes.route('/<int:section_id>', methods=['PUT'])
@@ -36,7 +36,7 @@ def edit_section(section_id):
         edited_section.title = data['title']
         db.session.commit()
         return edited_section.to_dict()
-    return {'errors': validation_errors_to_error_messages(form.errors)}, 401
+    return {'errors': validation_errors_to_error_messages(form.errors)}, 400
 
 
 @section_routes.route('/<int:section_id>', methods=['DELETE'])
