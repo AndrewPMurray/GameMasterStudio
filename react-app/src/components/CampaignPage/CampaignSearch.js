@@ -59,6 +59,7 @@ export default function CampaignSearch() {
 				value={query}
 				onChange={(e) => setQuery(e.target.value)}
 				onClick={() => setShowResults(true)}
+				autoComplete='off'
 			></input>
 			{query.length > 0 && (
 				<div id='results-container'>
