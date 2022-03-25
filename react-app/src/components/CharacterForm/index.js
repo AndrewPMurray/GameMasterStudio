@@ -308,13 +308,9 @@ const CharacterForm = () => {
 						<div id='class-level-background'>
 							<i className='fas fa-question-circle' id='tooltip'>
 								<p id='popup-text'>
-									Class, Level, and Experience: These fields are for basic
-									information about your character. Class is for whether they're a
-									warrior, rogue, wizard, etc. Level is based on experience
-									(usually starts at 1), and background is usually additional info
-									about your character that provides skills in addition to the
-									class. Please see the Dungeons and Dragons playbook for more
-									information
+									{`Class, Level, and Background: These fields are for basic information about your character. Class is for whether they're a warrior, rogue, wizard, etc. Level is based on experience (usually starts at 1), and background is usually additional info about your character that provides skills in addition to the class. Please see the Dungeons and Dragons playbook for more information.
+
+									Note: Level cannot be higher than 20`}
 								</p>
 							</i>
 							<label
@@ -365,10 +361,9 @@ const CharacterForm = () => {
 						<div id='race-alignment-experience'>
 							<i className='fas fa-question-circle' id='tooltip'>
 								<p id='popup-text'>
-									Race, Alignment, and Experience: These fields determine the race
-									of your character (elf, human, dwarf, etc), their alignment
-									(i.e. lawful good or chaotic evil), and the experience points
-									gained during their adventure
+									{`Race, Alignment, and Experience: These fields determine the race of your character (elf, human, dwarf, etc), their alignment (i.e. lawful good or chaotic evil), and the experience points gained during their adventure
+									
+									Note: Experience maxes out at 355,000`}
 								</p>
 							</i>
 							<label
@@ -425,13 +420,9 @@ const CharacterForm = () => {
 								<div id='attribute-div'>
 									<i className='fas fa-question-circle' id='tooltip'>
 										<p id='popup-text'>
-											Attributes: These determine the abilities of your
-											character. They also affect saving throws and skills
-											related to them (ie a strength modifier of 4 will
-											increase all checks in Athletics by 4 as well). The big
-											number in the center is your modifier and requires no
-											input. The actual attribute goes in the circle on the
-											bottom of these areas.
+											{`Attributes: These determine the abilities of your character. They also affect saving throws and skills related to them (ie a strength modifier of 4 will increase all checks in Athletics by 4 as well). The big number in the center is your modifier and requires no input. The actual attribute goes in the circle on the bottom of these areas.
+											
+											Note: These stats cannot be less than 0 and max out at 30.`}
 										</p>
 									</i>
 									<label>STRENGTH*</label>
@@ -646,13 +637,9 @@ const CharacterForm = () => {
 							<div id='armor-initiative-speed'>
 								<i className='fas fa-question-circle' id='tooltip'>
 									<p id='popup-text'>
-										Armor class, Initiative, and Speed: These values determine
-										various things in battle. Armor class is how high an enemy
-										needs to roll to land a hit on you. Initiative is a bonus to
-										your initiative rolls and determines your turn order in
-										battle (This is determined by your dex modifier and cannot
-										be changed). Speed determines how fast you move and how far
-										you can move on the battlefield per turn.
+										{`Armor class, Initiative, and Speed: These values determine various things in battle. Armor class is how high an enemy needs to roll to land a hit on you. Initiative is a bonus to your initiative rolls and determines your turn order in battle (This is determined by your dex modifier and cannot be changed). Speed determines how fast you move and how far you can move on the battlefield per turn.
+										
+										Note: While you can input up to 100 AC and 250 speed, we're not sure how you'd get to those amounts.`}
 									</p>
 								</i>
 								<div
@@ -685,13 +672,9 @@ const CharacterForm = () => {
 							<div id='current-hp'>
 								<i className='fas fa-question-circle' id='tooltip'>
 									<p id='popup-text'>
-										Hit Points: These determine how well you stay alive. Taking
-										damage reduces hit points. Once they hit 0, you must perform
-										death saving throws. 3 failed death saving throws will
-										result in death. Hit points can be recovered up to max
-										during short and long rests, and by certain spells and
-										abilities. Certain abilities also allow temporary hit
-										points.
+										{`Hit Points: These determine how well you stay alive. Taking damage reduces hit points. Once they hit 0, you must perform death saving throws. 3 failed death saving throws will result in death. Hit points can be recovered up to max during short and long rests, and by certain spells and abilities. Certain abilities also allow temporary hit points.
+										
+										Note: You cannot have more than 2000 of each HP and temp HP. Current HP cannot be higher than Maximum HP.`}
 									</p>
 								</i>
 								<div id='hp-max'>
@@ -748,7 +731,9 @@ const CharacterForm = () => {
 										
 										Another time to roll Hit Dice is when you level up, you can either take the average result of your new Hit Die (so if you gained a D8 and use an average of 5), or you can roll.  This allows you to roll the Hit Die you gain from your new class level (which determines its size) once, adding your Constitution Modifier, and increasing your current and maximum HP by that amount; using a Hit Die in this way doesn’t expend one from your available pool. No matter what you roll, or how low your Constitution modifier is, you always gain a minimum of 1 Hit Point each level.
 
-										These are the two uses available to all characters, some features will allow you to use your Hit Dice in other ways. An example of this is the Dwarf exclusive feat Dwarven Fortitude which, among other things, allows you to roll a single Hit Die when you take the Dodge action, regaining Hit Points as if you had rolled it during a short rest.`}
+										These are the two uses available to all characters, some features will allow you to use your Hit Dice in other ways. An example of this is the Dwarf exclusive feat Dwarven Fortitude which, among other things, allows you to roll a single Hit Die when you take the Dodge action, regaining Hit Points as if you had rolled it during a short rest.
+										
+										Note: Your hit dice cannot be higher than 20. Cannot have more hit dice than total hit dice`}
 									</pre>
 								</i>
 								<div id='hit-dice'>
@@ -868,7 +853,6 @@ const CharacterForm = () => {
 								<div id='money-table-container'>
 									<Money
 										errors={errors}
-										setErrors={setErrors}
 										goldPieces={goldPieces}
 										silverPieces={silverPieces}
 										copperPieces={copperPieces}

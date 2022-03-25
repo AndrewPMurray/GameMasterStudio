@@ -2,9 +2,10 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useParams, Link, useHistory } from 'react-router-dom';
 import { getSectionsByCampaign, updateSection } from '../../store/sections';
-import { deleteArticle, getArticlesBySection } from '../../store/articles';
+import { getArticlesBySection } from '../../store/articles';
 import CampaignSections from '../CampaignPage/CampaignSections';
 import CampaignSearch from '../CampaignPage/CampaignSearch';
+import DeleteArticleModal from './DeleteArticleModal';
 import './SectionPage.css';
 
 export default function SectionPage() {
@@ -49,10 +50,6 @@ export default function SectionPage() {
 			if (res.errors) setErrors(res.errors);
 			else setEdit(false);
 		});
-	};
-
-	const handleDelete = (articleId) => {
-		dispatch(deleteArticle(articleId, campaign.owner_id));
 	};
 
 	return (
@@ -109,9 +106,7 @@ export default function SectionPage() {
 							{article.title}
 						</Link>
 						{campaign?.owner_id === user?.id && (
-							<div id='delete-article' onClick={() => handleDelete(article.id)}>
-								delete
-							</div>
+							<DeleteArticleModal article={article} ownerId={campaign.owner_id} />
 						)}
 					</div>
 				))}

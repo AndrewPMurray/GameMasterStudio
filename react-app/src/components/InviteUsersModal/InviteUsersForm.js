@@ -30,12 +30,19 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 
 	const handleSubmit = (e) => {
 		e.preventDefault();
+		const waitMsg = document.createElement('p');
+		waitMsg.innerText = 'Saving changes, please wait...';
+		waitMsg.id = 'wait';
 		document.querySelector('#modal-content').style.opacity = 0;
+		document.querySelector('#modal-background').append(waitMsg);
 
 		dispatch(addUsersToCampaign(invitedUsers, campaignId))
 			.then(() => dispatch(removeUsersFromCampaign(removeUsers, campaignId)))
 			.then(() => setShowModal(false))
-			.catch(() => (document.querySelector('#modal-content').style.opacity = 1));
+			.catch(() => {
+				document.querySelector('#modal-background').removeChild(waitMsg);
+				document.querySelector('#modal-content').style.opacity = 1;
+			});
 	};
 
 	const resultsArr = users.filter((availableUser) => {

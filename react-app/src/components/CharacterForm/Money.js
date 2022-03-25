@@ -17,7 +17,9 @@ export default function Money({
 					
 					One gold piece is worth ten silver pieces, the most prevalent coin among commoners. A silver piece buys a laborer's work for half a day, a flask of lamp oil, or a night's rest in a poor inn.
 
-					One silver piece is worth ten copper pieces, which are common among laborers and beggars. A single copper piece buys a candle, a torch, or a piece of chalk.`}
+					One silver piece is worth ten copper pieces, which are common among laborers and beggars. A single copper piece buys a candle, a torch, or a piece of chalk.
+					
+					Note: Cannot have more than 10,000 of each gold, silver, and copper (Not sure how your character would carry all that money anyway).`}
 				</pre>
 			</i>
 			<div id='gold' style={errors?.gold_pieces ? { border: '3px solid red' } : {}}>

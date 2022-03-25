@@ -137,3 +137,14 @@
 	min-height: 200px;
 	background-color: #333333;
 }
+
+#wait {
+    position: absolute;
+    top: 50%;
+    left: 40%;
+    padding: 20px;
+    border-radius: 5px;
+    font-size: 24px;
+    text-align: center;
+    background-color: #333333;
+}

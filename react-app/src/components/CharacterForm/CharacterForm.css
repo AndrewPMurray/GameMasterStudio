@@ -438,8 +438,9 @@
 #money > *{
     position: relative;
     margin-bottom: 5px;
-    width: 70px;
-    left: -25px;
+    width: 80px;
+    height: 30px;
+    left: -55px;
     display: flex;
     align-items: center;
     border: 1px solid black;
@@ -449,10 +450,11 @@
 
 #money > #tooltip {
     position: absolute;
-    bottom: 0;
-    left: -45px;
+    top: -15px;
+    left: -50px;
     height: 12px;
     border: none;
+    z-index: 20;
 }
 
 #money > #tooltip > #popup-text {
@@ -471,6 +473,11 @@
 #cp {
     color: #888888;
     margin-left: 5px;
+}
+
+#equipment-table {
+    margin-left: -45px;
+    max-width: 80%;
 }
 
 .fa-plus {
@@ -529,10 +536,16 @@
 }
 
 #add-weapon-button,
-#add-equipment-button,
+#add-equipment-button {
+    position: relative;
+    width: 30px;
+    align-self: flex-end;
+}
+
 #add-feature-button {
     position: relative;
-    width: 50px;
+    width: 30px;
+    margin-top: 10px;
 }
 
 #bio-input {

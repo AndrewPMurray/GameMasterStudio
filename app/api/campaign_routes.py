@@ -85,8 +85,8 @@ def add_users_to_campaign(campaign_id):
     users_to_add = request.json
     campaign = Campaign.query.get(campaign_id)
     
-    for user_obj in users_to_add:
-        user = User.query.get(user_obj['id'])
+    for data in users_to_add:
+        user = User.query.get(data['id'])
         user.campaigns.append(campaign)
     
     db.session.commit()
@@ -99,8 +99,8 @@ def remove_users_from_campaign(campaign_id):
     users_to_remove = request.json
     campaign = Campaign.query.get(campaign_id)
     
-    for user_obj in users_to_remove:
-        user = User.query.get(user_obj['id'])
+    for data in users_to_remove:
+        user = User.query.get(data['id'])
         character = Character.query.filter(Character.campaign_id == campaign_id, Character.user_id == user.id).first()
         if campaign.game_master_id == user.id:
             campaign.game_master_id = None
