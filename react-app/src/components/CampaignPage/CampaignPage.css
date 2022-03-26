@@ -132,6 +132,7 @@
     padding-right: 10px;
     overflow-y: auto;
     overflow-x: hidden;
+    margin-left: 20px;
 }
 
 #campaign-title-and-edit {
