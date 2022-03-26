@@ -322,7 +322,12 @@ const CampaignPage = () => {
 								id='profile-pic'
 								style={{ height: '30px', borderWidth: '1px' }}
 							/>
-							<p>{noCharUser.username} (No character selected)</p>
+							<p>
+								{noCharUser.username.length > 12
+									? `${noCharUser.username.slice(0, 10)}...`
+									: noCharUser.username}{' '}
+								(No character selected)
+							</p>
 						</div>
 					))}
 					{userCharacter && Object.values(userCharacter).length === 0 && (
@@ -334,7 +339,9 @@ const CampaignPage = () => {
 							{!gameMaster && <option value='game_master'>Game Master</option>}
 							{userCharactersList?.map((character) => (
 								<option key={`${character.name}`} value={character.id}>
-									{character.name}
+									{character.name.length > 20
+										? `${character.name.slice(0, 20)}...`
+										: character.name}
 								</option>
 							))}
 						</select>
