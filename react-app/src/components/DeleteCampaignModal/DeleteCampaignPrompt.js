@@ -25,7 +25,7 @@ const DeleteCampaignPrompt = ({ setShowModal, campaignId, campaignTitle }) => {
 			<div>
 				<h2>
 					Deleting Campaign{' '}
-					{campaignTitle.length > 40 ? campaignTitle.slice(0, 40) : campaignTitle}
+					{campaignTitle.length > 25 ? `${campaignTitle.slice(0, 25)}...` : campaignTitle}
 				</h2>
 				<p>
 					Are you sure you want to delete this campaign? This will also delete all
