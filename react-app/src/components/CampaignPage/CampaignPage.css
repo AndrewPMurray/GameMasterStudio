@@ -17,7 +17,7 @@
     align-items: center;
     top: -100px;
     left: 15px;
-    width: 200px;
+    width: 350px;
 }
 
 #search {
@@ -37,6 +37,7 @@
     border-radius: 10px;
     display: flex;
     flex-direction: column;
+    z-index: 50;
 }
 
 #result {
@@ -119,6 +120,7 @@
 #campaign-title {
     margin-bottom: 50px;
     font-size: 36px;
+    word-break: break-all;
 }
 
 #campaign-description {

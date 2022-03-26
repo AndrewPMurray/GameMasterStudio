@@ -17,7 +17,10 @@ const DeleteSectionPrompt = ({ section, ownerId, setShowModal }) => {
 	return (
 		<div className='delete-section-container'>
 			<div>
-				<h2>Deleting Section: {section.title}</h2>
+				<h2>
+					Deleting Section:{' '}
+					{section.title.length > 40 ? section.title.slice(0, 40) : section.title}
+				</h2>
 				<p>
 					Are you sure you want to delete this section? This will also delete all articles
 					associated with the section.

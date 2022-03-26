@@ -8,7 +8,8 @@ const CharacterDetailsModal = ({ character, user }) => {
 	return (
 		<>
 			<div id='character-details-modal' onClick={() => setShowModal(true)}>
-				{character.user.username} ({character.name})
+				{character.user.username} (
+				{character.name.length > 10 ? `${character.name.slice(0, 10)}...` : character.name})
 			</div>
 			{showModal && (
 				<Modal onClose={() => setShowModal(false)}>

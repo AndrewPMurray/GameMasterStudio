@@ -21,6 +21,7 @@ def username_exists(form, field):
     if user:
         raise ValidationError('Username is already in use.')
     
+    
 def password_check(form, field):
     # Checking length and strength of password
     password = field.data
@@ -28,7 +29,6 @@ def password_check(form, field):
         raise ValidationError('Password must be 8 or more characters')
     if re.search(r"[A-Z]", password) is None or re.search(r"[a-z]", password) is None or re.search(r"[0-9]", password)is None:
         raise ValidationError('Password must contain at least 1 uppercase and 1 lowercase character, and 1 number')
-
 
 
 class SignUpForm(FlaskForm):

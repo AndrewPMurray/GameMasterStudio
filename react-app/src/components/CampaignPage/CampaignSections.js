@@ -27,7 +27,11 @@ export default function CampaignSections({ campaignId }) {
 			<div id='campaign-sections-list'>
 				{sections?.map((section, i) => (
 					<div id='section' key={`section-${i}`}>
-						<Link to={`/campaigns/${campaignId}/${section.id}`}>{section.title}</Link>
+						<Link to={`/campaigns/${campaignId}/${section.id}`}>
+							{section.title.length > 20
+								? `${section.title.slice(0, 20)}...`
+								: section.title}
+						</Link>
 						{campaign?.owner_id === user?.id && (
 							<DeleteSectionModal section={section} ownerId={campaign.owner_id} />
 						)}

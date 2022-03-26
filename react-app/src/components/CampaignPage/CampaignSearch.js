@@ -53,7 +53,7 @@ export default function CampaignSearch() {
 
 	return (
 		<div id='campaign-search-container'>
-			<label>Search</label>
+			<label>Search For Articles:</label>
 			<input
 				id='search'
 				value={query}
@@ -63,16 +63,22 @@ export default function CampaignSearch() {
 			></input>
 			{query.length > 0 && (
 				<div id='results-container'>
-					{results.map((result, i) => (
-						<Link
-							id='result'
-							key={`result-${i}`}
-							to={`/campaigns/${campaignId}/${result.section_id}/${result.id}`}
-							onClick={() => setQuery('')}
-						>
-							{result.title}
-						</Link>
-					))}
+					{results.length > 0 ? (
+						results.map((result, i) => (
+							<Link
+								id='result'
+								key={`result-${i}`}
+								to={`/campaigns/${campaignId}/${result.section_id}/${result.id}`}
+								onClick={() => setQuery('')}
+							>
+								{result.title}
+							</Link>
+						))
+					) : (
+						<p id='result' style={{ textAlign: 'center' }}>
+							No articles found
+						</p>
+					)}
 				</div>
 			)}
 		</div>

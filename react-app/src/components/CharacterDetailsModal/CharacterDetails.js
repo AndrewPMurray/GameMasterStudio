@@ -18,9 +18,24 @@ const CharacterDetails = ({ setShowModal, character, user }) => {
 			)}
 			<div id='character-details'>
 				<h2>Character Details</h2>
-				<p>Name: {character.name}</p>
-				<p>Race: {character.race}</p>
-				<p>Class: {character.class_name}</p>
+				<p>
+					Name:{' '}
+					{character.name.length > 60
+						? `${character.name.slice(0, 60)}...`
+						: character.name}
+				</p>
+				<p>
+					Race:{' '}
+					{character.race.length > 60
+						? `${character.race.slice(0, 60)}...`
+						: character.race}
+				</p>
+				<p>
+					Class:{' '}
+					{character.class_name.length > 60
+						? `${character.class_name.slice(0, 60)}...`
+						: character.class_name}
+				</p>
 				<p>Biography: </p>
 				<pre id='details-biography'>
 					{character.biography.length > 0

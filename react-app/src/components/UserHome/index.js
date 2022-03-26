@@ -48,7 +48,11 @@ export default function UserHome() {
 								) : (
 									<div style={{ marginRight: '10px', width: '15px' }}></div>
 								)}
-								<Link to={`/campaigns/${campaign.id}`}>{campaign.title}</Link>
+								<Link to={`/campaigns/${campaign.id}`}>
+									{campaign.title.length > 20
+										? `${campaign.title.slice(0, 20)}...`
+										: campaign.title}
+								</Link>
 							</div>
 						))}
 					</div>
@@ -74,7 +78,11 @@ export default function UserHome() {
 									characterId={character.id}
 									characterName={character.name}
 								/>
-								<Link to={`/characters/${character.id}`}>{character.name}</Link>
+								<Link to={`/characters/${character.id}`}>
+									{character.name.length > 20
+										? `${character.name.slice(0, 20)}...`
+										: character.name}
+								</Link>
 							</div>
 						))}
 					</div>

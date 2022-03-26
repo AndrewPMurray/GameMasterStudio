@@ -158,7 +158,10 @@ const CampaignPage = () => {
 		);
 
 		if (editedForm?.errors) setErrors(editedForm.errors);
-		else setEdit(false);
+		else {
+			setEdit(false);
+			setErrors({});
+		}
 	};
 
 	return (
@@ -224,7 +227,9 @@ const CampaignPage = () => {
 								{!gameMaster && <option value='game_master'>Game Master</option>}
 								{userCharactersList?.map((userCharacter) => (
 									<option key={`${userCharacter.name}`} value={userCharacter.id}>
-										{userCharacter.name}
+										{userCharacter.name.length > 20
+											? `${userCharacter.name.slice(0, 20)}...`
+											: userCharacter.name}
 									</option>
 								))}
 								<option value='remove' onClick={() => setUserCharacter(() => {})}>
@@ -243,7 +248,12 @@ const CampaignPage = () => {
 									id='profile-pic'
 									style={{ height: '30px', borderWidth: '1px' }}
 								/>
-								<p>Game Master: {gameMaster?.username}</p>
+								<p>
+									Game Master:{' '}
+									{gameMaster?.username.length > 15
+										? `${gameMaster.username.slice(0, 15)}...`
+										: gameMaster.username}
+								</p>
 								{campaign?.game_master?.id === user.id && (
 									<p
 										id='change-character'
@@ -266,7 +276,9 @@ const CampaignPage = () => {
 								{!gameMaster && <option value='game_master'>Game Master</option>}
 								{userCharactersList?.map((userCharacter) => (
 									<option key={`${userCharacter.name}`} value={userCharacter.id}>
-										{userCharacter.name}
+										{userCharacter.name.length > 20
+											? `${userCharacter.name.slice(0, 20)}...`
+											: userCharacter.name}
 									</option>
 								))}
 								<option value='remove' onClick={() => setUserCharacter(() => {})}>

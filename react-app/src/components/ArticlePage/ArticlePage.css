@@ -36,6 +36,8 @@
 
 #article-title {
     font-size: 36px;
+    word-break: break-all;
+    line-height: 1.5;
 }
 
 #article-content {

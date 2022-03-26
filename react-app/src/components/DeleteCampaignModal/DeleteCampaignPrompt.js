@@ -23,7 +23,10 @@ const DeleteCampaignPrompt = ({ setShowModal, campaignId, campaignTitle }) => {
 	return (
 		<div className='delete-campaign-container'>
 			<div>
-				<h2>Deleting Campaign {campaignTitle}</h2>
+				<h2>
+					Deleting Campaign{' '}
+					{campaignTitle.length > 40 ? campaignTitle.slice(0, 40) : campaignTitle}
+				</h2>
 				<p>
 					Are you sure you want to delete this campaign? This will also delete all
 					articles and sections associated with the campaign. This action cannot be
