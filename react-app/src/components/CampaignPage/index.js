@@ -109,7 +109,7 @@ const CampaignPage = () => {
 			if (!campaignExists) history.push('/not-found');
 		});
 		dispatch(getCharacters(user.id));
-	}, [dispatch, user.id, selectedCharacter, campaignId, history]);
+	}, [dispatch, user, selectedCharacter, campaignId, history]);
 
 	useEffect(() => {
 		if (campaign?.game_master?.id === user.id) {
