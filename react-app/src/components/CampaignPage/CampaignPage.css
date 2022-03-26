@@ -128,6 +128,10 @@
     overflow-wrap: break-word;
     white-space: pre-line;
     font-size: 16px;
+    max-height: 600px;
+    padding-right: 10px;
+    overflow-y: auto;
+    overflow-x: hidden;
 }
 
 #campaign-title-and-edit {
