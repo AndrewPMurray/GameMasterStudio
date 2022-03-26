@@ -40,7 +40,7 @@
     background-color: #333333;
     border-radius: 5px;
     max-height: 350px;
-    overflow: scroll;
+    overflow: auto;
     overflow-x: hidden;
 }
 
