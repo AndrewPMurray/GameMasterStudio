@@ -1000,9 +1000,9 @@ const CharacterForm = () => {
 											key={`feature-${i}`}
 											onClick={() => setActiveFeature(i)}
 										>
-											{features[i]?.name.length > 40
-												? `${features[i].name.slice(0, 40)}...`
-												: features[i].name || 'Untitled'}
+											{features[i]?.name?.length > 40
+												? `${features[i]?.name.slice(0, 40)}...`
+												: features[i]?.name || 'Untitled'}
 										</p>
 									)
 								)}
