@@ -243,8 +243,6 @@ const CharacterForm = () => {
 		}
 	};
 
-	console.log(errors);
-
 	if (page === 2)
 		return (
 			<div className='character-form-container'>
