@@ -41,7 +41,7 @@ const LoginForm = () => {
 			id='login-background'
 			style={{
 				backgroundImage:
-					'url(/images/dragon.svg)',
+					'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/dragon.svg)',
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}
