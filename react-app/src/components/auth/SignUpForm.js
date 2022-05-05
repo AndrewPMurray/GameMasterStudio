@@ -48,7 +48,7 @@ const SignUpForm = () => {
 			id='signup-background'
 			style={{
 				backgroundImage:
-					'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/login-logo.jpg)',
+					'url(/images/dragon.svg)',
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}
