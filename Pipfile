@@ -28,6 +28,7 @@ Mako = "==1.1.4"
 email-validator = "*"
 boto3 = "*"
 botocore = "*"
+minio = "*"
 
 [dev-packages]
 psycopg2-binary = "==2.8.6"
