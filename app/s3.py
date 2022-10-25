@@ -12,11 +12,11 @@ SECRET_KEY = os.environ.get("MINIO_SECRET")
 MINIO_API_HOST = "http://192.168.1.112:9000"
 MINIO_CLIENT = Minio("192.168.1.112:9000", access_key=ACCESS_KEY, secret_key=SECRET_KEY, secure=False)
 
-def main():
+def isOnline():
     found = MINIO_CLIENT.bucket_exists(BUCKET_NAME)
     if not found:
-        print("Bucket does not exist!")
-    else:
-        print("Located bucket, minio initialized!!")
+        return False
+    
+    return True
         
-main()
+isOnline()
