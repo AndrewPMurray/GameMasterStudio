@@ -3,11 +3,13 @@ import { useSelector } from 'react-redux';
 import { useHistory } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 
+import { getDomain } from '../../util/getDomain';
 import './Landing.css';
 
 const Landing = () => {
 	const user = useSelector((state) => state.session.user);
 	const history = useHistory();
+	const domain = getDomain();
 
 	useEffect(() => {
 		if (user) history.push('/home');
@@ -20,11 +22,7 @@ const Landing = () => {
 				Create characters and campaigns to keep track of what happened in all of your
 				sessions
 			</h2>
-			<img
-				id='splash-image'
-				src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/splash-image.jpg'
-				alt='splash'
-			/>
+			<img id='splash-image' src={`${domain}splash-image.jpg`} alt='splash' />
 			<p>
 				Every NPC, every item of importance in your bag of holding, every action that
 				chaotic-evil player ever performed. None of it needs to be forgotten. Here you can

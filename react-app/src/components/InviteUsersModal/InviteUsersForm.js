@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getCampaigns, removeUsersFromCampaign, addUsersToCampaign } from '../../store/campaigns';
+import { getDomain } from '../../util/getDomain';
 
 import './InviteUsersForm.css';
 
@@ -13,6 +14,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 	const [invitedUsers, setInvitedUsers] = useState([]);
 	const [removeUsers, setRemoveUsers] = useState([]);
 	const [existingUsers, setExistingUsers] = useState([]);
+	const domain = getDomain();
 
 	useEffect(() => {
 		async function fetchData() {
@@ -79,7 +81,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 									src={
 										existingUser?.profile_pic_url
 											? existingUser.profile_pic_url
-											: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+											: `${domain}blank-profile-picture.png`
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -126,7 +128,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 									src={
 										invitedUser?.profile_pic_url
 											? invitedUser.profile_pic_url
-											: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+											: `${domain}blank-profile-picture.png`
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -187,7 +189,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 										src={
 											result?.profile_pic_url
 												? result.profile_pic_url
-												: 'https://gamemasterstudio.s3.us-east-2.amazonaws.com/blank-profile-picture.png'
+												: `${domain}blank-profile-picture.png`
 										}
 										alt='user-profile'
 										id='profile-pic'

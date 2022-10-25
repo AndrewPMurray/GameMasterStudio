@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Link } from 'react-router-dom';
 import { getCampaigns } from '../../store/campaigns';
 import { getCharacters } from '../../store/characters';
+import { getDomain } from '../../util/getDomain';
 import CampaignFormModal from '../CampaignFormModal';
 import DeleteCampaignModal from '../DeleteCampaignModal';
 import DeleteCharacterModal from '../DeleteCharacterModal';
@@ -13,6 +14,7 @@ export default function UserHome() {
 	const characters = useSelector((state) => state.characters);
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+	const domain = getDomain();
 
 	const charactersArr = Object.values(characters);
 	const campaignsArr = Object.values(campaigns);
@@ -28,8 +30,7 @@ export default function UserHome() {
 				<div
 					id='campaign-image'
 					style={{
-						backgroundImage:
-							'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/campaignbackground.jpg)',
+						backgroundImage: `url(${domain}campaignbackground.jpg)`,
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: '1900px 200%',
 						opacity: 0.11,
@@ -63,8 +64,7 @@ export default function UserHome() {
 				<div
 					id='character-image'
 					style={{
-						background:
-							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/characterbackground.jpg) no-repeat',
+						background: `linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(${domain}characterbackground.jpg) no-repeat`,
 						backgroundSize: '1900px',
 						opacity: 0.17,
 					}}

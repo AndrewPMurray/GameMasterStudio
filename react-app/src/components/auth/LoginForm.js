@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { login } from '../../store/session';
+import { getDomain } from '../../util/getDomain';
 
 const LoginForm = () => {
 	const [errors, setErrors] = useState({});
@@ -9,6 +10,7 @@ const LoginForm = () => {
 	const [password, setPassword] = useState('');
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
+	const domain = getDomain();
 
 	const onLogin = async (e) => {
 		e.preventDefault();
@@ -40,8 +42,7 @@ const LoginForm = () => {
 		<div
 			id='login-background'
 			style={{
-				backgroundImage:
-					'url(https://gamemasterstudio.s3.us-east-2.amazonaws.com/dragon.svg)',
+				backgroundImage: `url(${domain}dragon.svg)`,
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}

@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useHistory, useParams } from 'react-router-dom';
 import { addCharacter, getCharacters, updateCharacter } from '../../store/characters';
+import { getDomain } from '../../util/getDomain';
 import './CharacterForm.css';
 import Money from './Money';
 
@@ -11,6 +12,7 @@ const CharacterForm = () => {
 	const character = useSelector((state) => state.characters[characterId]);
 	const dispatch = useDispatch();
 	const history = useHistory();
+	const domain = getDomain();
 	const [errors, setErrors] = useState({});
 
 	const type = '5e';
@@ -287,11 +289,7 @@ const CharacterForm = () => {
 			<div id='character-form'>
 				<div id='character-header-container'>
 					<div id='character-name-container'>
-						<img
-							id='logo'
-							src='https://gamemasterstudio.s3.us-east-2.amazonaws.com/dndlogo.png'
-							alt='DnD Logo'
-						/>
+						<img id='logo' src={`${domain}dndlogo.png`} alt='DnD Logo' />
 						<input
 							style={
 								errors?.name ? { border: '2px solid red', borderRadius: '5px' } : {}
