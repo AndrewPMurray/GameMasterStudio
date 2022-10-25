@@ -3,7 +3,7 @@ from flask_login import login_required, current_user
 from app.models import db, Article
 from app.forms import ArticleForm
 from app.api.auth_routes import validation_errors_to_error_messages
-from app.aws import (
+from app.s3 import (
     delete_image_from_s3, upload_file_to_s3, allowed_file, get_unique_filename)
 
 article_routes = Blueprint('articles', __name__)

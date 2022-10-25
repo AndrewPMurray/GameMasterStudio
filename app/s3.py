@@ -13,7 +13,7 @@ is_production = os.environ.get("FLASK_ENV") == 'production'
 
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 
-MINIO_API_HOST = "theelderwan.us.to:9000" if is_production else "192.168.1.112:9000"
+MINIO_API_HOST = "theelderwan.us.to:9000"
 s3 = Minio(MINIO_API_HOST, access_key=ACCESS_KEY, secret_key=SECRET_KEY, secure=False)
 
 def isOnline():
@@ -32,15 +32,21 @@ def get_unique_filename(filename):
     unique_filename = uuid.uuid4().hex
     return f"{unique_filename}.{ext}"
 
-def upload_file_to_s3(file, acl="public-read"):
-    try:
-        s3.fput_object(
+def upload_file_to_s3(file):
+    try:              
+        s3.put_object(
             BUCKET_NAME,
-            file,
             file.filename,
+            file,
+            length=-1,
+            part_size=10*1024*1024
         )
     except Exception as e:
         # in case our s3 upload fails
+        print(str(e))
         return {"errors": str(e)}
 
-    return {"url": f"{MINIO_API_HOST}{BUCKET_NAME}/{file.filename}"}
+    return {"url": f"http://{MINIO_API_HOST}/{BUCKET_NAME}/{file.filename}"}
+
+def delete_image_from_s3(filename):
+    s3.remove_object(BUCKET_NAME, filename)

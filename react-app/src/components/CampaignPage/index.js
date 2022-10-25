@@ -17,7 +17,6 @@ import {
 import CampaignSections from './CampaignSections';
 import CharacterDetailsModal from '../CharacterDetailsModal';
 import CampaignSearch from './CampaignSearch';
-import { getDomain } from '../../util/getDomain';
 
 const CampaignPage = () => {
 	const dispatch = useDispatch();
@@ -35,7 +34,6 @@ const CampaignPage = () => {
 	const [userCharacter, setUserCharacter] = useState({});
 	const [changeCharacter, setChangeCharacter] = useState(-1);
 	const [selectedCharacter, setSelectedCharacter] = useState('');
-	const domain = getDomain();
 
 	const handleChangeCharacter = useCallback(() => {
 		if (selectedCharacter === '') return;
@@ -244,7 +242,7 @@ const CampaignPage = () => {
 									src={
 										gameMaster?.profile_pic_url
 											? gameMaster.profile_pic_url
-											: `${domain}blank-profile-picture.png`
+											: 'http://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -293,7 +291,7 @@ const CampaignPage = () => {
 									src={
 										character.user.profile_pic_url
 											? character.user.profile_pic_url
-											: `${domain}blank-profile-picture.png`
+											: 'http://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -318,7 +316,7 @@ const CampaignPage = () => {
 								src={
 									noCharUser.profile_pic_url
 										? noCharUser.profile_pic_url
-										: `${domain}blank-profile-picture.png`
+										: 'http://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
 								}
 								alt='user-profile'
 								id='profile-pic'

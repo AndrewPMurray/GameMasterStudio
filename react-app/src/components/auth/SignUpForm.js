@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { signUp } from '../../store/session';
-import { getDomain } from '../../util/getDomain';
 
 const SignUpForm = () => {
 	const [errors, setErrors] = useState([]);
@@ -12,7 +11,6 @@ const SignUpForm = () => {
 	const [repeatPassword, setRepeatPassword] = useState('');
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
-	const domain = getDomain();
 
 	const onSignUp = async (e) => {
 		e.preventDefault();
@@ -49,7 +47,7 @@ const SignUpForm = () => {
 		<div
 			id='signup-background'
 			style={{
-				backgroundImage: `url(${domain}dragon.svg)`,
+				backgroundImage: 'url(http://theelderwan.us.to:9000/gamemasterstudio/dragon.svg)',
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}

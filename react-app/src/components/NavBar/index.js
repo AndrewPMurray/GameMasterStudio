@@ -5,7 +5,6 @@ import { FileUploader } from 'react-drag-drop-files';
 import LogoutButton from '../auth/LogoutButton';
 import './NavBar.css';
 import { updateProfilePic } from '../../store/session';
-import { getDomain } from '../../util/getDomain';
 
 export default function NavBar() {
 	const [showMenu, setShowMenu] = useState(false);
@@ -13,7 +12,6 @@ export default function NavBar() {
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const fileTypes = ['JPG', 'PNG', ' JPEG', 'jpg', 'jpeg'];
-	const domain = getDomain();
 
 	useEffect(() => {
 		if (!showMenu) return;
@@ -99,7 +97,7 @@ export default function NavBar() {
 									src={
 										user?.profile_pic_url
 											? user.profile_pic_url
-											: `${domain}blank-profile-picture.png`
+											: 'http://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'

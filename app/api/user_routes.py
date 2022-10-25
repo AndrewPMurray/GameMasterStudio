@@ -1,7 +1,7 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
 from app.models import db, User
-from app.aws import (
+from app.s3 import (
     delete_image_from_s3, upload_file_to_s3, allowed_file, get_unique_filename
 )
 
