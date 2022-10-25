@@ -1,4 +1,5 @@
 from minio import Minio
+from minio.error import S3Error
 from dotenv import load_dotenv
 import os
 
@@ -17,3 +18,5 @@ def main():
         print("Bucket does not exist!")
     else:
         print("Located bucket, minio initialized!!")
+        
+main()
