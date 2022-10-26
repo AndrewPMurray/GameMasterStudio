@@ -46,7 +46,7 @@ def upload_file_to_s3(file):
         print(str(e))
         return {"errors": str(e)}
 
-    return {"url": f"http://{MINIO_API_HOST}/{BUCKET_NAME}/{file.filename}"}
+    return {"url": f"https://{MINIO_API_HOST}/{BUCKET_NAME}/{file.filename}"}
 
 def delete_image_from_s3(filename):
     s3.remove_object(BUCKET_NAME, filename)
