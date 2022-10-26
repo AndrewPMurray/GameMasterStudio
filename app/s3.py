@@ -14,7 +14,7 @@ is_production = os.environ.get("FLASK_ENV") == 'production'
 ALLOWED_EXTENSIONS = {"png", "jpg", "jpeg"}
 
 MINIO_API_HOST = "theelderwan.us.to:9000"
-s3 = Minio(MINIO_API_HOST, access_key=ACCESS_KEY, secret_key=SECRET_KEY, secure=False)
+s3 = Minio(MINIO_API_HOST, access_key=ACCESS_KEY, secret_key=SECRET_KEY, secure=True)
 
 def isOnline():
     found = s3.bucket_exists(BUCKET_NAME)
