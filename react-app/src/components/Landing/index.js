@@ -22,7 +22,7 @@ const Landing = () => {
 			</h2>
 			<img
 				id='splash-image'
-				src='http://theelderwan.us.to:9000/gamemasterstudio/splash-image.jpg'
+				src='https://theelderwan.us.to:9000/gamemasterstudio/splash-image.jpg'
 				alt='splash'
 			/>
 			<p>

@@ -29,7 +29,7 @@ export default function UserHome() {
 					id='campaign-image'
 					style={{
 						backgroundImage:
-							'url(http://theelderwan.us.to:9000/gamemasterstudio/campaignbackground.jpg)',
+							'url(https://theelderwan.us.to:9000/gamemasterstudio/campaignbackground.jpg)',
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: '1900px 200%',
 						opacity: 0.11,
@@ -64,7 +64,7 @@ export default function UserHome() {
 					id='character-image'
 					style={{
 						background:
-							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(http://theelderwan.us.to:9000/gamemasterstudio/characterbackground.jpg) no-repeat',
+							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://theelderwan.us.to:9000/gamemasterstudio/characterbackground.jpg) no-repeat',
 						backgroundSize: '1900px',
 						opacity: 0.17,
 					}}
