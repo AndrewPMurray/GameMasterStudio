@@ -1,10 +1,12 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 import json
 
 
 class Character(db.Model):
     __tablename__ = 'characters'
-
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
+        
     id = db.Column(db.Integer, primary_key=True)
     type = db.Column(db.String(50), nullable=False)
     name = db.Column(db.String(100), nullable=False)
@@ -34,8 +36,8 @@ class Character(db.Model):
     copper_pieces = db.Column(db.Integer, nullable=False)
     features = db.Column(db.Text)
     biography = db.Column(db.Text)
-    campaign_id = db.Column(db.Integer, db.ForeignKey('campaigns.id'))
-    user_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
+    campaign_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('campaigns.id')))
+    user_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     
     campaign = db.relationship("Campaign", back_populates="characters")
     user = db.relationship("User", back_populates="characters")

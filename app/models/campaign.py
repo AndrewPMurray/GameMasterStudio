@@ -1,14 +1,16 @@
-from .db import db
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 # from .campaign_user import CampaignUser
 
 class Campaign(db.Model):
     __tablename__ = 'campaigns'
+    if environment == "production":
+        __table_args__ = {'schema': SCHEMA}
 
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(50), nullable=False)
     description = db.Column(db.Text)
-    owner_id = db.Column(db.Integer, db.ForeignKey('users.id'), nullable=False)
-    game_master_id = db.Column(db.Integer, db.ForeignKey('users.id'))
+    owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
+    game_master_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     
     users = db.relationship("User", secondary="campaign_users", back_populates="campaigns")
     characters = db.relationship("Character", back_populates="campaign")
