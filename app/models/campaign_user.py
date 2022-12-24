@@ -1,15 +1,10 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
 
-if environment == 'production':
-    schema = SCHEMA
-else: 
-    schema = None
-
 campaign_users = db.Table(
     "campaign_users",
     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
     db.Column("campaign_id", db.Integer, db.ForeignKey(add_prefix_for_prod("campaigns.id")), primary_key=True),
-    schema=schema
+    schema=SCHEMA if environment == 'production' else None
 )
 
 # class CampaignUser(db.Model):
