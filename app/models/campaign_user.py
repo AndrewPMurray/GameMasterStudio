@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA, add_prefix_for_prod
+from .db import db, add_prefix_for_prod
 
 campaign_users = db.Table(
     "campaign_users",
