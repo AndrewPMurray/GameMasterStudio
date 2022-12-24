@@ -101,9 +101,9 @@ def upgrade():
     sa.PrimaryKeyConstraint('id')
     )
     if environment == "production":
+        op.execute(f"ALTER TABLE campaign_users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE campaigns SET SCHEMA {SCHEMA};")
-        op.execute(f"ALTER TABLE campaign_users SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE characters SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE sections SET SCHEMA {SCHEMA};")
         op.execute(f"ALTER TABLE articles SET SCHEMA {SCHEMA};")
