@@ -1,5 +1,4 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
-from .campaign_user import campaign_users
 
 
 class Campaign(db.Model):
@@ -13,7 +12,7 @@ class Campaign(db.Model):
     owner_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')), nullable=False)
     game_master_id = db.Column(db.Integer, db.ForeignKey(add_prefix_for_prod('users.id')))
     
-    users = db.relationship("User", secondary=campaign_users, back_populates='campaigns')
+    users = db.relationship("User", secondary=add_prefix_for_prod("campaign_users"), back_populates='campaigns')
     characters = db.relationship("Character", back_populates="campaign")
     sections = db.relationship("Section", back_populates="campaign", cascade="all, delete")
     game_master = db.relationship("User", foreign_keys=[game_master_id])
