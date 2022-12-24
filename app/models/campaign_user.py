@@ -1,4 +1,5 @@
 from .db import db, environment, SCHEMA, add_prefix_for_prod
+from sqlalchemy import MetaData
 
 if environment == 'production':
     schema = SCHEMA
@@ -6,7 +7,7 @@ else:
     schema = None
 
 campaign_users = db.Table(
-    "campaign_users", {'schema': schema},
+    "campaign_users", MetaData(schema=schema),
     db.Column("user_id", db.Integer, db.ForeignKey(add_prefix_for_prod("users.id")), primary_key=True),
     db.Column("campaign_id", db.Integer, db.ForeignKey(add_prefix_for_prod("campaigns.id")), primary_key=True)
 )
