@@ -1,4 +1,4 @@
-from .db import db, environment, SCHEMA
+from .db import db, environment, SCHEMA, add_prefix_for_prod
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_login import UserMixin
 
@@ -14,7 +14,7 @@ class User(db.Model, UserMixin):
     hashed_password = db.Column(db.String(255), nullable=False)
     profile_pic_url = db.Column(db.String(500))
     
-    campaigns = db.relationship("Campaign", secondary="campaign_users", back_populates="users")
+    campaigns = db.relationship("Campaign", secondary=add_prefix_for_prod("campaign_users"), back_populates="users")
     characters = db.relationship("Character", back_populates="user", cascade="all, delete")
 
     @property
