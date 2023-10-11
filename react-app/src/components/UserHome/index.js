@@ -7,7 +7,6 @@ import CampaignFormModal from '../CampaignFormModal';
 import DeleteCampaignModal from '../DeleteCampaignModal';
 import DeleteCharacterModal from '../DeleteCharacterModal';
 import './UserHome.css';
-import { updateImageURLs } from '../../store/session';
 
 export default function UserHome() {
 	const campaigns = useSelector((state) => state.campaigns);
@@ -21,7 +20,6 @@ export default function UserHome() {
 	useEffect(() => {
 		dispatch(getCampaigns(user?.id));
 		dispatch(getCharacters(user?.id));
-		dispatch(updateImageURLs());
 	}, [dispatch, user]);
 
 	return (

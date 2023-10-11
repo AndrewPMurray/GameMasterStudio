@@ -109,13 +109,6 @@ export const updateProfilePic = (image, userId) => async (dispatch) => {
 	}
 };
 
-export const updateImageURLs = () => async (dispatch) => {
-	await fetch(`/api/users/UPDATE`, {
-		method: 'PUT',
-	});
-	return;
-};
-
 export default function reducer(state = initialState, action) {
 	switch (action.type) {
 		case SET_USER:
