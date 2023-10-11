@@ -242,7 +242,7 @@ const CampaignPage = () => {
 									src={
 										gameMaster?.profile_pic_url
 											? gameMaster.profile_pic_url
-											: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+											: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -291,7 +291,7 @@ const CampaignPage = () => {
 									src={
 										character.user.profile_pic_url
 											? character.user.profile_pic_url
-											: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+											: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -316,7 +316,7 @@ const CampaignPage = () => {
 								src={
 									noCharUser.profile_pic_url
 										? noCharUser.profile_pic_url
-										: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+										: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 								}
 								alt='user-profile'
 								id='profile-pic'

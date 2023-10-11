@@ -1,6 +1,6 @@
 from flask import Blueprint, jsonify, request
 from flask_login import current_user, login_required
-from app.models import db, User
+from app.models import db, User, Article
 from app.s3 import (
     delete_image_from_s3, upload_file_to_s3, allowed_file, get_unique_filename
 )
@@ -13,6 +13,24 @@ user_routes = Blueprint('users', __name__)
 def users():
     users = User.query.all()
     return {'users': [user.user_info_to_dict() for user in users]}
+
+@user_routes.route('/UPDATE', methods=['PUT'])
+def update():
+    users = User.query.all()
+    articles = Article.query.all()
+    
+    for user in users:
+        if user.profile_pic_url != None:
+            new_url = user.profile_pic_url.replace("theelderwan.us.to:9000", "minio.domainofaka.app")
+            user.profile_pic_url = new_url
+    
+    for article in articles:
+        if article.photo_url != None:
+            new_url = article.photo_url.replace("theelderwan.us.to:9000", "minio.domainofaka.app")
+            article.photo_url = new_url
+            
+    db.session.commit()
+    return {"response": "Success!"}, 200
 
 
 @user_routes.route('/<int:id>')

@@ -97,7 +97,7 @@ export default function NavBar() {
 									src={
 										user?.profile_pic_url
 											? user.profile_pic_url
-											: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+											: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'

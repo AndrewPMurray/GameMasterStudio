@@ -6,7 +6,7 @@ export default function NotFound() {
 		<div className='not-found-container'>
 			<img
 				id='not-found-image'
-				src='https://theelderwan.us.to:9000/gamemasterstudio/notfound.jpg'
+				src='https://minio.domainofaka.app/gamemasterstudio/notfound.jpg'
 				alt='not-found'
 			/>
 			<p id='not-found-text'>

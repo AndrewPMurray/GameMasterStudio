@@ -79,7 +79,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 									src={
 										existingUser?.profile_pic_url
 											? existingUser.profile_pic_url
-											: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+											: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -126,7 +126,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 									src={
 										invitedUser?.profile_pic_url
 											? invitedUser.profile_pic_url
-											: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+											: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 									}
 									alt='user-profile'
 									id='profile-pic'
@@ -187,7 +187,7 @@ const InviteUsersForm = ({ setShowModal, campaignUsers, campaignId }) => {
 										src={
 											result?.profile_pic_url
 												? result.profile_pic_url
-												: 'https://theelderwan.us.to:9000/gamemasterstudio/blank-profile-picture.png'
+												: 'https://minio.domainofaka.app/gamemasterstudio/blank-profile-picture.png'
 										}
 										alt='user-profile'
 										id='profile-pic'

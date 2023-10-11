@@ -289,7 +289,7 @@ const CharacterForm = () => {
 					<div id='character-name-container'>
 						<img
 							id='logo'
-							src='https://theelderwan.us.to:9000/gamemasterstudio/dndlogo.png'
+							src='https://minio.domainofaka.app/gamemasterstudio/dndlogo.png'
 							alt='DnD Logo'
 						/>
 						<input

@@ -47,7 +47,7 @@ const SignUpForm = () => {
 		<div
 			id='signup-background'
 			style={{
-				backgroundImage: 'url(https://theelderwan.us.to:9000/gamemasterstudio/dragon.svg)',
+				backgroundImage: 'url(https://minio.domainofaka.app/gamemasterstudio/dragon.svg)',
 				backgroundSize: '2400px',
 				backgroundRepeat: 'no-repeat',
 			}}

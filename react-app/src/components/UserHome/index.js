@@ -7,6 +7,7 @@ import CampaignFormModal from '../CampaignFormModal';
 import DeleteCampaignModal from '../DeleteCampaignModal';
 import DeleteCharacterModal from '../DeleteCharacterModal';
 import './UserHome.css';
+import { updateImageURLs } from '../../store/session';
 
 export default function UserHome() {
 	const campaigns = useSelector((state) => state.campaigns);
@@ -20,6 +21,7 @@ export default function UserHome() {
 	useEffect(() => {
 		dispatch(getCampaigns(user?.id));
 		dispatch(getCharacters(user?.id));
+		dispatch(updateImageURLs());
 	}, [dispatch, user]);
 
 	return (
@@ -29,7 +31,7 @@ export default function UserHome() {
 					id='campaign-image'
 					style={{
 						backgroundImage:
-							'url(https://theelderwan.us.to:9000/gamemasterstudio/campaignbackground.jpg)',
+							'url(https://minio.domainofaka.app/gamemasterstudio/campaignbackground.jpg)',
 						backgroundRepeat: 'no-repeat',
 						backgroundSize: '1900px 200%',
 						opacity: 0.11,
@@ -64,7 +66,7 @@ export default function UserHome() {
 					id='character-image'
 					style={{
 						background:
-							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://theelderwan.us.to:9000/gamemasterstudio/characterbackground.jpg) no-repeat',
+							'linear-gradient(to bottom, transparent 0%, rgba(30, 30, 30, 0.3) 50%, #222222 100%), url(https://minio.domainofaka.app/gamemasterstudio/characterbackground.jpg) no-repeat',
 						backgroundSize: '1900px',
 						opacity: 0.17,
 					}}
