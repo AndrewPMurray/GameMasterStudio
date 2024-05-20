@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useHistory, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { FileUploader } from 'react-drag-drop-files';
-import { useQuill } from 'react-quilljs';
 import { addArticle, updateArticle, getArticlesBySection } from '../../store/articles';
+import Quill from 'quill';
 import CampaignSections from '../CampaignPage/CampaignSections';
 import CampaignSearch from '../CampaignPage/CampaignSearch';
 import './quill.snow.css';
@@ -23,20 +23,21 @@ export default function ArticleForm() {
 	const [image, setImage] = useState(null);
 
 	const fileTypes = ['JPG', 'PNG', ' JPEG', 'jpg', 'jpeg'];
-	const modules = {
-		toolbar: [['bold', 'italic', 'underline', 'strike']],
-	};
-	const formats = ['bold', 'italic', 'underline', 'strike'];
-
-	const { quill, quillRef } = useQuill({
-		theme: 'snow',
-		modules,
-		formats,
-		placeholder: 'Add your article content here',
-	});
+	const quillRef = useRef();
+	const quillRefCurrent = quillRef.current;
+	const quill = useMemo(() => {
+		const modules = {
+			toolbar: [['bold', 'italic', 'underline', 'strike']],
+		};
+		const formats = ['bold', 'italic', 'underline', 'strike'];
+		if (quillRefCurrent)
+			return new Quill(quillRef.current, { theme: 'snow', formats, modules });
+		else return null;
+	}, [quillRefCurrent]);
 
 	useEffect(() => {
 		dispatch(getArticlesBySection(sectionId));
+		quillRef.current = document.getElementById('edit-content');
 	}, [dispatch, sectionId]);
 
 	useEffect(() => {
@@ -191,7 +192,7 @@ export default function ArticleForm() {
 						</div>
 					)}
 				</div>
-				<div ref={quillRef} id='edit-content' theme='snow'></div>
+				<div id='edit-content' ref={quillRef} theme='snow' />
 				<button id='save-article' onClick={article ? handleEdit : handleSubmit}>
 					{article ? 'Save Edits' : 'Create Article'}
 				</button>
