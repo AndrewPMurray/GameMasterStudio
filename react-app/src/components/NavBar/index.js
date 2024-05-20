@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { NavLink } from 'react-router-dom';
 import { FileUploader } from 'react-drag-drop-files';
@@ -12,23 +12,6 @@ export default function NavBar() {
 	const user = useSelector((state) => state.session.user);
 	const dispatch = useDispatch();
 	const fileTypes = ['JPG', 'PNG', ' JPEG', 'jpg', 'jpeg'];
-
-	useEffect(() => {
-		if (!showMenu) return;
-
-		const closeMenu = (e) => {
-			if (e.target === document.querySelector('#user-navbar-menu')) return;
-			if (e.target === document.querySelector('#change-profile-pic-button')) return;
-			if (e.target === document.querySelector('#file-uploader')) return;
-			if (e.target === document.querySelector('#change-profile-pic-button')) return;
-			if (e.target === document.querySelector('input')) return;
-			setShowMenu(false);
-		};
-
-		document.addEventListener('click', closeMenu);
-
-		return () => document.removeEventListener('click', closeMenu);
-	}, [showMenu]);
 
 	const changeProfilePic = (file) => {
 		setLoading(true);
@@ -73,6 +56,8 @@ export default function NavBar() {
 		};
 	};
 
+	console.log(showMenu);
+
 	return (
 		<div>
 			<nav id='navbar-container'>
@@ -92,7 +77,7 @@ export default function NavBar() {
 							</div>
 						)}
 						{user && (
-							<div id='user-navbar-container' onClick={() => setShowMenu(true)}>
+							<div id='user-navbar-container' onClick={() => setShowMenu(!showMenu)}>
 								<img
 									src={
 										user?.profile_pic_url
